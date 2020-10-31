@@ -14,7 +14,7 @@ Staging area là nơi chuẩn bị cho quá trình commit. Về cơ bản các h
 Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muốn được commit thì nó phải nằm ở trong khu vực staging area. Và một tập tin khi nó nằm trong khu vực này sẽ có trạng thái Stagged.
 
 <p align="center">
-  <img width="550" height="420" src="https://thachpham.com/wp-content/uploads/2015/04/git-staging-area.png">
+  <img width="550" height="350" src="https://thachpham.com/wp-content/uploads/2015/04/git-staging-area.png">
 </p>
 
 
