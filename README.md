@@ -18,7 +18,8 @@ Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muố
 
 Để đưa một file vào Staging Area, ta dùng lệnh:
 
-Git add tên-file 
+##### Trên Command Line Tool
+###### git add tên-file 
 
 
 
