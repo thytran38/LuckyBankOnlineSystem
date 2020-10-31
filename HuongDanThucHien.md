@@ -33,7 +33,7 @@ Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muố
 
 
 
-### Thực hiện lệnh push 
+### Thực hiện lệnh Push 
 
 Sau khi một file đã được commit thành công, nghĩa là nó đã ở local repository của ta tuy nhiên remote repository (ví dụ như Github repo) thì chưa. Dùng lệnh git push o
 
@@ -42,7 +42,7 @@ Sau khi một file đã được commit thành công, nghĩa là nó đã ở lo
 ##### Trên Command Line Tool
 ###### git commit -m "Lời nhắn (có thể có hoặc ko)"
 
-
+<img align="center" width="100" height="100" src="https://i.stack.imgur.com/MgaV9.png">
 
 ### Merge conflict là gì và tại sao lại gây đau đầu nhiều như vậy?
 
