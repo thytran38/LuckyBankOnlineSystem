@@ -1,8 +1,13 @@
 # ifeellucky
 # Hướng dẫn đóng góp cho đồ án Lucky Online Banking System
 
+# 
+### Clone dự án về máy PC của bạn
+#### Trên Command Line Tool
 
-# Clone dự án về máy PC của bạn
+##### https://github.com/thytran38/LuckyBanks.git
+
+
 
 
 
