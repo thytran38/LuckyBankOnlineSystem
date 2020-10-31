@@ -42,7 +42,7 @@ Sau khi một file đã được commit thành công, nghĩa là nó đã ở lo
 ##### Trên Command Line Tool
 ###### git commit -m "Lời nhắn (có thể có hoặc ko)"
 
-<img align="center" width="100" height="100" src="https://i.stack.imgur.com/MgaV9.png">
+<img align="center" width="500" height="500" src="https://i.stack.imgur.com/MgaV9.png">
 
 ### Merge conflict là gì và tại sao lại gây đau đầu nhiều như vậy?
 
