@@ -8,7 +8,7 @@
 ###### git clone https://github.com/thytran38/LuckyBanks.git
 
 
-# 
+
 ### Thêm một file vào staging area 
 Staging area là nơi chuẩn bị cho quá trình commit. Về cơ bản các hệ thống quản lý phiên bản (Version Control System) có hai nơi lưu trữ dữ liệu: một là thư mục mà bạn đang làm việc trên máy tính, và hai là kho chứa mã nguồn (còn gọi là repository) được lưu trữ từ xa, ví dụ Github.
 
@@ -20,6 +20,27 @@ Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muố
 
 ##### Trên Command Line Tool
 ###### git add tên-file 
+
+
+
+### Thực hiện Commit 
+Staging area là nơi chuẩn bị cho quá trình commit. Về cơ bản các hệ thống quản lý phiên bản (Version Control System) có hai nơi lưu trữ dữ liệu: một là thư mục mà bạn đang làm việc trên máy tính, và hai là kho chứa mã nguồn (còn gọi là repository) được lưu trữ từ xa, ví dụ Github.
+
+Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muốn được commit thì nó phải nằm ở trong khu vực staging area. Và một tập tin khi nó nằm trong khu vực này sẽ có trạng thái Stagged.
+
+![](https://thachpham.com/wp-content/uploads/2015/04/git-staging-area.png?raw=true)
+
+Để đưa một file vào Staging Area, ta dùng lệnh:
+
+##### Trên Command Line Tool
+###### git add tên-file 
+
+
+
+Tìm hiểu về trạng thái của git
+
+![](https://thachpham.com/wp-content/uploads/2015/04/git-lifecycle.png?raw=true)
+
 
 
 
