@@ -39,7 +39,7 @@ Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muố
 
 Tìm hiểu về trạng thái của git
 
-![](https://thachpham.com/wp-content/uploads/2015/04/git-lifecycle.png?raw=true)
+![](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.codingdomain.com%2Fgit%2Fpartial-commits%2F&psig=AOvVaw0MGCQ40jQhTetVwem9DpJU&ust=1604215306456000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDylPKl3uwCFQAAAAAdAAAAABAD?raw=true)
 
 
 
