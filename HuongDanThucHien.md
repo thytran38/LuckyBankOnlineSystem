@@ -13,7 +13,10 @@ Staging area là nơi chuẩn bị cho quá trình commit. Về cơ bản các h
 
 Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muốn được commit thì nó phải nằm ở trong khu vực staging area. Và một tập tin khi nó nằm trong khu vực này sẽ có trạng thái Stagged.
 
-![](https://thachpham.com/wp-content/uploads/2015/04/git-staging-area.png?raw=true)
+<p align="center">
+  <img width="550" height="550" src="https://thachpham.com/wp-content/uploads/2015/04/git-staging-area.png">
+</p>
+
 
 Để đưa một file vào Staging Area, ta dùng lệnh:
 
@@ -42,9 +45,7 @@ Sau khi một file đã được commit thành công, nghĩa là nó đã ở lo
 ##### Trên Command Line Tool
 ###### git commit -m "Lời nhắn (có thể có hoặc ko)"
 
-<p align="center">
-  <img width="550" height="550" src="https://i.stack.imgur.com/MgaV9.png">
-</p>
+
 ### Merge conflict là gì và tại sao lại gây đau đầu nhiều như vậy?
 
 Xung đột (conflict) xảy ra khi 2 (hoặc hơn) người cùng edit một file, hay dev A đang edit thì dev B xoá file đó. Lúc đó Git sẽ không biết điều nào là đúng nên sẽ đánh đấu (mark the file as being conflicted) và tạm dừng lại quá trình merge. 
@@ -58,7 +59,9 @@ Có 2 dạng merge conflict:
 
 Tổng quan về trạng thái của git và các lệnh tương quan
 
-![](https://i.stack.imgur.com/MgaV9.png?raw=true)
+<p align="center">
+  <img width="550" height="550" src="https://i.stack.imgur.com/MgaV9.png">
+</p>
 
 
 
