@@ -24,25 +24,16 @@ Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muố
 
 
 ### Thực hiện Commit 
-Staging area là nơi chuẩn bị cho quá trình commit. Về cơ bản các hệ thống quản lý phiên bản (Version Control System) có hai nơi lưu trữ dữ liệu: một là thư mục mà bạn đang làm việc trên máy tính, và hai là kho chứa mã nguồn (còn gọi là repository) được lưu trữ từ xa, ví dụ Github.
+Ý nghĩa của commit?
 
-Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muốn được commit thì nó phải nằm ở trong khu vực staging area. Và một tập tin khi nó nằm trong khu vực này sẽ có trạng thái Stagged.
 
-![](https://thachpham.com/wp-content/uploads/2015/04/git-staging-area.png?raw=true)
-
-Để đưa một file vào Staging Area, ta dùng lệnh:
+Để commit một file, ta dùng lệnh:
 
 ##### Trên Command Line Tool
-###### git add tên-file 
-
+###### git commit -m "Lời nhắn (có thể có hoặc ko)"
 
 
 Tìm hiểu về trạng thái của git
-
-![](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.codingdomain.com%2Fgit%2Fpartial-commits%2F&psig=AOvVaw0MGCQ40jQhTetVwem9DpJU&ust=1604215306456000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDylPKl3uwCFQAAAAAdAAAAABAD?raw=true)
-
-
-
 
 
 
