@@ -46,13 +46,16 @@ Sau khi một file đã được commit thành công, nghĩa là nó đã ở lo
 
 ### Merge conflict là gì và tại sao lại gây đau đầu nhiều như vậy?
 
+Xung đột (conflict) xảy ra khi 2 (hoặc hơn) người cùng edit một file, hay dev A đang edit thì dev B xoá file đó. Lúc đó Git sẽ không biết điều nào là đúng nên sẽ đánh đấu (mark the file as being conflicted) và tạm dừng lại quá trình merge. 
+
+Có 2 dạng merge conflict:
+
+* Git không thể bắt đầu merge
+
+* Git merge thất bại trong quá trình
 
 
-
-
-
-
-### Tổng quan về trạng thái của git và các lệnh tương quan
+Tổng quan về trạng thái của git và các lệnh tương quan
 
 ![](https://i.stack.imgur.com/MgaV9.png?raw=true)
 
