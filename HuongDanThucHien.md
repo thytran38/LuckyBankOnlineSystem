@@ -1,11 +1,11 @@
 # Hướng dẫn thực hiện dự án Lucky Online Banking System
-
-# 
+ 
 ### Clone dự án về máy PC của bạn
 
 Để tạo bản sao làm việc cục bộ của kho lưu trữ từ xa hiện có, hãy sử dụng git clone để sao chép và tải kho lưu trữ xuống máy tính. Sao chép tương đương với git init khi làm việc với kho lưu trữ từ xa. Git sẽ tạo một thư mục cục bộ với tất cả các tệp và lịch sử kho lưu trữ.
 ##### Trên Command Line Tool
-###### git clone https://github.com/thytran38/LuckyBankOnlineSystem.git
+###### git clone https://github.com/thytran38/LuckyBanks.git
+
 
 
 ### Thêm một file vào staging area 
@@ -23,8 +23,8 @@ Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muố
 
 
 ### Thực hiện Commit 
-Ý nghĩa của commit?
 
+Ở lệnh trên, khi đưa một file vào trạng thái stagged, file đấy vẫn chưa nằm trên repository local của ta. 
 
 Để commit một file, ta dùng lệnh:
 
@@ -32,7 +32,29 @@ Cho nên staging area là nơi lưu trữ trung gian, mỗi tập tin nào muố
 ###### git commit -m "Lời nhắn (có thể có hoặc ko)"
 
 
-Tìm hiểu về trạng thái của git
+
+### Thực hiện lệnh push 
+
+Sau khi một file đã được commit thành công, nghĩa là nó đã ở local repository của ta tuy nhiên remote repository (ví dụ như Github repo) thì chưa. Dùng lệnh git push o
+
+Để commit một file, ta dùng lệnh:
+
+##### Trên Command Line Tool
+###### git commit -m "Lời nhắn (có thể có hoặc ko)"
+
+
+
+### Merge conflict là gì và tại sao lại gây đau đầu nhiều như vậy?
+
+
+
+
+
+
+
+### Tổng quan về trạng thái của git và các lệnh tương quan
+
+![](https://i.stack.imgur.com/MgaV9.png?raw=true)
 
 
 
