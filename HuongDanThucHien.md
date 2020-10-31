@@ -43,7 +43,7 @@ Sau khi một file đã được commit thành công, nghĩa là nó đã ở lo
 Để commit một file, ta dùng lệnh:
 
 ##### Trên Command Line Tool
-###### git commit -m "Lời nhắn (có thể có hoặc ko)"
+###### git push origin 
 
 
 ### Merge conflict là gì và tại sao lại gây đau đầu nhiều như vậy?
@@ -63,6 +63,15 @@ Tổng quan về trạng thái của git và các lệnh tương quan
   <img width="550" height="500" src="https://i.stack.imgur.com/MgaV9.png">
 </p>
 
+Sau khi một file đã được push lên nhánh master thành công, nghĩa là đã có sự thay đổi ở remote repo. Việc cần làm của các dev còn lại là pull origin về để update theo commit mới nhất.
 
+### Thực hiện lệnh Pull
+
+Sau khi một file đã được commit thành công, nghĩa là nó đã ở local repository của ta tuy nhiên remote repository (ví dụ như Github repo) thì chưa. Dùng lệnh git push o
+
+Để commit một file, ta dùng lệnh:
+
+##### Trên Command Line Tool
+###### git pull <branch_name> <remote_URL/remote_name>
 
 
