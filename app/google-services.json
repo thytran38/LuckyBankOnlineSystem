@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "66957589357",
+    "firebase_url": "https://luckyonlinebanking.firebaseio.com",
+    "project_id": "luckyonlinebanking",
+    "storage_bucket": "luckyonlinebanking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66957589357:android:a979f07c68fac794203864",
+        "android_client_info": {
+          "package_name": "com.example.myfirstapp.luckybankonlinesystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66957589357-4dfkjfq4pogf40nlr7gik5tbqvqpnmsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc1xAqrvMwosg--PMpyrfciJusrfxQnDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66957589357-4dfkjfq4pogf40nlr7gik5tbqvqpnmsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
