@@ -1,10 +1,8 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.myfirstapp.luckybankonlinesystem.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
