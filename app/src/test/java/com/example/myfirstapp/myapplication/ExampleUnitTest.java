@@ -1,4 +1,4 @@
-package com.example.myfirstapp.luckybankonlinesystem;
+package com.example.myfirstapp.myapplication;
 
 import org.junit.Test;
 
