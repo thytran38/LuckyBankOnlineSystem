@@ -29,5 +29,10 @@ public class MainActivity extends AppCompatActivity {
         currentAmount = (EditText)findViewById(R.id.txtCurrentAmount);
         address = (EditText)findViewById(R.id.txtAddress);
         nationalID = (EditText)findViewById(R.id.txtNationalID);
+
+        login = (Button)findViewById(R.id.btnLogin);
+        register_login = (Button)findViewById(R.id.btnRegister_Login);
+        register = (Button)findViewById(R.id.btnRegister);
+        cancel = (Button)findViewById(R.id.btnCancel);
     }
 }
