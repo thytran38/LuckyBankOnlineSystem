@@ -6,7 +6,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.myfirstapp.myapplication"
+        applicationId "com.example.myfirstapp.luckybankonlinesystem"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1

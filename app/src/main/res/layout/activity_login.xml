@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login"
-    tools:context="com.example.myfirstapp.myapplication.MainActivity">
+    tools:context="com.example.myfirstapp.luckybankonlinesystem.LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"

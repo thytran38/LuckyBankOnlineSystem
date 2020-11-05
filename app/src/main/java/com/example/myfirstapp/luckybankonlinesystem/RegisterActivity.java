@@ -1,25 +1,21 @@
-package com.example.myfirstapp.myapplication;
+package com.example.myfirstapp.luckybankonlinesystem;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.myfirstapp.luckybankonlinesystem.R;
 
-import com.example.myfirstapp.myapplication.R;
+public class RegisterActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-    EditText userName, password, fullName, dateOfBirth, phoneNumber, email, inputPassword, re_enterPassword, currentAmount, address, nationalID;
-    Button login, register_login, register, cancel;
+    EditText fullName, dateOfBirth, phoneNumber, email, inputPassword, re_enterPassword, currentAmount, address, nationalID;
+    Button register, cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
-        userName = (EditText)findViewById(R.id.txtUserName);
-        password = (EditText)findViewById(R.id.txtPassword);
         fullName = (EditText)findViewById(R.id.txtFullName);
         dateOfBirth = (EditText)findViewById(R.id.txtDateOfBirth);
         phoneNumber = (EditText)findViewById(R.id.txtPhoneNumber);
@@ -30,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
         address = (EditText)findViewById(R.id.txtAddress);
         nationalID = (EditText)findViewById(R.id.txtNationalID);
 
-        login = (Button)findViewById(R.id.btnLogin);
-        register_login = (Button)findViewById(R.id.btnRegister_Login);
         register = (Button)findViewById(R.id.btnRegister);
         cancel = (Button)findViewById(R.id.btnCancel);
     }
