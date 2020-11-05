@@ -6,6 +6,9 @@
     <color name="dark_blue">#3023AE</color>
     <color name="purple">#c86dd7</color>
     <color name="red">#F60505</color>
+    <color name="blue">#2196F3</color>
+    <color name="light_blue">#00BCD4</color>
+    <color name="black">#000000</color>
 
     <color name="login_form_details">#ccffffff</color>
     <color name="login_form_details_light">#1affffff</color>
