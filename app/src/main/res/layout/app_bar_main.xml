@@ -22,4 +22,4 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
-</androidx.constraintlayout.widget.Constraintandroid>
+</androidx.constraintlayout.widget.ConstraintLayout>
