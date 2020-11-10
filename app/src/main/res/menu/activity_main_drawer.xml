@@ -6,7 +6,36 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_baseline_supervised_user_circle_24_foreground"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Home"/>
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_baseline_supervised_user_circle_24_foreground"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_baseline_history_24"
+            android:title="Payment History" />
+
     </group>
+
+    <item android:title="Communicate">
+        <menu>
+
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_contact_phone_black_24dp"
+                android:title="Customer Services" />
+
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about"
+                android:title="About" />
+
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Logout" />
+        </menu>
+    </item>
 </menu>
