@@ -21,15 +21,9 @@
 
     <item android:title="Communicate">
         <menu>
-
-            <item
-                android:id="@+id/nav_contact"
-                android:icon="@drawable/ic_contact_phone_black_24dp"
-                android:title="Customer Services" />
-
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_about"
+                android:icon="@drawable/ic_round_info_24"
                 android:title="About" />
 
             <item
