@@ -1,0 +1,25 @@
+Index: app/src/main/res/layout/app_bar_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".MainActivity\">\n\n    <com.google.android.material.appbar.AppBarLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:theme=\"@style/AppTheme.AppBarOverlay\">\n\n        <com.google.android.material.appbar.MaterialToolbar\n            android:id=\"@+id/toolbar\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\"\n            android:background=\"@color/colorPrimary2\"\n            app:popupTheme=\"@style/AppTheme.PopupOverlay\" />\n\n    </com.google.android.material.appbar.AppBarLayout>\n\n    <include layout=\"@layout/content_main\" />\n</androidx.constraintlayout.widget.Constraintandroid>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/app_bar_main.xml	(revision 5cb1c5fb7dc76f16f30675aec5dd5d5c8afb68a4)
++++ app/src/main/res/layout/app_bar_main.xml	(date 1604804659494)
+@@ -1,7 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <androidx.constraintlayout.widget.ConstraintLayout
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+@@ -22,4 +21,4 @@
+     </com.google.android.material.appbar.AppBarLayout>
+ 
+     <include layout="@layout/content_main" />
+-</androidx.constraintlayout.widget.Constraintandroid>
+\ No newline at end of file
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
