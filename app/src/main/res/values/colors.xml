@@ -20,4 +20,62 @@
     <color name="login_form_details">#ccffffff</color>
     <color name="login_form_details_light">#1affffff</color>
     <color name="login_form_details_medium">#66ffffff</color>
+
+    <!--Red color-->
+    <color name="red_primary_50">#ffebee</color>
+    <color name="red_p_light_50">#ffffff</color>
+    <color name="red_p_dark_50">#ccb9bc</color>
+
+    <color name="red_primary_100">#ffcdd2</color>
+    <color name="red_p_light_100">#ffffff</color>
+    <color name="red_p_dark_100">#cb9ca1</color>
+
+    <color name="red_primary_200">#ef9a9a</color>
+    <color name="red_p_light_200">#ffcccb</color>
+    <color name="red_p_dark_200">#ba6b6c</color>
+
+    <color name="red_primary_300">#e57373</color>
+    <color name="red_p_light_300">#ffa4a2</color>
+    <color name="red_p_dark_300">#af4448</color>
+
+    <color name="red_primary_400">#ef5350</color>
+    <color name="red_p_light_400">#ff867c</color>
+    <color name="red_p_dark_400">#b61827</color>
+
+    <color name="red_primary_500">#f44336</color>
+    <color name="red_p_light_500">#ff7961</color>
+    <color name="red_p_dark_500">#ba000d</color>
+
+    <color name="red_primary_600">#e53935</color>
+    <color name="red_p_light_600">#ff6f60</color>
+    <color name="red_p_dark_600">#ab000d</color>
+
+    <color name="red_primary_700">#d32f2f</color>
+    <color name="red_p_light_700">#ff6659</color>
+    <color name="red_p_dark_700">#9a0007</color>
+
+    <color name="red_primary_800">#c62828</color>
+    <color name="red_p_light_800">#ff5f52</color>
+    <color name="red_p_dark_800">#8e0000</color>
+
+    <color name="red_primary_900">#b71c1c</color>
+    <color name="red_p_light_900">#f05545</color>
+    <color name="red_p_dark_900">#7f0000</color>
+
+    <color name="red_primary_A100">#ff8a80</color>
+    <color name="red_p_light_A100">#ffbcaf</color>
+    <color name="red_p_dark_A100">#c85a54</color>
+
+    <color name="red_primary_A200">#ff5252</color>
+    <color name="red_p_light_A200">#ff867f</color>
+    <color name="red_p_dark_A200">#c50e29</color>
+
+    <color name="red_primary_A400">#ff1744</color>
+    <color name="red_p_light_A400">#ff616f</color>
+    <color name="red_p_dark_A400">#c4001d</color>
+
+    <color name="red_primary_A700">#d50000</color>
+    <color name="red_p_light_A700">#ff5131</color>
+    <color name="red_p_dark_A700">#9b0000</color>
+
 </resources>
