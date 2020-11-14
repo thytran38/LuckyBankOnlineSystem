@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="desc_fingerprint">Please place your fingertip on the scanner to verify your identity</string>
 </resources>

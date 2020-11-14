@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login"
+    android:background="@color/black"
     tools:context="com.example.myfirstapp.luckybankonlinesystem.LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -42,6 +42,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/et_bg"
         android:textColor="@color/login_form_details"
+        android:textSize="20dp"
         android:hint="Email address"
         android:inputType="textEmailAddress"
         android:padding="16dp"
@@ -58,6 +59,7 @@
         android:background="@drawable/et_bg"
         android:drawableEnd="@drawable/ic_eye"
         android:textColor="@color/login_form_details"
+        android:textSize="20dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="16dp"
@@ -74,6 +76,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/btn_bg"
         android:text="Login"
+        android:textSize="15dp"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
@@ -88,6 +91,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/btn_bg"
         android:text="Register"
+        android:textSize="15dp"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@id/guideline_right"
