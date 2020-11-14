@@ -36,6 +36,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="Full name"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -47,6 +48,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="Date of birth"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -58,6 +60,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="Phone number"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -69,6 +72,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="Email"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -80,6 +84,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="Input password"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -91,6 +96,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="Re-enter password"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -102,6 +108,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="Current amount"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -113,6 +120,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="Address"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -124,6 +132,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:textSize="20dp"
                 android:hint="National ID"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
@@ -135,6 +144,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/btn_bg"
                 android:text="Register"
+                android:textSize="15dp"
                 android:textAllCaps="false"
                 android:padding="16dp"
                 android:textColor="@color/black" />
@@ -146,6 +156,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_cancel_bg"
                 android:text="Cancel"
+                android:textSize="15dp"
                 android:textAllCaps="false"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details" />
