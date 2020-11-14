@@ -50,18 +50,31 @@
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"/>
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/red"
                 android:textSize="14sp"
                 android:textAlignment="center"
                 android:id="@+id/errorText"
                 android:paddingEnd="30dp"
                 android:paddingStart="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:id="@+id/finger_note"
+                android:text="@string/fingerprint_note"
+                android:layout_marginTop="200dp"
+                android:paddingEnd="30dp"
+                android:paddingStart="30dp"
+                android:layout_alignBottom="@+id/errorText"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
