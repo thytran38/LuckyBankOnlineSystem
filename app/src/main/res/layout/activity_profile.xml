@@ -4,177 +4,214 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="vertical"
-            android:layout_marginLeft="15dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_profile"/>
-                <TextView
-                    android:layout_marginLeft="10sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User Name :"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:fontFamily="serif"
-                    />
-            </LinearLayout>
+            android:gravity="center" >
 
             <TextView
-                android:paddingLeft="30dp"
-                android:id="@+id/pro_name"
-                android:layout_width="match_parent"
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Name"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_email"/>
-                <TextView
-                    android:layout_marginLeft="10sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email :"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:fontFamily="serif"
-                    />
-            </LinearLayout>
+                android:text="My profile"
+                android:textColor="@color/login_form_details"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:contentDescription="logo" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_user"
+                android:background="@color/white" />
 
             <TextView
-                android:paddingLeft="30dp"
-                android:id="@+id/pro_email"
+                android:id="@+id/tvFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your email"
-                />
-        </LinearLayout>
+                android:layout_marginTop="20dp"
+                android:text="Full name :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:hint="Full name"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
 
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp">
-            <LinearLayout
+            <EditText
+                android:id="@+id/txtFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_cell_phone"/>
-                <TextView
-                    android:layout_marginLeft="10sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone Number :"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:fontFamily="serif"
-                    />
-            </LinearLayout>
+                android:background="@drawable/et_bg"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="15dp"
+                android:textColorHint="@color/login_form_details" />
 
             <TextView
-                android:paddingLeft="30dp"
-                android:id="@+id/pro_phone"
+                android:id="@+id/tvDateofBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your phone number"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp">
-            <LinearLayout
+                android:text="Date of birth :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
+
+            <EditText
+                android:id="@+id/txtDateOfBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/pro_national"/>
-                <TextView
-                    android:layout_marginLeft="10sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="National ID :"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:fontFamily="serif"
-                    />
-            </LinearLayout>
+                android:background="@drawable/et_bg"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:textColorHint="@color/login_form_details" />
 
             <TextView
-                android:paddingLeft="30dp"
-                android:id="@+id/pro_nationalID"
+                android:id="@+id/tvPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your National ID"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="15dp">
-            <LinearLayout
+                android:text="Phone number :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
+
+            <EditText
+                android:id="@+id/txtPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_home"/>
-                <TextView
-                    android:layout_marginLeft="10sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address:"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"
-                    android:fontFamily="serif"
-                    />
-            </LinearLayout>
+                android:background="@drawable/et_bg"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:textColorHint="@color/login_form_details" />
 
             <TextView
-                android:paddingLeft="30dp"
-                android:id="@+id/pro_address"
+                android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your amount" />
+                android:text="Email :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
+
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:editable="false"
+                android:padding="16dp"
+                android:textColorHint="@color/login_form_details" />
+
+            <TextView
+                android:id="@+id/tvCurrentAmmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Current amount :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
+
+            <EditText
+                android:id="@+id/txtCurrentAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:editable="false"
+                android:padding="16dp"
+                android:textColorHint="@color/login_form_details" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
+
+            <EditText
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:textColorHint="@color/login_form_details" />
+
+            <TextView
+                android:id="@+id/tvNationalID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="National ID :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
+
+            <EditText
+                android:id="@+id/txtNationalID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:textColorHint="@color/login_form_details" />
+
+            <Button
+                android:id="@+id/btnSaveInformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_bg"
+                android:text="Save information"
+                android:textSize="15dp"
+                android:textAllCaps="false"
+                android:padding="16dp"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_cancel_bg"
+                android:text="Cancel"
+                android:textSize="15dp"
+                android:textAllCaps="false"
+                android:padding="16dp"
+                android:textColor="@color/login_form_details" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
