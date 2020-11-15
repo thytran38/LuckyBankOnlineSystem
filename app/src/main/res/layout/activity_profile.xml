@@ -121,7 +121,7 @@
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
                 android:textSize="20dp"
-                android:editable="false"
+                android:enabled="false"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
 
@@ -143,7 +143,7 @@
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
                 android:textSize="20dp"
-                android:editable="false"
+                android:enabled="false"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
 
@@ -183,6 +183,27 @@
                 android:id="@+id/txtNationalID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:textColorHint="@color/login_form_details" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
+
+            <EditText
+                android:id="@+id/txtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
                 android:textSize="20dp"
