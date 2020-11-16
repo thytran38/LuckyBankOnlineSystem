@@ -84,6 +84,49 @@
                 android:textColorHint="@color/login_form_details" />
 
             <TextView
+                android:id="@+id/tvGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gender :"
+                android:textColor="@color/login_form_details"
+                android:textSize="20dp"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:textColorHint="@color/login_form_details" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
+
+                <RadioButton
+                    android:id="@+id/rdFemale"
+                    android:layout_width="150dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Female"
+                    android:layout_marginLeft="20dp"
+                    android:buttonTint="@color/white"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <RadioButton
+                    android:id="@+id/rdMale"
+                    android:layout_width="150dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Male"
+                    android:layout_marginLeft="240dp"
+                    android:buttonTint="@color/white"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+            <TextView
                 android:id="@+id/tvPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -214,29 +257,30 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp" >
 
                 <Button
-                    android:id="@+id/saveButton"
-                    android:layout_width="200dp"
+                    android:id="@+id/BtnSaveButton"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/btn_bg"
                     android:text="Save"
-                    android:textColor="#FFF"
+                    android:textAllCaps="false"
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/cancelButton"
-                    android:layout_width="200dp"
+                    android:id="@+id/btnCancelButton"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="200dp"
-                    android:background="#F0BF00"
+                    android:background="@drawable/btn_cancel_bg"
                     android:text="Cancel"
-                    android:textColor="#FFF"
+                    android:textColor="@color/login_form_details"
+                    android:textAllCaps="false"
                     android:textStyle="bold" />
             </RelativeLayout>
         </LinearLayout>
