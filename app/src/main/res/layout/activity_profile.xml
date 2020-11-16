@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
             android:gravity="center" >
 
             <TextView
@@ -210,29 +211,34 @@
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
 
-            <Button
-                android:id="@+id/btnSaveInformation"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/btn_bg"
-                android:text="Save information"
-                android:textSize="15dp"
-                android:textAllCaps="false"
-                android:padding="16dp"
-                android:textColor="@color/black" />
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" >
 
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_cancel_bg"
-                android:text="Cancel"
-                android:textSize="15dp"
-                android:textAllCaps="false"
-                android:padding="16dp"
-                android:textColor="@color/login_form_details" />
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/btn_bg"
+                    android:text="Save"
+                    android:textColor="#FFF"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/cancelButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="200dp"
+                    android:background="#F0BF00"
+                    android:text="Cancel"
+                    android:textColor="#FFF"
+                    android:textStyle="bold" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
