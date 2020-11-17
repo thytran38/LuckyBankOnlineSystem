@@ -203,6 +203,10 @@
                 android:textAllCaps="false"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
