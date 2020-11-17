@@ -20,10 +20,20 @@
     <color name="login_form_details_light">#1affffff</color>
     <color name="login_form_details_medium">#66ffffff</color>
 
-    <color name="black">#000000</color>
-    <color name="black_light">#202020</color>
-    <color name="gray">#363636</color>
-    <color name="yellow">#ffc72a</color>
-    <color name="yellow_light">#ffcd3f</color>
+    <!-- Color materials for Dark Mode -->
+    <color name="gray_light_DarkMode">#343335</color>
+    <color name="gray_DarkMode">#211e21</color>
+    <color name="gray_dark_DarkMode">#010002</color>
+    <color name="yellow_light_DarkMode">#fef1bd</color>
+    <color name="yellow_DarkMode">#fdd246</color>
+    <color name="yellow_dark_DarkMode">#ffc62c</color>
+    
+    <!-- Color materials for Light Mode -->
+    <color name="white_LightMode">#ffffff</color>
+    <color name="gray_LightMode">#dee1de</color>
+    <color name="black_LightMode">#000100</color>
+    <color name="blue_light_LightMode">#0039d3</color>
+    <color name="blue_LightMode">#0133c2</color>
+    <color name="blue_dark_LightMode">#010e3d</color>
 
 </resources>
