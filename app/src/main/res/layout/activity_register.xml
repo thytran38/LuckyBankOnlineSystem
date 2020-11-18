@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/black_LightMode">
+    android:background="@color/gray_dark_DarkMode">
 
     <ScrollView
         android:id="@+id/scrollView"
