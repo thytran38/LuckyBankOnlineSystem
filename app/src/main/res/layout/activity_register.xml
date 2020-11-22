@@ -106,6 +106,19 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:id="@+id/txtRe_enterPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/et_bg"
+                android:hint="Re-Enter Password"
+                android:inputType="textPassword"
+                android:padding="16dp"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
+
+            <EditText
                 android:id="@+id/txtCurrentAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

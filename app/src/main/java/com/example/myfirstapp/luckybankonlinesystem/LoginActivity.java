@@ -14,8 +14,8 @@ import com.example.myfirstapp.luckybankonlinesystem.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText userName, password;
-    Button login, register_login;
+    private  EditText userName, password;
+    private Button login, register_login;
 
 
     @Override
