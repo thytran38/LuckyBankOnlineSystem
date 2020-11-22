@@ -11,12 +11,12 @@
 
     <style name="AppTheme.DialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
         <item name="colorAccent">#FFC62C</item>
-        <item name="android:windowBackground">@color/black_light</item>
+        <item name="android:windowBackground">@color/black_LightMode</item>
         <item name="colorControlActivated">#FFC62C</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:textColorSecondary">#FFFFFF</item>
-        <item name="android:textColorPrimaryInverse">@color/black_light</item>
-        <item name="android:textColorSecondaryInverse">@color/black_light</item>
+        <item name="android:textColorPrimaryInverse">@color/black_LightMode</item>
+        <item name="android:textColorSecondaryInverse">@color/black_LightMode</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

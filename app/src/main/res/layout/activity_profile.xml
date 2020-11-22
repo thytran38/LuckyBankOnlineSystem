@@ -16,102 +16,103 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            android:gravity="center" >
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:contentDescription="logo"
                 android:text="My profile"
                 android:textColor="@color/login_form_details"
                 android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:contentDescription="logo" />
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/ic_user"
-                android:background="@color/white" />
+                android:background="@color/white"
+                android:src="@drawable/ic_user" />
 
             <TextView
                 android:id="@+id/tvFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Full name :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:hint="Full name"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="Full name :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
-                android:textSize="20dp"
+                android:baselineAligned="false"
                 android:padding="15dp"
-                android:textColorHint="@color/login_form_details" />
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tvDateofBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date of birth :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="Date of birth :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtDateOfBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
-                android:textSize="20dp"
                 android:padding="16dp"
-                android:textColorHint="@color/login_form_details" />
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tvGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gender :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="Gender :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp" >
+                android:paddingRight="5dp">
 
                 <RadioButton
                     android:id="@+id/rdFemale"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
-                    android:layout_marginRight="5dp"
-                    android:text="Female"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="5dp"
                     android:buttonTint="@color/white"
+                    android:text="Female"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
@@ -120,10 +121,10 @@
                     android:id="@+id/rdMale"
                     android:layout_width="150dp"
                     android:layout_height="80dp"
-                    android:layout_marginRight="5dp"
-                    android:text="Male"
                     android:layout_marginLeft="240dp"
+                    android:layout_marginRight="5dp"
                     android:buttonTint="@color/white"
+                    android:text="Male"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
@@ -133,135 +134,135 @@
                 android:id="@+id/tvPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phone number :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="Phone number :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
-                android:textSize="20dp"
                 android:padding="16dp"
-                android:textColorHint="@color/login_form_details" />
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="Email :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
-                android:textSize="20dp"
                 android:enabled="false"
                 android:padding="16dp"
-                android:textColorHint="@color/login_form_details" />
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tvCurrentAmmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Current amount :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="Current amount :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtCurrentAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
-                android:textSize="20dp"
                 android:enabled="false"
                 android:padding="16dp"
-                android:textColorHint="@color/login_form_details" />
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tvAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Address :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="Address :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
-                android:textSize="20dp"
                 android:padding="16dp"
-                android:textColorHint="@color/login_form_details" />
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tvNationalID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="National ID :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="National ID :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtNationalID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
-                android:textSize="20dp"
                 android:padding="16dp"
-                android:textColorHint="@color/login_form_details" />
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Description :"
-                android:textColor="@color/login_form_details"
-                android:textStyle="bold"
-                android:textSize="20dp"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
-                android:textColorHint="@color/login_form_details" />
+                android:text="Description :"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtDescription"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
-                android:textSize="20dp"
                 android:padding="16dp"
-                android:textColorHint="@color/login_form_details" />
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -269,7 +270,7 @@
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal"
                 android:paddingLeft="5dp"
-                android:paddingRight="5dp" >
+                android:paddingRight="5dp">
 
                 <Button
                     android:id="@+id/BtnSaveButton"
@@ -288,14 +289,14 @@
                     android:layout_marginLeft="200dp"
                     android:background="@drawable/btn_cancel_bg"
                     android:text="Cancel"
-                    android:textColor="@color/login_form_details"
                     android:textAllCaps="false"
+                    android:textColor="@color/login_form_details"
                     android:textStyle="bold" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
