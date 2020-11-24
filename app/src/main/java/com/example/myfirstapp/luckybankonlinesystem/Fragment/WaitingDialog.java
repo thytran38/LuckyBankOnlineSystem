@@ -48,7 +48,7 @@ public class WaitingDialog extends DialogFragment {
         final View view = inflater.inflate(R.layout.loading_layout, null);
         animationView = view.findViewById(R.id.animation_container);
         animationView.setAnimation(waitingAnimationId);
-        animationView.setRepeatMode(LottieDrawable.REVERSE);
+        animationView.setRepeatMode(LottieDrawable.RESTART);
         if (waitingTask != null) {
             waitingTask.addOnCompleteListener(task -> cancel());
         } else {
