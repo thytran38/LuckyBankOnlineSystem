@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/black">
+    android:background="#000000">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:textColor="@color/login_form_details"
+            android:textColor="#ffff"
             android:textSize="30dp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
+                android:textColor="#ffff"
                 android:textSize="20dp"
                 android:hint="Full name"
                 android:padding="16dp"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
+                android:textColor="#ffff"
                 android:textSize="20dp"
                 android:hint="Date of birth"
                 android:padding="16dp"
@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
-                android:textColor="@color/login_form_details"
+                android:textColor="#ffff"
                 android:textSize="20dp"
                 android:hint="National ID"
                 android:padding="16dp"
@@ -190,7 +190,7 @@
                 android:textSize="15dp"
                 android:textAllCaps="false"
                 android:padding="16dp"
-                android:textColor="@color/black" />
+                android:textColor="#ffff" />
 
             <Button
                 android:id="@+id/btnCancel"
