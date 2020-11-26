@@ -10,6 +10,7 @@ public class UserModel {
     private String EmailAddress;
     private String PhoneNumber;
     private Boolean Gender;
+    private String UserAddress;
 
     private DateTime LastLogin;
     private String userToken;
@@ -17,6 +18,33 @@ public class UserModel {
 
     public UserModel(){
 
+    }
+
+    public String getUserFullName()
+    {
+        return this.FullName;
+    }
+
+    public String getUserId()
+    {
+        return this.UserId;
+    }
+
+    public DateTime getDateOfBirth(){
+        return this.DateOfBirth;
+    }
+
+    public String getEmailAddress(){
+        return this.EmailAddress;
+    }
+
+    public String getPhoneNumber()
+    {
+        return this.PhoneNumber;
+    }
+
+    public Boolean getGender(){
+        return this.Gender;
     }
 
 
