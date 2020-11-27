@@ -46,7 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent forgetPassIntent = new Intent(this,ForgetPassActivity.class);
+                Intent forgetPassIntent = new Intent();
+
+
+                
 
 
             }
