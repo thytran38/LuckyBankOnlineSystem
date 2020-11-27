@@ -29,15 +29,8 @@
                 android:contentDescription="logo"
                 android:text="My profile"
                 android:textColor="@color/login_form_details"
-                android:textSize="30dp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/white"
-                android:src="@drawable/ic_user" />
 
             <TextView
                 android:id="@+id/tvFullName"
@@ -50,8 +43,7 @@
                 android:text="Full name :"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/txtFullName"
@@ -73,8 +65,7 @@
                 android:text="Date of birth :"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/txtDateOfBirth"
@@ -95,8 +86,7 @@
                 android:text="Gender :"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -107,8 +97,8 @@
 
                 <RadioButton
                     android:id="@+id/rdFemale"
-                    android:layout_width="150dp"
-                    android:layout_height="80dp"
+                    android:layout_width="156dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="5dp"
                     android:buttonTint="@color/white"
@@ -119,8 +109,8 @@
 
                 <RadioButton
                     android:id="@+id/rdMale"
-                    android:layout_width="150dp"
-                    android:layout_height="80dp"
+                    android:layout_width="158dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="240dp"
                     android:layout_marginRight="5dp"
                     android:buttonTint="@color/white"
@@ -139,8 +129,7 @@
                 android:text="Phone number :"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/txtPhoneNumber"
@@ -161,34 +150,10 @@
                 android:text="Email :"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/txtEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_bg"
-                android:enabled="false"
-                android:padding="16dp"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvCurrentAmmount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:src="@drawable/ic_user"
-                android:text="Current amount :"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/txtCurrentAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -207,8 +172,7 @@
                 android:text="Address :"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/txtAddress"
@@ -229,8 +193,7 @@
                 android:text="National ID :"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/txtNationalID"
@@ -251,8 +214,7 @@
                 android:text="Description :"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/txtDescription"
@@ -274,24 +236,13 @@
 
                 <Button
                     android:id="@+id/BtnSaveButton"
-                    android:layout_width="150dp"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
                     android:background="@drawable/btn_bg"
                     android:text="Save"
                     android:textAllCaps="false"
                     android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/btnCancelButton"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="200dp"
-                    android:background="@drawable/btn_cancel_bg"
-                    android:text="Cancel"
-                    android:textAllCaps="false"
-                    android:textColor="@color/login_form_details"
-                    android:textStyle="bold" />
             </RelativeLayout>
 
             <View
