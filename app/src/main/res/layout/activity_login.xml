@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_dark_DarkMode"
     tools:context="com.example.myfirstapp.luckybankonlinesystem.LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -38,8 +37,8 @@
 
     <EditText
         android:id="@+id/txtUserName"
-        android:layout_width="345dp"
-        android:layout_height="50dp"
+        android:layout_width="364dp"
+        android:layout_height="51dp"
         android:layout_marginTop="130dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/et_bg"
@@ -79,7 +78,7 @@
         android:layout_width="163dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
-        android:background="@drawable/btn_bg"
+        android:background="@color/yellow_dark_DarkMode"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/black_LightMode"
