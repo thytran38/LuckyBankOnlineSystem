@@ -38,7 +38,7 @@
 
     <EditText
         android:id="@+id/txtUserName"
-        android:layout_width="345dp"
+        android:layout_width="366dp"
         android:layout_height="50dp"
         android:layout_marginTop="130dp"
         android:layout_marginBottom="32dp"
