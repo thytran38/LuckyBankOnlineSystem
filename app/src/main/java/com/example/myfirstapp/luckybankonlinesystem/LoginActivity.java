@@ -18,13 +18,30 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.home);
+
+
 
         userName = (EditText)findViewById(R.id.txtUserName);
         password = (EditText)findViewById(R.id.txtPassword);
         login = (Button)findViewById(R.id.btnLogin);
         register = (TextView)findViewById(R.id.tvRegister);
         forgetPass = (TextView)findViewById(R.id.tvForgotPassword);
+
+        login.setOnClickListener(v -> {
+
+
+
+
+
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Intent intent = new Intent(this, SplashScreenActivity.class);
+            startActivity(intent);
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,19 +51,16 @@ public class LoginActivity extends AppCompatActivity {
 
 
             }
+
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent forgetPassIntent = new Intent();
+                Intent forgetPassIntent = new Intent(LoginActivity.this,ForgetPassActivity.class);
+                startActivity(forgetPassIntent);
 
 
                 
