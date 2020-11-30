@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myfirstapp.luckybankonlinesystem.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -24,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
         email = (EditText)findViewById(R.id.txtEmail);
         inputPassword = (EditText)findViewById(R.id.txtInputPassword);
         re_enterPassword = (EditText)findViewById(R.id.txtRe_enterPassword);
-        currentAmount = (EditText)findViewById(R.id.txtCurrentAmount);
         address = (EditText)findViewById(R.id.txtAddress);
         nationalID = (EditText)findViewById(R.id.txtNationalID);
 

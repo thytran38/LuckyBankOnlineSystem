@@ -1,4 +1,5 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
-public class ForgetPassActivity {
+public class SplashScreenActivity {
+
 }
