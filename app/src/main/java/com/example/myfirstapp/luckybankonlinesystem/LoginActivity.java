@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         userName = (EditText)findViewById(R.id.txtUserName);
         password = (EditText)findViewById(R.id.txtPassword);
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         forgetPass = (TextView)findViewById(R.id.tvForgotPassword);
 
         login.setOnClickListener(v -> {
+
 
             try {
                 Thread.sleep(2000);
