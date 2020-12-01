@@ -44,9 +44,9 @@ public  class RegisterActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
-//            public void onClick(View v) {
-//                RegisterEvent();
-//            }
+            public void onClick(View v) {
+                RegisterEvent();
+            }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,26 +56,26 @@ public  class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-//    private void RegisterEvent() {
-//        String reg_email=email.getText().toString();
-//        String reg_password=inputPassword.getText().toString();
-//        String reg_fullname=fullName.getText().toString();
-//        String reg_phonenum=phoneNumber.getText().toString();
-//        String reg_datebirth=dateOfBirth.getText().toString();
-//        String reg_repassword=re_enterPassword.getText().toString();
-//        String reg_naitionid=nationalID.getText().toString();
-//        String reg_address=address.getText().toString();
-//        String reg_currentamount=currentAmount.getText().toString();
-//        auth.createUserWithEmailAndPassword(reg_email,reg_password)
-//                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()){
-//                            Toast.makeText(RegisterActivity.this,"Ban da dang ky thanh cong",Toast.LENGTH_LONG).show();
-//                        }else{
-//                            Toast.makeText(RegisterActivity.this,"Ban da dang ky that bai",Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//                });
-//    }
+    private void RegisterEvent() {
+        String reg_email=email.getText().toString();
+        String reg_password=inputPassword.getText().toString();
+        String reg_fullname=fullName.getText().toString();
+        String reg_phonenum=phoneNumber.getText().toString();
+        String reg_datebirth=dateOfBirth.getText().toString();
+        String reg_repassword=re_enterPassword.getText().toString();
+        String reg_naitionid=nationalID.getText().toString();
+        String reg_address=address.getText().toString();
+        String reg_currentamount=currentAmount.getText().toString();
+        auth.createUserWithEmailAndPassword(reg_email,reg_password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(RegisterActivity.this,"Ban da dang ky thanh cong",Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(RegisterActivity.this,"Ban da dang ky that bai",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
 }
