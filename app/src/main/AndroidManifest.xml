@@ -5,25 +5,28 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:fullBackupContent=""
         tools:ignore="AllowBackup">
 
-            <!--suppress AndroidElementNotAllowed -->
-        <intent-filter>
+        <!--suppress AndroidElementNotAllowed -->
+
+
+        <activity android:name=".LoginActivity">
+            <intent-filter>
                 <!--suppress AndroidElementNotAllowed -->
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <!--suppress AndroidElementNotAllowed -->
-            <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity"
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
             tools:ignore="MissingClass" />
     </application>
 
