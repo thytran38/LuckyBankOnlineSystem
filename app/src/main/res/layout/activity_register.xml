@@ -36,6 +36,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/et_bg"
                 android:textColor="#ffff"
+                android:inputType="text"
                 android:textSize="20dp"
                 android:hint="Full name"
                 android:padding="16dp"
@@ -43,6 +44,7 @@
 
             <EditText
                 android:id="@+id/txtDateOfBirth"
+                android:inputType="date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -99,6 +101,7 @@
 
             <EditText
                 android:id="@+id/txtPhoneNumber"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -110,6 +113,7 @@
 
             <EditText
                 android:id="@+id/txtEmail"
+                android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -129,6 +133,7 @@
                 android:textColor="@color/login_form_details"
                 android:textSize="20dp"
                 android:hint="Input password"
+                android:inputType="textPassword"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
 
@@ -139,6 +144,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:textColor="@color/login_form_details"
+                android:inputType="textPassword"
                 android:textSize="20dp"
                 android:hint="Re-enter password"
                 android:padding="16dp"
@@ -146,6 +152,7 @@
 
             <EditText
                 android:id="@+id/txtCurrentAmount"
+                android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -158,6 +165,7 @@
 
             <EditText
                 android:id="@+id/txtAddress"
+                android:inputType="textPostalAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -177,6 +185,7 @@
                 android:textColor="#ffff"
                 android:textSize="20dp"
                 android:hint="National ID"
+                android:inputType="number"
                 android:padding="16dp"
                 android:textColorHint="@color/login_form_details" />
 

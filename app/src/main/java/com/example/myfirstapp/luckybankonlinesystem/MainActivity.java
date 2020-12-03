@@ -9,12 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
-
-
-
-
-
-    @Override
+ @Override
     protected void onResume() {
         super.onResume();
 

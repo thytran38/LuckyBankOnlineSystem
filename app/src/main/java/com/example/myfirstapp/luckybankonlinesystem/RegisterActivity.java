@@ -59,19 +59,22 @@ public  class RegisterActivity extends AppCompatActivity {
     private void RegisterEvent() {
         String reg_email=email.getText().toString();
         String reg_password=inputPassword.getText().toString();
-        String reg_fullname=fullName.getText().toString();
-        String reg_phonenum=phoneNumber.getText().toString();
-        String reg_datebirth=dateOfBirth.getText().toString();
-        String reg_repassword=re_enterPassword.getText().toString();
-        String reg_naitionid=nationalID.getText().toString();
-        String reg_address=address.getText().toString();
-        String reg_currentamount=currentAmount.getText().toString();
+//        String reg_fullname=fullName.getText().toString();
+//        String reg_phonenum=phoneNumber.getText().toString();
+//        String reg_datebirth=dateOfBirth.getText().toString();
+//        String reg_repassword=re_enterPassword.getText().toString();
+//        String reg_naitionid=nationalID.getText().toString();
+//        String reg_address=address.getText().toString();
+//        String reg_currentamount=currentAmount.getText().toString();
         auth.createUserWithEmailAndPassword(reg_email,reg_password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete( Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(RegisterActivity.this,"Register success",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
+                            startActivity(intent);
+                            finish();
                         }else{
                             Toast.makeText(RegisterActivity.this,"Register fail",Toast.LENGTH_LONG).show();
                         }
