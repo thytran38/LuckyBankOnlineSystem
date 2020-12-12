@@ -4,12 +4,15 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Adapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import com.example.myfirstapp.luckybankonlinesystem.Fragment.ScreenSlidePageFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -17,7 +20,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+
+    ViewPager viewPager;
+    Adapter adapter;
+    Integer[] colors = null;
+
     TextView totalBalanceTv, usernameTv, accNumTv;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -28,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         usernameTv = findViewById(R.id.tvUserName);
         totalBalanceTv = findViewById(R.id.tvTotalBalance);
         accNumTv = findViewById(R.id.tvAccnumber);
+        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
+        //adapter = new Adapter(fragmentArrayList, this);
 
         db.collection("accounts")
                 .whereEqualTo("Fmg3Jc1BqGGBZEmAUoN5", true)
