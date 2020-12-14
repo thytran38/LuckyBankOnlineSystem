@@ -4,7 +4,8 @@
     <style name="Theme.LOBSDark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/yellow_DarkMode</item>
-        <item name="colorPrimaryDark">@color/yellow_dark_DarkMode</item>
+<!--        <item name="colorPrimaryDark">@color/yellow_dark_DarkMode</item>-->
+        <item name="colorPrimaryDark">@color/gray_dark_DarkMode</item>
         <item name="colorOnPrimary">@color/gray_dark_DarkMode</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/gray_DarkMode</item>

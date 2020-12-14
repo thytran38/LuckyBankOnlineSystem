@@ -53,7 +53,7 @@
                 android:textSize="15dp" />
 
             <EditText
-                android:id="@+id/txtFullName"
+                android:id="@+id/txtProfile_FullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -75,7 +75,7 @@
                 android:textSize="15dp" />
 
             <EditText
-                android:id="@+id/txtDateOfBirth"
+                android:id="@+id/txtProfile_DateOfBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -103,7 +103,7 @@
                 android:paddingRight="5dp">
 
                 <RadioButton
-                    android:id="@+id/rdFemale"
+                    android:id="@+id/rdProfile_Female"
                     android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -115,7 +115,7 @@
                     android:textSize="15dp" />
 
                 <RadioButton
-                    android:id="@+id/rdMale"
+                    android:id="@+id/rdProfile_Male"
                     android:layout_width="158dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="240dp"
@@ -139,7 +139,7 @@
                 android:textSize="15dp" />
 
             <EditText
-                android:id="@+id/txtPhoneNumber"
+                android:id="@+id/txtProfile_PhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -149,7 +149,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/tvEmail"
+                android:id="@+id/tvProfile_Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -160,7 +160,7 @@
                 android:textSize="15dp" />
 
             <EditText
-                android:id="@+id/txtEmail"
+                android:id="@+id/txtProfile_Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -182,7 +182,7 @@
                 android:textSize="15dp" />
 
             <EditText
-                android:id="@+id/txtAddress"
+                android:id="@+id/txtProfile_Address"
                 android:layout_width="match_parent"
                 android:layout_height="79dp"
                 android:background="@drawable/et_bg"
@@ -203,7 +203,7 @@
                 android:textSize="15dp" />
 
             <EditText
-                android:id="@+id/txtNationalID"
+                android:id="@+id/txtProfile_NationalID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
@@ -224,7 +224,7 @@
                 android:textSize="15dp" />
 
             <EditText
-                android:id="@+id/txtDescription"
+                android:id="@+id/txtProfile_Description"
                 android:layout_width="match_parent"
                 android:layout_height="111dp"
                 android:background="@drawable/et_bg"
@@ -243,7 +243,7 @@
                 android:paddingRight="5dp">
 
                 <Button
-                    android:id="@+id/BtnSaveButton"
+                    android:id="@+id/BtnProfile_SaveButton"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="95dp"
