@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     android:layout_weight="3">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -93,7 +108,7 @@
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="361dp"
+                android:layout_width="345dp"
                 android:layout_height="257dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="60dp"
