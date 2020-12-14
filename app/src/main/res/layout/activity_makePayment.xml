@@ -62,16 +62,6 @@
                 android:textSize="12sp"
                 app:cornerRadius="36dp" />
 
-            <Button
-                android:id="@+id/button2"
-                android:background="@drawable/btn_cancel_bg"
-                android:layout_width="123dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:text="Cancel"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                app:cornerRadius="36dp" />
         </LinearLayout>
     </ScrollView>
 
