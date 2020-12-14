@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="3" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:background="@drawable/bg_error_notification"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ErrorNotification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white_LightMode"
+                android:text="@string/error_notification"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/btnErrorNotificationYes"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_confirm_yes"
+                    android:text="Yes"
+                    android:layout_gravity="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black_LightMode"
+                    android:textSize="15dp" />
+
+                <Button
+                    android:id="@+id/btnErrorNotificationNo"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/btn_bg"
+                    android:text="No"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black_LightMode"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
