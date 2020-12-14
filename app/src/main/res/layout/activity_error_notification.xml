@@ -56,7 +56,7 @@
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:background="@drawable/btn_bg"
+                    android:background="@drawable/btn_cancel_bg"
                     android:text="No"
                     android:textAllCaps="false"
                     android:textColor="@color/black_LightMode"
