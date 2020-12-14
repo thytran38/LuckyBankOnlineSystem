@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="131dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="40dp"
+                android:baselineAlignBottom="true"
+                app:srcCompat="@drawable/lobs_logo" />
+
+            <TextView
+                android:id="@+id/tv01"
+                android:layout_width="148dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40dp"
+                android:text="Currency Converter"
+                android:textAlignment="center"
+                android:textColor="#7E7E7E"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tvFirstCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FirstCurrency"
+                android:textSize="14dp"
+                android:layout_marginLeft="40dp"
+                android:textColor="#FFC107" />
+
+            <EditText
+                android:id="@+id/txtFirstCurrency"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_cancel_bg"
+                android:ems="10"
+                android:inputType="number"
+                android:text="100"
+                android:gravity="center"
+                android:textColorLink="#FFFFFF" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
