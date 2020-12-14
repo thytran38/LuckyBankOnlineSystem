@@ -19,42 +19,13 @@
         <item name="android:textColorSecondaryInverse">@color/black_LightMode</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/colorPrimary2</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
-        <item name="colorAccent">@color/colorAccent2</item>
-    </style>
-
-    <style name="LOBS_DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/gray_dark_DarkMode</item>
-        <item name="android:textColor">@color/gray_LightMode</item>
-        <item name="android:fontFamily">Arial</item>
 
 
-    </style>
 
-    <style name="LOBS_LightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/white_LightMode</item>
-        <item name="android:textColor">@color/gray_dark_DarkMode</item>
-        <item name="android:fontFamily">Arial</item>
-
-
-    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary2</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
-        <item name="colorAccent">@color/colorAccent2</item>
-    </style>
+
 
 </resources>

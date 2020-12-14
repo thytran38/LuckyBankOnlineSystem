@@ -1,0 +1,1018 @@
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/ForgetPassActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfirstapp.luckybankonlinesystem;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\npublic class ForgetPassActivity extends AppCompatActivity {\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/ForgetPassActivity.java	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/ForgetPassActivity.java	(date 1606714911959)
+@@ -1,6 +1,4 @@
+ package com.example.myfirstapp.luckybankonlinesystem;
+ 
+-import androidx.appcompat.app.AppCompatActivity;
+-
+-public class ForgetPassActivity extends AppCompatActivity {
++public class ForgetPassActivity extends AppCombatActivity{
+ }
+Index: app/src/main/res/layout/splash_screen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/splash_screen.xml	(date 1606714862690)
++++ app/src/main/res/layout/splash_screen.xml	(date 1606714862690)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/constraintLayout"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <ImageView
++        android:id="@+id/imageView"
++        android:layout_width="186dp"
++        android:layout_height="57dp"
++        app:srcCompat="@drawable/lobs_logo"
++        tools:layout_editor_absoluteX="112dp"
++        tools:layout_editor_absoluteY="267dp" />
++
++    <TextView
++        android:id="@+id/textView"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Lucky Online Banking System"
++        android:textColor="#7E7E7E"
++        tools:layout_editor_absoluteX="114dp"
++        tools:layout_editor_absoluteY="340dp" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/SplashScreenActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/SplashScreenActivity.java	(date 1606714862649)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/SplashScreenActivity.java	(date 1606714862649)
+@@ -0,0 +1,33 @@
++package com.example.myfirstapp.luckybankonlinesystem;
++
++import android.content.Intent;
++import android.os.Bundle;
++
++import androidx.annotation.Nullable;
++import androidx.appcompat.app.AppCompatActivity;
++
++public class SplashScreenActivity extends AppCompatActivity  {
++
++//    @Override
++//    protected void onCreate(Bundle savedInstanceState){
++//        super.onCreate(savedInstanceState);
++//    }
++
++
++    @Override
++    protected void onCreate(@Nullable Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.splash_screen);
++
++        try {
++            Thread.sleep(2000);
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++        Intent intent = new Intent(this, MainActivity.class);
++        startActivity(intent);
++
++    }
++
++
++}
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"@color/gray_dark_DarkMode\"\n    tools:context=\"com.example.myfirstapp.luckybankonlinesystem.LoginActivity\">\n\n    <androidx.constraintlayout.widget.Guideline\n        android:id=\"@+id/guideline_left\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\"\n        app:layout_constraintGuide_begin=\"24dp\" />\n\n    <androidx.constraintlayout.widget.Guideline\n        android:id=\"@+id/guideline_right\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\"\n        app:layout_constraintGuide_end=\"24dp\" />\n\n    <TextView\n        android:id=\"@+id/icon\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"20dp\"\n        android:contentDescription=\"logo\"\n        android:text=\"Login into your LOBS account\"\n        android:textColor=\"@color/login_form_details\"\n        android:textSize=\"15dp\"\n        android:textStyle=\"normal\"\n        app:layout_constraintEnd_toStartOf=\"@id/guideline_right\"\n        app:layout_constraintStart_toStartOf=\"@id/guideline_left\"\n        app:layout_constraintTop_toBottomOf=\"@+id/imageView5\" />\n\n    <EditText\n        android:id=\"@+id/txtUserName\"\n        android:layout_width=\"345dp\"\n        android:layout_height=\"50dp\"\n        android:layout_marginTop=\"35dp\"\n        android:layout_marginBottom=\"32dp\"\n        android:background=\"@drawable/et_bg\"\n        android:hint=\"Email address\"\n        android:inputType=\"textEmailAddress\"\n        android:padding=\"16dp\"\n        android:textColor=\"@color/login_form_details\"\n        android:textColorHint=\"@color/login_form_details\"\n        android:textSize=\"15sp\"\n        app:layout_constraintBottom_toTopOf=\"@+id/txtPassword\"\n        app:layout_constraintEnd_toStartOf=\"@id/guideline_right\"\n        app:layout_constraintHorizontal_bias=\"0.0\"\n        app:layout_constraintStart_toStartOf=\"@id/guideline_left\"\n        app:layout_constraintTop_toBottomOf=\"@+id/icon\" />\n\n    <EditText\n        android:id=\"@+id/txtPassword\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"50dp\"\n        android:layout_marginTop=\"28dp\"\n        android:background=\"@drawable/et_bg\"\n        android:drawableEnd=\"@drawable/ic_eye\"\n        android:drawableRight=\"@drawable/ic_eye\"\n        android:hint=\"Password\"\n        android:inputType=\"textPassword\"\n        android:padding=\"16dp\"\n        android:textColor=\"@color/login_form_details\"\n        android:textColorHint=\"@color/login_form_details\"\n        android:textSize=\"15sp\"\n        app:layout_constraintEnd_toStartOf=\"@id/guideline_right\"\n        app:layout_constraintHorizontal_bias=\"0.0\"\n        app:layout_constraintStart_toStartOf=\"@id/guideline_left\"\n        app:layout_constraintTop_toBottomOf=\"@+id/txtUserName\" />\n\n    <Button\n        android:id=\"@+id/btnLogin\"\n        android:layout_width=\"163dp\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"76dp\"\n        android:background=\"@drawable/btn_bg\"\n        android:text=\"Login\"\n        android:textAllCaps=\"false\"\n        android:textColor=\"@color/black_LightMode\"\n        android:textSize=\"19sp\"\n        app:layout_constraintEnd_toStartOf=\"@id/guideline_right\"\n        app:layout_constraintStart_toStartOf=\"@id/guideline_left\"\n        app:layout_constraintTop_toBottomOf=\"@+id/txtPassword\" />\n\n    <TextView\n        android:id=\"@+id/tvRegister\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"72dp\"\n        android:text=\"@string/register_saying\"\n        android:textColor=\"@color/login_form_details\"\n        android:textSize=\"16sp\"\n        app:layout_constraintEnd_toStartOf=\"@id/guideline_right\"\n        app:layout_constraintHorizontal_bias=\"0.467\"\n        app:layout_constraintStart_toStartOf=\"@id/guideline_left\"\n        app:layout_constraintTop_toBottomOf=\"@id/btnLogin\" />\n\n    <TextView\n        android:id=\"@+id/tvForgotPassword\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"28dp\"\n        android:text=\"Forgot password?\"\n        android:textColor=\"@color/login_form_details\"\n        android:textSize=\"16sp\"\n        app:layout_constraintEnd_toStartOf=\"@id/guideline_right\"\n        app:layout_constraintStart_toStartOf=\"@id/guideline_left\"\n        app:layout_constraintTop_toBottomOf=\"@id/btnLogin\" />\n\n    <ImageView\n        android:id=\"@+id/imageView5\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"120dp\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:srcCompat=\"@mipmap/logo\" />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login.xml	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/res/layout/activity_login.xml	(date 1606714871220)
+@@ -25,21 +25,22 @@
+         android:id="@+id/icon"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="20dp"
++        android:layout_marginTop="180dp"
+         android:contentDescription="logo"
+         android:text="Login into your LOBS account"
+         android:textColor="@color/login_form_details"
+         android:textSize="15dp"
+         android:textStyle="normal"
+         app:layout_constraintEnd_toStartOf="@id/guideline_right"
++        app:layout_constraintHorizontal_bias="0.496"
+         app:layout_constraintStart_toStartOf="@id/guideline_left"
+-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
++        app:layout_constraintTop_toTopOf="parent" />
+ 
+     <EditText
+         android:id="@+id/txtUserName"
+         android:layout_width="345dp"
+         android:layout_height="50dp"
+-        android:layout_marginTop="35dp"
++        android:layout_marginTop="130dp"
+         android:layout_marginBottom="32dp"
+         android:background="@drawable/et_bg"
+         android:hint="Email address"
+@@ -116,10 +117,9 @@
+         android:id="@+id/imageView5"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="120dp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:srcCompat="@mipmap/logo" />
++        app:srcCompat="@mipmap/logo"
++        tools:layout_editor_absoluteX="145dp"
++        tools:layout_editor_absoluteY="131dp" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/themes.xml	(date 1606714862700)
++++ app/src/main/res/values/themes.xml	(date 1606714862700)
+@@ -0,0 +1,32 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources xmlns:tools="http://schemas.android.com/tools">
++    <!-- Base application theme. -->
++    <style name="Theme.LOBSDark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
++        <!-- Primary brand color. -->
++        <item name="colorPrimary">@color/yellow_DarkMode</item>
++        <item name="colorPrimaryDark">@color/yellow_dark_DarkMode</item>
++        <item name="colorOnPrimary">@color/gray_dark_DarkMode</item>
++        <!-- Secondary brand color. -->
++        <item name="colorSecondary">@color/gray_DarkMode</item>
++        <item name="colorSecondaryVariant">@color/gray_light_DarkMode</item>
++        <item name="colorOnSecondary">@color/gray_DarkMode</item>
++        <item name="android:windowBackground">@color/gray_dark_DarkMode</item>
++        <!-- Customize your theme here. -->
++        <item name="windowActionBar">false</item>
++
++    </style>
++
++    <style name="Theme.LOBSLight" parent="Theme.AppCompat.Light.NoActionBar">
++        <!-- Primary brand color. -->
++        <item name="colorPrimary">@color/white_LightMode</item>
++        <item name="colorPrimaryDark">@color/gray_LightMode</item>
++        <item name="colorAccent">@color/blue_LightMode</item>
++        <!-- Secondary brand color. -->
++        <item name="android:textColor">@color/gray_dark_DarkMode</item>
++
++        <item name="windowActionBar">false</item>
++        <item name="windowNoTitle">true</item>
++        <item name="android:windowBackground">@color/white_LightMode</item>
++        <item name="android:fontFamily">Arial</item>
++    </style>
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\" android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\">\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/home.xml	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/res/layout/home.xml	(date 1606714862686)
+@@ -1,6 +1,65 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <androidx.constraintlayout.widget.ConstraintLayout
+-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
++    <ScrollView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="vertical" >
++
++            <ImageView
++                android:id="@+id/imageView3"
++                android:layout_width="169dp"
++                android:layout_height="33dp"
++                app:srcCompat="@drawable/lobs_logo" />
++
++            <TextView
++                android:id="@+id/tv01"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="Total Balance"
++                android:textColor="#7E7E7E"
++                android:textSize="14sp" />
++
++            <TextView
++                android:id="@+id/tvTotalBalance"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="59590"
++                android:textColor="#FFFFFF"
++                android:textSize="50sp" />
++
++            <TextView
++                android:id="@+id/tvUserName"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="USER NAME"
++                android:textColor="#FFFFFF"
++                android:textSize="12sp" />
++
++            <TextView
++                android:id="@+id/textView4"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="113141414141"
++                android:textColor="#7E7E7E"
++                android:textSize="11sp" />
++
++            <ImageView
++                android:id="@+id/imageView2"
++                android:layout_width="288dp"
++                android:layout_height="637dp"
++                app:srcCompat="@drawable/card" />
++
++        </LinearLayout>
++    </ScrollView>
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/content_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/frame_layout\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:theme=\"@style/LOBS_DarkTheme\"\n\n    app:layout_behavior=\"@string/appbar_scrolling_view_behavior\">\n\n    <!--include-->\n    <!--android:id=\"@+id/container\"-->\n    <!--layout=\"@layout/activity_main\" />-->\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_main.xml	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/res/layout/content_main.xml	(date 1606714862681)
+@@ -5,7 +5,6 @@
+     android:id="@+id/frame_layout"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:theme="@style/LOBS_DarkTheme"
+ 
+     app:layout_behavior="@string/appbar_scrolling_view_behavior">
+ 
+Index: app/src/main/res/layout/activity_fingerpoint_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"@color/gray_dark_DarkMode\">\n\n    <ScrollView\n        android:id=\"@+id/scrollView\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\">\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginTop=\"100dp\"\n            android:gravity=\"center\"\n            android:orientation=\"vertical\">\n\n            <ImageView\n                android:layout_width=\"70dp\"\n                android:layout_height=\"70dp\"\n                android:src=\"@drawable/ic_baseline_fingerprint_24\"\n                android:id=\"@+id/icon\"\n                android:paddingTop=\"2dp\"\n                android:layout_marginBottom=\"30dp\"/>\n\n\n            <TextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:textColor=\"@color/white\"\n                android:textSize=\"24sp\"\n                android:text=\"Fingerprint Login\"\n                android:textStyle=\"bold\"\n                android:layout_marginLeft=\"5dp\"\n                android:layout_marginRight=\"5dp\"\n                android:layout_marginTop=\"20dp\"\n                android:layout_marginBottom=\"10dp\"/>\n\n            <TextView\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:textColor=\"@color/white\"\n                android:textSize=\"16sp\"\n                android:textAlignment=\"center\"\n                android:gravity=\"center\"\n                android:id=\"@+id/desc\"\n                android:text=\"@string/desc_fingerprint\"\n                android:layout_margin=\"16dp\"\n                android:paddingEnd=\"30dp\"\n                android:paddingStart=\"30dp\"/>\n\n            <TextView\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:textColor=\"@color/red\"\n                android:textSize=\"14sp\"\n                android:textAlignment=\"center\"\n                android:id=\"@+id/errorText\"\n                android:paddingEnd=\"30dp\"\n                android:paddingStart=\"30dp\"\n                android:layout_marginTop=\"50dp\"\n                android:gravity=\"center\"/>\n\n            <TextView\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:textColor=\"@color/white\"\n                android:textSize=\"16sp\"\n                android:textAlignment=\"center\"\n                android:gravity=\"center\"\n                android:id=\"@+id/finger_note\"\n                android:text=\"@string/fingerprint_note\"\n                android:layout_marginTop=\"200dp\"\n                android:paddingEnd=\"30dp\"\n                android:paddingStart=\"30dp\"\n                android:layout_alignBottom=\"@+id/errorText\"/>\n        </LinearLayout>\n    </ScrollView>\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_fingerpoint_user.xml	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/res/layout/activity_fingerpoint_user.xml	(date 1606714862666)
+@@ -1,8 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:background="@color/gray_dark_DarkMode">
++    android:layout_height="match_parent">
+ 
+     <ScrollView
+         android:id="@+id/scrollView"
+@@ -17,64 +16,64 @@
+             android:orientation="vertical">
+ 
+             <ImageView
++                android:id="@+id/icon"
+                 android:layout_width="70dp"
+                 android:layout_height="70dp"
+-                android:src="@drawable/ic_baseline_fingerprint_24"
+-                android:id="@+id/icon"
++                android:layout_marginBottom="30dp"
+                 android:paddingTop="2dp"
+-                android:layout_marginBottom="30dp"/>
++                android:src="@drawable/ic_baseline_fingerprint_24" />
+ 
+ 
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
++                android:layout_marginLeft="5dp"
++                android:layout_marginTop="20dp"
++                android:layout_marginRight="5dp"
++                android:layout_marginBottom="10dp"
++                android:text="Fingerprint Login"
+                 android:textColor="@color/white"
+                 android:textSize="24sp"
+-                android:text="Fingerprint Login"
+-                android:textStyle="bold"
+-                android:layout_marginLeft="5dp"
+-                android:layout_marginRight="5dp"
+-                android:layout_marginTop="20dp"
+-                android:layout_marginBottom="10dp"/>
++                android:textStyle="bold" />
+ 
+             <TextView
++                android:id="@+id/desc"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:textColor="@color/white"
+-                android:textSize="16sp"
+-                android:textAlignment="center"
++                android:layout_margin="16dp"
+                 android:gravity="center"
+-                android:id="@+id/desc"
++                android:paddingStart="30dp"
++                android:paddingEnd="30dp"
+                 android:text="@string/desc_fingerprint"
+-                android:layout_margin="16dp"
+-                android:paddingEnd="30dp"
+-                android:paddingStart="30dp"/>
++                android:textAlignment="center"
++                android:textColor="@color/white"
++                android:textSize="16sp" />
+ 
+             <TextView
++                android:id="@+id/errorText"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:textColor="@color/red"
+-                android:textSize="14sp"
++                android:layout_marginTop="50dp"
++                android:gravity="center"
++                android:paddingStart="30dp"
++                android:paddingEnd="30dp"
+                 android:textAlignment="center"
+-                android:id="@+id/errorText"
+-                android:paddingEnd="30dp"
+-                android:paddingStart="30dp"
+-                android:layout_marginTop="50dp"
+-                android:gravity="center"/>
++                android:textColor="@color/red"
++                android:textSize="14sp" />
+ 
+             <TextView
++                android:id="@+id/finger_note"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:textColor="@color/white"
+-                android:textSize="16sp"
+-                android:textAlignment="center"
++                android:layout_alignBottom="@+id/errorText"
++                android:layout_marginTop="200dp"
+                 android:gravity="center"
+-                android:id="@+id/finger_note"
++                android:paddingStart="30dp"
++                android:paddingEnd="30dp"
+                 android:text="@string/fingerprint_note"
+-                android:layout_marginTop="200dp"
+-                android:paddingEnd="30dp"
+-                android:paddingStart="30dp"
+-                android:layout_alignBottom="@+id/errorText"/>
++                android:textAlignment="center"
++                android:textColor="@color/white"
++                android:textSize="16sp" />
+         </LinearLayout>
+     </ScrollView>
+ </RelativeLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:gravity=\"center\"\n    android:background=\"@color/gray_dark_DarkMode\"\n    android:orientation=\"vertical\">\n\n    <ScrollView\n        android:id=\"@+id/scrollView\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\" >\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_gravity=\"center_horizontal\"\n            android:layout_margin=\"20dp\"\n            android:gravity=\"center\"\n            android:orientation=\"vertical\">\n\n            <TextView\n                android:id=\"@+id/icon\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"20dp\"\n                android:contentDescription=\"logo\"\n                android:text=\"My profile\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"24sp\"\n                android:textStyle=\"bold\" />\n\n            <TextView\n                android:id=\"@+id/tvFullName\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"20dp\"\n                android:hint=\"Full name\"\n                android:padding=\"16dp\"\n                android:src=\"@drawable/ic_user\"\n                android:text=\"Full name :\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <EditText\n                android:id=\"@+id/txtFullName\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:background=\"@drawable/et_bg\"\n                android:baselineAligned=\"false\"\n                android:padding=\"15dp\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <TextView\n                android:id=\"@+id/tvDateofBirth\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:padding=\"16dp\"\n                android:src=\"@drawable/ic_user\"\n                android:text=\"Date of birth :\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <EditText\n                android:id=\"@+id/txtDateOfBirth\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:background=\"@drawable/et_bg\"\n                android:padding=\"16dp\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <TextView\n                android:id=\"@+id/tvGender\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:padding=\"16dp\"\n                android:src=\"@drawable/ic_user\"\n                android:text=\"Gender :\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <RelativeLayout\n                android:layout_width=\"fill_parent\"\n                android:layout_height=\"wrap_content\"\n                android:orientation=\"horizontal\"\n                android:paddingLeft=\"5dp\"\n                android:paddingRight=\"5dp\">\n\n                <RadioButton\n                    android:id=\"@+id/rdFemale\"\n                    android:layout_width=\"156dp\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginLeft=\"20dp\"\n                    android:layout_marginRight=\"5dp\"\n                    android:buttonTint=\"@color/white\"\n                    android:text=\"Female\"\n                    android:textAllCaps=\"false\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"20dp\" />\n\n                <RadioButton\n                    android:id=\"@+id/rdMale\"\n                    android:layout_width=\"158dp\"\n                    android:layout_height=\"match_parent\"\n                    android:layout_marginLeft=\"240dp\"\n                    android:layout_marginRight=\"5dp\"\n                    android:buttonTint=\"@color/white\"\n                    android:text=\"Male\"\n                    android:textAllCaps=\"false\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"20dp\" />\n            </RelativeLayout>\n\n            <TextView\n                android:id=\"@+id/tvPhoneNumber\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:padding=\"16dp\"\n                android:src=\"@drawable/ic_user\"\n                android:text=\"Phone number :\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <EditText\n                android:id=\"@+id/txtPhoneNumber\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:background=\"@drawable/et_bg\"\n                android:padding=\"16dp\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <TextView\n                android:id=\"@+id/tvEmail\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:padding=\"16dp\"\n                android:src=\"@drawable/ic_user\"\n                android:text=\"Email :\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <EditText\n                android:id=\"@+id/txtEmail\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:background=\"@drawable/et_bg\"\n                android:enabled=\"false\"\n                android:padding=\"16dp\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <TextView\n                android:id=\"@+id/tvAddress\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:padding=\"16dp\"\n                android:src=\"@drawable/ic_user\"\n                android:text=\"Address :\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <EditText\n                android:id=\"@+id/txtAddress\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:background=\"@drawable/et_bg\"\n                android:padding=\"16dp\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <TextView\n                android:id=\"@+id/tvNationalID\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:padding=\"16dp\"\n                android:src=\"@drawable/ic_user\"\n                android:text=\"National ID :\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <EditText\n                android:id=\"@+id/txtNationalID\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:background=\"@drawable/et_bg\"\n                android:padding=\"16dp\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <TextView\n                android:id=\"@+id/tvDescription\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:padding=\"16dp\"\n                android:src=\"@drawable/ic_user\"\n                android:text=\"Description :\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <EditText\n                android:id=\"@+id/txtDescription\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"150dp\"\n                android:background=\"@drawable/et_bg\"\n                android:padding=\"16dp\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"20dp\" />\n\n            <RelativeLayout\n                android:layout_width=\"fill_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"30dp\"\n                android:orientation=\"horizontal\"\n                android:paddingLeft=\"5dp\"\n                android:paddingRight=\"5dp\">\n\n                <Button\n                    android:id=\"@+id/BtnSaveButton\"\n                    android:layout_width=\"170dp\"\n                    android:layout_height=\"wrap_content\"\n                    android:background=\"@drawable/btn_bg\"\n                    android:text=\"Save\"\n                    android:textAllCaps=\"false\"\n                    android:textStyle=\"bold\" />\n\n            </RelativeLayout>\n\n            <View\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"50dp\" />\n        </LinearLayout>\n    </ScrollView>\n</LinearLayout>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_profile.xml	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/res/layout/activity_profile.xml	(date 1606714862671)
+@@ -21,29 +21,36 @@
+             android:gravity="center"
+             android:orientation="vertical">
+ 
++            <ImageView
++                android:id="@+id/imageView6"
++                android:layout_width="242dp"
++                android:layout_height="45dp"
++                android:layout_marginTop="80dp"
++                android:layout_marginBottom="15dp"
++                app:srcCompat="@drawable/lobs_logo" />
++
+             <TextView
+                 android:id="@+id/icon"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="20dp"
+                 android:contentDescription="logo"
+-                android:text="My profile"
++                android:text="View current user profile"
+                 android:textColor="@color/login_form_details"
+-                android:textSize="24sp"
++                android:textSize="15dp"
+                 android:textStyle="bold" />
+ 
+             <TextView
+                 android:id="@+id/tvFullName"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="20dp"
++                android:layout_marginTop="75dp"
+                 android:hint="Full name"
+                 android:padding="16dp"
+                 android:src="@drawable/ic_user"
+-                android:text="Full name :"
++                android:text="Fullname"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtFullName"
+@@ -51,7 +58,7 @@
+                 android:layout_height="wrap_content"
+                 android:background="@drawable/et_bg"
+                 android:baselineAligned="false"
+-                android:padding="15dp"
++                android:padding="16dp"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+                 android:textSize="20dp" />
+@@ -62,10 +69,10 @@
+                 android:layout_height="wrap_content"
+                 android:padding="16dp"
+                 android:src="@drawable/ic_user"
+-                android:text="Date of birth :"
++                android:text="Date Of Birth"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtDateOfBirth"
+@@ -83,10 +90,10 @@
+                 android:layout_height="wrap_content"
+                 android:padding="16dp"
+                 android:src="@drawable/ic_user"
+-                android:text="Gender :"
++                android:text="Gender"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <RelativeLayout
+                 android:layout_width="fill_parent"
+@@ -105,7 +112,7 @@
+                     android:text="Female"
+                     android:textAllCaps="false"
+                     android:textColor="@color/white"
+-                    android:textSize="20dp" />
++                    android:textSize="15dp" />
+ 
+                 <RadioButton
+                     android:id="@+id/rdMale"
+@@ -117,7 +124,7 @@
+                     android:text="Male"
+                     android:textAllCaps="false"
+                     android:textColor="@color/white"
+-                    android:textSize="20dp" />
++                    android:textSize="15dp" />
+             </RelativeLayout>
+ 
+             <TextView
+@@ -126,10 +133,10 @@
+                 android:layout_height="wrap_content"
+                 android:padding="16dp"
+                 android:src="@drawable/ic_user"
+-                android:text="Phone number :"
++                android:text="Phone Number"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtPhoneNumber"
+@@ -147,10 +154,10 @@
+                 android:layout_height="wrap_content"
+                 android:padding="16dp"
+                 android:src="@drawable/ic_user"
+-                android:text="Email :"
++                android:text="Email"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtEmail"
+@@ -169,20 +176,20 @@
+                 android:layout_height="wrap_content"
+                 android:padding="16dp"
+                 android:src="@drawable/ic_user"
+-                android:text="Address :"
++                android:text="Address"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtAddress"
+                 android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
++                android:layout_height="79dp"
+                 android:background="@drawable/et_bg"
+                 android:padding="16dp"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <TextView
+                 android:id="@+id/tvNationalID"
+@@ -190,10 +197,10 @@
+                 android:layout_height="wrap_content"
+                 android:padding="16dp"
+                 android:src="@drawable/ic_user"
+-                android:text="National ID :"
++                android:text="National ID"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtNationalID"
+@@ -211,17 +218,18 @@
+                 android:layout_height="wrap_content"
+                 android:padding="16dp"
+                 android:src="@drawable/ic_user"
+-                android:text="Description :"
++                android:text="Description"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+-                android:textSize="20dp" />
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtDescription"
+                 android:layout_width="match_parent"
+-                android:layout_height="150dp"
++                android:layout_height="111dp"
+                 android:background="@drawable/et_bg"
+                 android:padding="16dp"
++                android:textAlignment="inherit"
+                 android:textColor="@color/login_form_details"
+                 android:textColorHint="@color/login_form_details"
+                 android:textSize="20dp" />
+@@ -238,6 +246,8 @@
+                     android:id="@+id/BtnSaveButton"
+                     android:layout_width="170dp"
+                     android:layout_height="wrap_content"
++                    android:layout_marginLeft="95dp"
++                    android:layout_marginRight="95dp"
+                     android:background="@drawable/btn_bg"
+                     android:text="Save"
+                     android:textAllCaps="false"
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <!-- Base application theme. -->\n    <style name=\"AppTheme\" parent=\"Theme.AppCompat.Light.NoActionBar\">\n        <!-- Customize your theme here. -->\n        <item name=\"colorPrimary\">@color/colorPrimary</item>\n        <item name=\"colorPrimaryDark\">@color/dark_blue</item>\n        <item name=\"colorAccent\">@color/colorAccent</item>\n        <item name=\"dialogTheme\">@style/AppTheme.DialogTheme</item>\n        <item name=\"android:datePickerDialogTheme\">@style/AppTheme.DialogTheme</item>\n    </style>\n\n    <style name=\"AppTheme.DialogTheme\" parent=\"ThemeOverlay.AppCompat.Dialog\">\n        <item name=\"colorAccent\">#FFC62C</item>\n        <item name=\"android:windowBackground\">@color/black_LightMode</item>\n        <item name=\"colorControlActivated\">#FFC62C</item>\n        <item name=\"android:textColorPrimary\">#FFFFFF</item>\n        <item name=\"android:textColorSecondary\">#FFFFFF</item>\n        <item name=\"android:textColorPrimaryInverse\">@color/black_LightMode</item>\n        <item name=\"android:textColorSecondaryInverse\">@color/black_LightMode</item>\n    </style>\n\n    <style name=\"AppTheme.NoActionBar\">\n        <item name=\"windowActionBar\">false</item>\n        <item name=\"windowNoTitle\">true</item>\n        <item name=\"colorPrimary\">@color/colorPrimary2</item>\n        <item name=\"colorPrimaryDark\">@color/colorPrimaryDark2</item>\n        <item name=\"colorAccent\">@color/colorAccent2</item>\n    </style>\n\n    <style name=\"LOBS_DarkTheme\" parent=\"Theme.AppCompat.Light.DarkActionBar\">\n        <item name=\"windowActionBar\">false</item>\n        <item name=\"windowNoTitle\">true</item>\n        <item name=\"android:windowBackground\">@color/gray_dark_DarkMode</item>\n        <item name=\"android:textColor\">@color/gray_LightMode</item>\n        <item name=\"android:fontFamily\">Arial</item>\n\n\n    </style>\n\n    <style name=\"LOBS_LightTheme\" parent=\"Theme.AppCompat.Light.DarkActionBar\">\n        <item name=\"windowActionBar\">false</item>\n        <item name=\"windowNoTitle\">true</item>\n        <item name=\"android:windowBackground\">@color/white_LightMode</item>\n        <item name=\"android:textColor\">@color/gray_dark_DarkMode</item>\n        <item name=\"android:fontFamily\">Arial</item>\n\n\n    </style>\n\n    <style name=\"AppTheme.AppBarOverlay\" parent=\"ThemeOverlay.AppCompat.Dark.ActionBar\" />\n    <style name=\"AppTheme.PopupOverlay\" parent=\"ThemeOverlay.AppCompat.Light\"/>\n\n    <style name=\"LoginTheme\" parent=\"Theme.AppCompat.Light.NoActionBar\">\n        <!-- Customize your theme here. -->\n        <item name=\"colorPrimary\">@color/colorPrimary2</item>\n        <item name=\"colorPrimaryDark\">@color/colorPrimaryDark2</item>\n        <item name=\"colorAccent\">@color/colorAccent2</item>\n    </style>\n\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/res/values/styles.xml	(date 1606714862695)
+@@ -19,42 +19,13 @@
+         <item name="android:textColorSecondaryInverse">@color/black_LightMode</item>
+     </style>
+ 
+-    <style name="AppTheme.NoActionBar">
+-        <item name="windowActionBar">false</item>
+-        <item name="windowNoTitle">true</item>
+-        <item name="colorPrimary">@color/colorPrimary2</item>
+-        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+-        <item name="colorAccent">@color/colorAccent2</item>
+-    </style>
+-
+-    <style name="LOBS_DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+-        <item name="windowActionBar">false</item>
+-        <item name="windowNoTitle">true</item>
+-        <item name="android:windowBackground">@color/gray_dark_DarkMode</item>
+-        <item name="android:textColor">@color/gray_LightMode</item>
+-        <item name="android:fontFamily">Arial</item>
+ 
+ 
+-    </style>
+ 
+-    <style name="LOBS_LightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+-        <item name="windowActionBar">false</item>
+-        <item name="windowNoTitle">true</item>
+-        <item name="android:windowBackground">@color/white_LightMode</item>
+-        <item name="android:textColor">@color/gray_dark_DarkMode</item>
+-        <item name="android:fontFamily">Arial</item>
+-
+-
+-    </style>
+ 
+     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+ 
+-    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+-        <!-- Customize your theme here. -->
+-        <item name="colorPrimary">@color/colorPrimary2</item>
+-        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+-        <item name="colorAccent">@color/colorAccent2</item>
+-    </style>
++
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:gravity=\"center\"\n    android:orientation=\"vertical\"\n    android:background=\"@color/gray_dark_DarkMode\">\n\n    <ScrollView\n        android:id=\"@+id/scrollView\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\" >\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_margin=\"20dp\"\n            android:orientation=\"vertical\"\n            android:gravity=\"center\" >\n\n            <TextView\n            android:id=\"@+id/icon\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:text=\"Register\"\n            android:textColor=\"@color/login_form_details\"\n            android:textSize=\"30dp\"\n            android:textStyle=\"bold\"\n            android:layout_marginTop=\"20dp\"\n            android:contentDescription=\"logo\" />\n\n            <EditText\n                android:id=\"@+id/txtFullName\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"30dp\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"Full name\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <EditText\n                android:id=\"@+id/txtDateOfBirth\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"10dp\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"Date of birth\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <RelativeLayout\n                android:layout_width=\"fill_parent\"\n                android:layout_height=\"wrap_content\"\n                android:orientation=\"horizontal\"\n                android:paddingLeft=\"5dp\"\n                android:paddingRight=\"5dp\" >\n\n                <TextView\n                    android:id=\"@+id/tvGender\"\n                    android:layout_width=\"109dp\"\n                    android:layout_height=\"80dp\"\n                    android:text=\"Gender :\"\n                    android:textColor=\"@color/login_form_details\"\n                    android:textSize=\"20dp\"\n                    android:padding=\"16dp\"\n                    android:gravity=\"center_vertical\"\n                    android:src=\"@drawable/ic_user\"\n                    android:textColorHint=\"@color/login_form_details\" />\n\n                <RadioButton\n                    android:id=\"@+id/rdFemale\"\n                    android:layout_width=\"110dp\"\n                    android:layout_height=\"80dp\"\n                    android:layout_marginRight=\"5dp\"\n                    android:text=\"Female\"\n                    android:layout_marginLeft=\"120dp\"\n                    android:buttonTint=\"@color/white\"\n                    android:textAllCaps=\"false\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"20dp\" />\n\n                <RadioButton\n                    android:id=\"@+id/rdMale\"\n                    android:layout_width=\"150dp\"\n                    android:layout_height=\"80dp\"\n                    android:layout_marginRight=\"5dp\"\n                    android:text=\"Male\"\n                    android:layout_marginLeft=\"250dp\"\n                    android:buttonTint=\"@color/white\"\n                    android:textAllCaps=\"false\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"20dp\" />\n            </RelativeLayout>\n\n            <EditText\n                android:id=\"@+id/txtPhoneNumber\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"Phone number\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <EditText\n                android:id=\"@+id/txtEmail\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"10dp\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"Email\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <EditText\n                android:id=\"@+id/txtInputPassword\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"10dp\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"Input password\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <EditText\n                android:id=\"@+id/txtRe_enterPassword\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"10dp\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"Re-enter password\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <EditText\n                android:id=\"@+id/txtCurrentAmount\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"10dp\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"Current amount\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <EditText\n                android:id=\"@+id/txtAddress\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"10dp\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"Address\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <EditText\n                android:id=\"@+id/txtNationalID\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"10dp\"\n                android:background=\"@drawable/et_bg\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"20dp\"\n                android:hint=\"National ID\"\n                android:padding=\"16dp\"\n                android:textColorHint=\"@color/login_form_details\" />\n\n            <Button\n                android:id=\"@+id/btnRegister\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"20dp\"\n                android:background=\"@drawable/btn_bg\"\n                android:text=\"Register\"\n                android:textSize=\"15dp\"\n                android:textAllCaps=\"false\"\n                android:padding=\"16dp\"\n                android:textColor=\"@color/black_LightMode\" />\n\n            <Button\n                android:id=\"@+id/btnCancel\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"10dp\"\n                android:background=\"@drawable/btn_cancel_bg\"\n                android:text=\"Cancel\"\n                android:textSize=\"15dp\"\n                android:textAllCaps=\"false\"\n                android:padding=\"16dp\"\n                android:textColor=\"@color/login_form_details\" />\n\n            <View\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"50dp\"/>\n        </LinearLayout>\n    </ScrollView>\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_register.xml	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/res/layout/activity_register.xml	(date 1606714862676)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:gravity="center"
+@@ -18,40 +19,48 @@
+             android:orientation="vertical"
+             android:gravity="center" >
+ 
++            <ImageView
++                android:id="@+id/imageView4"
++                android:layout_width="242dp"
++                android:layout_height="45dp"
++                android:layout_marginTop="80dp"
++                android:layout_marginBottom="15dp"
++                app:srcCompat="@drawable/lobs_logo" />
++
+             <TextView
+-            android:id="@+id/icon"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:text="Register"
+-            android:textColor="@color/login_form_details"
+-            android:textSize="30dp"
+-            android:textStyle="bold"
+-            android:layout_marginTop="20dp"
+-            android:contentDescription="logo" />
++                android:id="@+id/icon"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:contentDescription="logo"
++                android:text="Register a new LOBS account"
++                android:textColor="@color/login_form_details"
++                android:textSize="15dp"
++                android:textStyle="bold" />
+ 
+             <EditText
+                 android:id="@+id/txtFullName"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="30dp"
++                android:layout_marginTop="60dp"
+                 android:background="@drawable/et_bg"
+-                android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+                 android:hint="Full name"
+                 android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtDateOfBirth"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
++                android:layout_marginTop="35dp"
++                android:layout_marginBottom="10dp"
+                 android:background="@drawable/et_bg"
+-                android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+                 android:hint="Date of birth"
+                 android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <RelativeLayout
+                 android:layout_width="fill_parent"
+@@ -64,145 +73,137 @@
+                     android:id="@+id/tvGender"
+                     android:layout_width="109dp"
+                     android:layout_height="80dp"
+-                    android:text="Gender :"
+-                    android:textColor="@color/login_form_details"
+-                    android:textSize="20dp"
+-                    android:padding="16dp"
++                    android:layout_marginTop="20dp"
+                     android:gravity="center_vertical"
++                    android:padding="16dp"
+                     android:src="@drawable/ic_user"
+-                    android:textColorHint="@color/login_form_details" />
++                    android:text="Gender :"
++                    android:textColor="@color/login_form_details"
++                    android:textColorHint="@color/login_form_details"
++                    android:textSize="15dp" />
+ 
+                 <RadioButton
+                     android:id="@+id/rdFemale"
+                     android:layout_width="110dp"
+                     android:layout_height="80dp"
++                    android:layout_marginLeft="120dp"
++                    android:layout_marginTop="20dp"
+                     android:layout_marginRight="5dp"
++                    android:buttonTint="@color/white"
+                     android:text="Female"
+-                    android:layout_marginLeft="120dp"
+-                    android:buttonTint="@color/white"
+                     android:textAllCaps="false"
+                     android:textColor="@color/white"
+-                    android:textSize="20dp" />
++                    android:textSize="15dp" />
+ 
+                 <RadioButton
+                     android:id="@+id/rdMale"
+                     android:layout_width="150dp"
+                     android:layout_height="80dp"
++                    android:layout_marginLeft="250dp"
++                    android:layout_marginTop="20dp"
+                     android:layout_marginRight="5dp"
+-                    android:text="Male"
+-                    android:layout_marginLeft="250dp"
+                     android:buttonTint="@color/white"
++                    android:text="Male"
+                     android:textAllCaps="false"
+                     android:textColor="@color/white"
+-                    android:textSize="20dp" />
++                    android:textSize="15dp" />
+             </RelativeLayout>
+ 
+             <EditText
+                 android:id="@+id/txtPhoneNumber"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
++                android:layout_marginTop="25dp"
+                 android:background="@drawable/et_bg"
+-                android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+                 android:hint="Phone number"
+                 android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtEmail"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
++                android:layout_marginTop="35dp"
+                 android:background="@drawable/et_bg"
+-                android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+                 android:hint="Email"
+                 android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtInputPassword"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
++                android:layout_marginTop="35dp"
+                 android:background="@drawable/et_bg"
+-                android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+                 android:hint="Input password"
+                 android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtRe_enterPassword"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
++                android:layout_marginTop="35dp"
+                 android:background="@drawable/et_bg"
+-                android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+                 android:hint="Re-enter password"
+                 android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
+-
+-            <EditText
+-                android:id="@+id/txtCurrentAmount"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
+-                android:background="@drawable/et_bg"
+                 android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+-                android:hint="Current amount"
+-                android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtAddress"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
++                android:layout_marginTop="35dp"
+                 android:background="@drawable/et_bg"
+-                android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+                 android:hint="Address"
+                 android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <EditText
+                 android:id="@+id/txtNationalID"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
++                android:layout_marginTop="35dp"
+                 android:background="@drawable/et_bg"
+-                android:textColor="@color/login_form_details"
+-                android:textSize="20dp"
+                 android:hint="National ID"
+                 android:padding="16dp"
+-                android:textColorHint="@color/login_form_details" />
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <Button
+                 android:id="@+id/btnRegister"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:layout_marginTop="20dp"
++                android:layout_width="307dp"
++                android:layout_height="53dp"
++                android:layout_marginTop="60dp"
+                 android:background="@drawable/btn_bg"
++                android:padding="16dp"
+                 android:text="Register"
+-                android:textSize="15dp"
+                 android:textAllCaps="false"
+-                android:padding="16dp"
+-                android:textColor="@color/black_LightMode" />
++                android:textColor="@color/black_LightMode"
++                android:textSize="15dp" />
+ 
+             <Button
+                 android:id="@+id/btnCancel"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:layout_marginTop="10dp"
++                android:layout_width="308dp"
++                android:layout_height="53dp"
++                android:layout_marginTop="40dp"
+                 android:background="@drawable/btn_cancel_bg"
++                android:padding="16dp"
+                 android:text="Cancel"
+-                android:textSize="15dp"
+                 android:textAllCaps="false"
+-                android:padding="16dp"
+-                android:textColor="@color/login_form_details" />
++                android:textColor="@color/login_form_details"
++                android:textSize="15dp" />
+ 
+             <View
+                 android:layout_width="match_parent"
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfirstapp.luckybankonlinesystem;\n\nimport android.content.Intent;\nimport android.os.Bundle;\nimport android.view.View;\nimport android.widget.Button;\nimport android.widget.EditText;\nimport android.widget.TextView;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\npublic class LoginActivity extends AppCompatActivity {\n\n    EditText userName, password;\n    Button login, register_login;\n    TextView register, forgetPass;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_login);\n\n        userName = (EditText)findViewById(R.id.txtUserName);\n        password = (EditText)findViewById(R.id.txtPassword);\n        login = (Button)findViewById(R.id.btnLogin);\n        register = (TextView)findViewById(R.id.tvRegister);\n        forgetPass = (TextView)findViewById(R.id.tvForgotPassword);\n\n        register.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);\n                startActivity(intent);\n\n\n            }\n        });\n\n        register.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n\n            }\n        });\n\n        forgetPass.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                Intent forgetPassIntent = new Intent();\n\n\n                \n\n\n            }\n        });\n\n\n\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/LoginActivity.java	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/LoginActivity.java	(date 1606714862639)
+@@ -18,7 +18,9 @@
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_login);
++        setContentView(R.layout.home);
++
++
+ 
+         userName = (EditText)findViewById(R.id.txtUserName);
+         password = (EditText)findViewById(R.id.txtPassword);
+@@ -26,6 +28,21 @@
+         register = (TextView)findViewById(R.id.tvRegister);
+         forgetPass = (TextView)findViewById(R.id.tvForgotPassword);
+ 
++        login.setOnClickListener(v -> {
++
++
++
++
++
++            try {
++                Thread.sleep(2000);
++            } catch (Exception e) {
++                e.printStackTrace();
++            }
++            Intent intent = new Intent(this, SplashScreenActivity.class);
++            startActivity(intent);
++        });
++
+         register.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+@@ -34,19 +51,16 @@
+ 
+ 
+             }
++
+         });
+ 
+-        register.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+ 
+-            }
+-        });
+ 
+         forgetPass.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-                Intent forgetPassIntent = new Intent();
++                Intent forgetPassIntent = new Intent(LoginActivity.this,ForgetPassActivity.class);
++                startActivity(forgetPassIntent);
+ 
+ 
+                 
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/RegisterActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfirstapp.luckybankonlinesystem;\n\nimport android.content.Intent;\nimport android.os.Bundle;\nimport android.view.View;\nimport android.widget.Button;\nimport android.widget.EditText;\nimport androidx.appcompat.app.AppCompatActivity;\nimport com.example.myfirstapp.luckybankonlinesystem.R;\n\npublic class RegisterActivity extends AppCompatActivity {\n\n    EditText fullName, dateOfBirth, phoneNumber, email, inputPassword, re_enterPassword, currentAmount, address, nationalID;\n    Button register, cancel;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_register);\n\n        fullName = (EditText)findViewById(R.id.txtFullName);\n        dateOfBirth = (EditText)findViewById(R.id.txtDateOfBirth);\n        phoneNumber = (EditText)findViewById(R.id.txtPhoneNumber);\n        email = (EditText)findViewById(R.id.txtEmail);\n        inputPassword = (EditText)findViewById(R.id.txtInputPassword);\n        re_enterPassword = (EditText)findViewById(R.id.txtRe_enterPassword);\n        currentAmount = (EditText)findViewById(R.id.txtCurrentAmount);\n        address = (EditText)findViewById(R.id.txtAddress);\n        nationalID = (EditText)findViewById(R.id.txtNationalID);\n\n        register = (Button)findViewById(R.id.btnRegister);\n        cancel = (Button)findViewById(R.id.btnCancel);\n\n        cancel.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);\n                startActivity(intent);\n            }\n        });\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/RegisterActivity.java	(revision 8ffe12929df4aadd36b0c5534fe5062484b0e54e)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/RegisterActivity.java	(date 1606714862644)
+@@ -5,8 +5,8 @@
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
++
+ import androidx.appcompat.app.AppCompatActivity;
+-import com.example.myfirstapp.luckybankonlinesystem.R;
+ 
+ public class RegisterActivity extends AppCompatActivity {
+ 
+@@ -24,7 +24,6 @@
+         email = (EditText)findViewById(R.id.txtEmail);
+         inputPassword = (EditText)findViewById(R.id.txtInputPassword);
+         re_enterPassword = (EditText)findViewById(R.id.txtRe_enterPassword);
+-        currentAmount = (EditText)findViewById(R.id.txtCurrentAmount);
+         address = (EditText)findViewById(R.id.txtAddress);
+         nationalID = (EditText)findViewById(R.id.txtNationalID);
+ 
