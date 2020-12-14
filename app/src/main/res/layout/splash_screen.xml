@@ -8,18 +8,20 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="186dp"
-        android:layout_height="57dp"
+        android:layout_width="153dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/lobs_logo"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="267dp" />
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="278dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Lucky Online Banking System"
         android:textColor="#7E7E7E"
         tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="340dp" />
+        tools:layout_editor_absoluteY="329dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
