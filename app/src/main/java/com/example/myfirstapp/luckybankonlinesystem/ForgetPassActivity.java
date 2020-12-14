@@ -1,4 +1,6 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
-public class ForgetPassActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ForgetPassActivity extends AppCompatActivity{
 }
