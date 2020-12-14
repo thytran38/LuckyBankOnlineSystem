@@ -24,7 +24,6 @@ public class WaitingDialog extends DialogFragment {
     private Task waitingTask;
     private LottieAnimationView animationView;
 
-
     public WaitingDialog(int waitingAnimationId) {
         this.setCancelable(false);
         this.waitingAnimationId = waitingAnimationId;
