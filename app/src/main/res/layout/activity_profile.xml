@@ -250,6 +250,20 @@
                     android:layout_marginRight="95dp"
                     android:background="@drawable/btn_bg"
                     android:text="Save"
+                    android:layout_centerHorizontal="true"
+
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+                <Button
+                    android:id="@+id/btnMPCancel"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_bg"
+                    android:layout_below="@+id/BtnSaveButton"
+                    android:text="Cancel"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="#E1341E"
                     android:textAllCaps="false"
                     android:textStyle="bold" />
 
