@@ -1,0 +1,149 @@
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Fragment/WaitingDialog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfirstapp.luckybankonlinesystem.Fragment;\n\nimport android.app.Dialog;\nimport android.os.Bundle;\nimport android.view.LayoutInflater;\nimport android.view.View;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.Nullable;\nimport androidx.appcompat.app.AlertDialog;\nimport androidx.fragment.app.DialogFragment;\n\nimport com.airbnb.lottie.LottieAnimationView;\nimport com.airbnb.lottie.LottieDrawable;\nimport com.example.myfirstapp.luckybankonlinesystem.R;\n<<<<<<< ee632b6cab1f16c2c16480815ae831f2d96cf7d7\nimport com.google.android.gms.tasks.Task;\n=======\n>>>>>>> adding WaitingDialog\n\nimport java.util.Objects;\n\npublic class WaitingDialog extends DialogFragment {\n<<<<<<< ee632b6cab1f16c2c16480815ae831f2d96cf7d7\n\n    private final int waitingAnimationId;\n    private int waitingTime;\n    private Task waitingTask;\n    private LottieAnimationView animationView;\n\n    public WaitingDialog(int waitingAnimationId) {\n        this.setCancelable(false);\n        this.waitingAnimationId = waitingAnimationId;\n        this.waitingTime = 5;\n    }\n\n    public WaitingDialog(int waitingAnimationId, int waitingTime) {\n        this(waitingAnimationId);\n        this.waitingTime = waitingTime;\n    }\n\n    public WaitingDialog(int waitingAnimationId, Task waitingTask) {\n        this(waitingAnimationId);\n        this.waitingTask = waitingTask;\n=======\n    private final int waitingAnimationId;\n\n    public WaitingDialog(int waitingAnimationId) {\n        this.waitingAnimationId = waitingAnimationId;\n        this.setCancelable(false);\n>>>>>>> adding WaitingDialog\n    }\n\n    @NonNull\n    @Override\n    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {\n        LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();\n        final View view = inflater.inflate(R.layout.loading_layout, null);\n<<<<<<< ee632b6cab1f16c2c16480815ae831f2d96cf7d7\n        animationView = view.findViewById(R.id.animation_container);\n        animationView.setAnimation(waitingAnimationId);\n        animationView.setRepeatMode(LottieDrawable.RESTART);\n        if (waitingTask != null) {\n            waitingTask.addOnCompleteListener(task -> cancel());\n        } else {\n            animationView.postDelayed(this::cancel, waitingTime * 1000);\n        }\n=======\n        LottieAnimationView animationView = view.findViewById(R.id.animation_container);\n        animationView.setAnimation(waitingAnimationId);\n        animationView.setRepeatMode(LottieDrawable.REVERSE);\n>>>>>>> adding WaitingDialog\n        return new AlertDialog.Builder(Objects.requireNonNull(getContext()))\n                .setView(view)\n                .setCancelable(false)\n                .create();\n    }\n<<<<<<< ee632b6cab1f16c2c16480815ae831f2d96cf7d7\n\n    private void cancel() {\n        animationView.cancelAnimation();\n        this.dismiss();\n    }\n}\n=======\n}\n\n>>>>>>> adding WaitingDialog\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Fragment/WaitingDialog.java	(revision aed54f44793da8af6f74faaf4f11ae3a9bc10a0a)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Fragment/WaitingDialog.java	(date 1607934568280)
+@@ -1,7 +1,6 @@
+ package com.example.myfirstapp.luckybankonlinesystem.Fragment;
+ 
+ import android.app.Dialog;
+-import android.os.Bundle;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ 
+@@ -13,15 +12,11 @@
+ import com.airbnb.lottie.LottieAnimationView;
+ import com.airbnb.lottie.LottieDrawable;
+ import com.example.myfirstapp.luckybankonlinesystem.R;
+-<<<<<<< ee632b6cab1f16c2c16480815ae831f2d96cf7d7
+ import com.google.android.gms.tasks.Task;
+-=======
+->>>>>>> adding WaitingDialog
+ 
+ import java.util.Objects;
+ 
+ public class WaitingDialog extends DialogFragment {
+-<<<<<<< ee632b6cab1f16c2c16480815ae831f2d96cf7d7
+ 
+     private final int waitingAnimationId;
+     private int waitingTime;
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n    <color name=\"colorPrimary\">#6200EE</color>\n    <color name=\"colorPrimary2\">#61FD00</color>\n    <color name=\"colorPrimaryDark\">#3700B3</color>\n    <color name=\"colorPrimaryDark2\">#1976d2</color>\n    <color name=\"colorAccent\">#03DAC5</color>\n    <color name=\"colorAccent2\">#f50057</color>\n    <color name=\"dark_blue\">#3023AE</color>\n    <color name=\"purple\">#c86dd7</color>\n    <color name=\"red\">#F60505</color>\n    <color name=\"blue\">#2196F3</color>\n    <color name=\"light_blue\">#00BCD4</color>\n    <color name=\"green\">#61FD00</color>\n    <color name=\"green_light\">#A4FF6B</color>\n    <color name=\"green_light_2\">#97FF60</color>\n    <color name=\"white\">#ccffffff</color>\n\n    <color name=\"login_form_details\">#ccffffff</color>\n    <color name=\"login_form_details_light\">#1affffff</color>\n    <color name=\"login_form_details_medium\">#66ffffff</color>\n\n    <!-- Color materials for Dark Mode -->\n    <color name=\"gray_light_DarkMode\">#343335</color>\n    <color name=\"gray_DarkMode\">#211e21</color>\n    <color name=\"gray_dark_DarkMode\">#010002</color>\n    <color name=\"yellow_light_DarkMode\">#fef1bd</color>\n    <color name=\"yellow_DarkMode\">#fdd246</color>\n    <color name=\"yellow_dark_DarkMode\">#ffc62c</color>\n    \n    <!-- Color materials for Light Mode -->\n    <color name=\"white_LightMode\">#ffffff</color>\n    <color name=\"gray_LightMode\">#dee1de</color>\n    <color name=\"black_LightMode\">#000100</color>\n    <color name=\"blue_light_LightMode\">#0039d3</color>\n    <color name=\"blue_LightMode\">#0133c2</color>\n    <color name=\"blue_dark_LightMode\">#010e3d</color>\n\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision aed54f44793da8af6f74faaf4f11ae3a9bc10a0a)
++++ app/src/main/res/values/colors.xml	(date 1607934441960)
+@@ -12,6 +12,7 @@
+     <color name="blue">#2196F3</color>
+     <color name="light_blue">#00BCD4</color>
+     <color name="green">#61FD00</color>
++    <color name="green_dark">#5FC643</color>
+     <color name="green_light">#A4FF6B</color>
+     <color name="green_light_2">#97FF60</color>
+     <color name="white">#ccffffff</color>
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">LOBS</string>\n    <string name=\"desc_fingerprint\">Please place your fingertip on the scanner to verify your identity</string>\n    <string name=\"fingerprint_note\">Fingerprint sign-in helps to further secure your device. Your device must have at least one registered fingerprint in the device settings</string>\n    <string name=\"success_message\">Successfully!</string>\n    <string name=\"register_saying\">New to LOBS? <b>Register</b> now! </string>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision aed54f44793da8af6f74faaf4f11ae3a9bc10a0a)
++++ app/src/main/res/values/strings.xml	(date 1607933338842)
+@@ -4,4 +4,5 @@
+     <string name="fingerprint_note">Fingerprint sign-in helps to further secure your device. Your device must have at least one registered fingerprint in the device settings</string>
+     <string name="success_message">Successfully!</string>
+     <string name="register_saying">New to LOBS? <b>Register</b> now! </string>
++    <string name="error_notification">Are you sure want to suspend this account?</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_error_notification.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_error_notification.xml	(date 1607934441940)
++++ app/src/main/res/layout/activity_error_notification.xml	(date 1607934441940)
+@@ -0,0 +1,46 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:layout_weight="3" >
++
++    <ScrollView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content">
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_horizontal"
++            android:layout_margin="20dp"
++            android:gravity="center"
++            android:background="@drawable/bg_error_notification"
++            android:orientation="vertical">
++
++            <TextView
++                android:id="@+id/ErrorNotification"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="10dp"
++                android:textSize="25dp"
++                android:layout_gravity="center_horizontal"
++                android:textColor="@color/white_LightMode"
++                android:text="@string/error_notification"
++                android:gravity="center" />
++
++            <Button
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_marginLeft="10dp"
++                android:layout_gravity="center_vertical"
++                android:background="@drawable/btn_confirm_yes"
++                android:layout_marginTop="20dp"/>
++
++            <View
++                android:layout_width="match_parent"
++                android:layout_height="20dp"/>
++        </LinearLayout>
++    </ScrollView>
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/drawable/btn_confirm_yes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/btn_confirm_yes.xml	(date 1607934376022)
++++ app/src/main/res/drawable/btn_confirm_yes.xml	(date 1607934376022)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++    <solid android:color="@color/green_dark" />
++    <corners android:radius="34dp" />
++</shape>
+\ No newline at end of file
+Index: app/src/main/res/drawable/bg_error_notification.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/bg_error_notification.xml	(date 1607932897389)
++++ app/src/main/res/drawable/bg_error_notification.xml	(date 1607932897389)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android">
++    <solid android:color="@color/login_form_details_medium" />
++    <corners android:radius="34dp" />
++</shape>
+\ No newline at end of file

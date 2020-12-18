@@ -41,6 +41,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="55dp"
+                android:layout_marginBottom="40dp"
                 android:baselineAlignBottom="true"
                 app:srcCompat="@drawable/lobs_logo"
 
@@ -48,13 +49,12 @@
 
             <TextView
                 android:id="@+id/tv01"
-                android:layout_width="116dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
                 android:layout_marginBottom="30dp"
+                android:text="Transactions Listing"
 
-                android:text="Total Balance"
                 android:textAlignment="center"
                 android:textColor="#7E7E7E"
                 android:textSize="14sp" />
@@ -65,28 +65,21 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:text="59590"
+                android:text="20"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="50sp" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="204dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="50dp">
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="130dp"
+                android:layout_height="61dp"
+                android:layout_marginTop="40dp"/>
 
 
-
-
-            </androidx.viewpager2.widget.ViewPager2>
 
             <androidx.recyclerview.widget.RecyclerView
-
+                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
-
                 android:layout_height="257dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="60dp"

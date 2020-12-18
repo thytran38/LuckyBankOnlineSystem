@@ -1,0 +1,205 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.myfirstapp.luckybankonlinesystem\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.LOBSDark\">\n        <activity android:name=\"com.example.myfirstapp.luckybankonlinesystem.MainActivity\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n        <activity android:name=\".RegisterActivity\"/>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 3a2da29924fd7ca5dc586d10a31f118733c036c1)
++++ app/src/main/AndroidManifest.xml	(date 1607928627834)
+@@ -9,7 +9,7 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.LOBSDark">
+-        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.MainActivity">
++        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.TransactionActivity">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+ 
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/ForgetPassActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfirstapp.luckybankonlinesystem;\n\npublic class ForgetPassActivity extends AppCombatActivity{\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/ForgetPassActivity.java	(revision 3a2da29924fd7ca5dc586d10a31f118733c036c1)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/ForgetPassActivity.java	(date 1607923592461)
+@@ -1,4 +1,6 @@
+ package com.example.myfirstapp.luckybankonlinesystem;
+ 
+-public class ForgetPassActivity extends AppCombatActivity{
++import androidx.appcompat.app.AppCompatActivity;
++
++public class ForgetPassActivity extends AppCompatActivity{
+ }
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/TransactionActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/TransactionActivity.java	(date 1607928627902)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/TransactionActivity.java	(date 1607928627902)
+@@ -0,0 +1,15 @@
++package com.example.myfirstapp.luckybankonlinesystem;
++
++import android.os.Bundle;
++
++import androidx.annotation.Nullable;
++import androidx.appcompat.app.AppCompatActivity;
++
++public class TransactionActivity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(@Nullable Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_make_a_transaction);
++    }
++}
+Index: app/src/main/res/layout/activity_make_a_transaction.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_make_a_transaction.xml	(date 1607928467830)
++++ app/src/main/res/layout/activity_make_a_transaction.xml	(date 1607928467830)
+@@ -0,0 +1,138 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:layout_weight="3">
++
++    <ScrollView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        app:layout_constraintBottom_toBottomOf="parent"
++        tools:layout_editor_absoluteX="0dp">
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_gravity="center_horizontal"
++            android:layout_margin="20dp"
++            android:gravity="center"
++            android:orientation="vertical">
++
++            <ImageView
++                android:id="@+id/imageView3"
++                android:layout_width="131dp"
++                android:layout_height="32dp"
++                android:layout_gravity="center_horizontal"
++                android:layout_marginTop="55dp"
++                android:layout_marginBottom="40dp"
++                android:baselineAlignBottom="true"
++                app:srcCompat="@drawable/lobs_logo" />
++
++            <TextView
++                android:id="@+id/tv01"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center_horizontal"
++                android:layout_marginBottom="30dp"
++                android:text="Make A New Transaction"
++                android:textAlignment="center"
++                android:textColor="#7E7E7E"
++                android:textSize="14sp" />
++
++            <EditText
++                android:id="@+id/txtMakeTransactionFullNameOfRecipient"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="25dp"
++                android:layout_marginLeft="24dp"
++                android:layout_marginRight="24dp"
++                android:background="@drawable/et_bg"
++                android:hint="Full Name of Recipient "
++                android:padding="16dp"
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
++
++            <EditText
++                android:id="@+id/txtMakeTransactionIdRecipient"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="35dp"
++                android:layout_marginLeft="24dp"
++                android:layout_marginRight="24dp"
++                android:background="@drawable/et_bg"
++                android:hint="ID Recipient"
++                android:padding="16dp"
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
++
++            <EditText
++                android:id="@+id/txtMakeTransactionAmountOfTransaction"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="35dp"
++                android:layout_marginLeft="24dp"
++                android:layout_marginRight="24dp"
++                android:background="@drawable/et_bg"
++                android:hint="Amount of Transaction"
++                android:padding="16dp"
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
++
++            <EditText
++                android:id="@+id/MakeTransactionMessage"
++                android:layout_width="match_parent"
++                android:layout_marginTop="35dp"
++                android:layout_marginLeft="24dp"
++                android:layout_marginRight="24dp"
++                android:layout_height="257dp"
++                android:layout_gravity="center_horizontal"
++                android:background="@drawable/et_bg"
++                android:textAlignment="center"
++                android:hint="Message"
++                android:textColor="@color/login_form_details"
++                android:textColorHint="@color/login_form_details"
++                android:textSize="15dp" />
++
++            <LinearLayout
++                android:layout_marginTop="35dp"
++                android:layout_marginLeft="24dp"
++                android:layout_marginRight="24dp"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:gravity="center_vertical">
++
++                <Button
++                    android:id="@+id/btnbtnMakeTransactionTransfer"
++                    android:layout_width="130dp"
++                    android:layout_height="wrap_content"
++                    android:background="@drawable/btn_bg"
++                    android:text="Transfer"
++                    android:layout_gravity="center"
++                    android:textAllCaps="false"
++                    android:textColor="@color/black_LightMode"
++                    android:textSize="15dp" />
++
++                <Button
++                    android:id="@+id/btnMakeTransactionCancel"
++                    android:layout_width="130dp"
++                    android:layout_height="wrap_content"
++                    android:layout_marginLeft="60dp"
++                    android:background="@drawable/btn_bg"
++                    android:text="Cancel"
++                    android:textAllCaps="false"
++                    android:textColor="@color/black_LightMode"
++                    android:textSize="15dp" />
++            </LinearLayout>
++
++            <View
++                android:layout_width="match_parent"
++                android:layout_height="50dp"/>
++
++        </LinearLayout>
++    </ScrollView>
++</LinearLayout>
+\ No newline at end of file
