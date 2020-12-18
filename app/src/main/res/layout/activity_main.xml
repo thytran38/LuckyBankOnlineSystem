@@ -36,12 +36,11 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imgLogo"
                 android:layout_width="131dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="55dp"
-                android:layout_marginBottom="40dp"
                 android:baselineAlignBottom="true"
                 app:srcCompat="@drawable/lobs_logo"
 
@@ -52,9 +51,10 @@
                 android:layout_width="116dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="30dp"
-                android:text="Total Balance"
 
+                android:text="Total Balance"
                 android:textAlignment="center"
                 android:textColor="#7E7E7E"
                 android:textSize="14sp" />
