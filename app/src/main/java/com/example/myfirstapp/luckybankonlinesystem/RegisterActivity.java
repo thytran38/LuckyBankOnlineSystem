@@ -7,11 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myfirstapp.luckybankonlinesystem.LoginActivity;
-import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -38,7 +35,7 @@ public  class RegisterActivity extends AppCompatActivity {
         nationalID = (EditText)findViewById(R.id.txtNationalID);
         //Buttons
         register = (Button)findViewById(R.id.btnRegister);
-        cancel = (Button)findViewById(R.id.btnCancel);
+        //cancel = (Button)findViewById(R.id.btnCancel);
         //Initialize
         auth = FirebaseAuth.getInstance();
         register.setOnClickListener(new View.OnClickListener() {

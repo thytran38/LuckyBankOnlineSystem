@@ -53,7 +53,7 @@
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/etRecipientID"
@@ -65,7 +65,7 @@
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/etAmount"
@@ -77,7 +77,7 @@
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/etMessage"
@@ -87,11 +87,10 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/et_bg"
                 android:hint="Message"
-                android:shadowRadius="2px"
                 android:textAlignment="center"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -108,7 +107,7 @@
                     android:text="Transfer"
                     android:textAllCaps="false"
                     android:textColor="@color/black_LightMode"
-                    android:textSize="15dp" />
+                    android:textSize="13sp" />
 
                 <Button
                     android:id="@+id/btnCanc"
@@ -119,7 +118,7 @@
                     android:text="Cancel"
                     android:textAllCaps="false"
                     android:textColor="@color/black_LightMode"
-                    android:textSize="15dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <View
