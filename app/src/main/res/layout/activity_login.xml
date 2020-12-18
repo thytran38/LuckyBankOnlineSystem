@@ -27,14 +27,14 @@
                 android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="55dp"
                 app:srcCompat="@mipmap/logo" />
 
             <TextView
                 android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:contentDescription="logo"
                 android:text="Login into your LOBS account"
                 android:textColor="@color/login_form_details"
@@ -47,7 +47,7 @@
                 android:id="@+id/txtUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="65dp"
                 android:background="@drawable/et_bg"
                 android:hint="Email address"
                 android:inputType="textEmailAddress"
