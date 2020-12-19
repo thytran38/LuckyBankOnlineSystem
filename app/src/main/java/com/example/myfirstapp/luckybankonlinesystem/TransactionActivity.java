@@ -1,6 +1,7 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -15,6 +16,7 @@ import java.util.Map;
 public class TransactionActivity extends AppCompatActivity {
     private EditText reciEt, idEt, messageEt, amountEt;
     private Button transBtn, cancBtn;
+
     private static final String KEY_TRANSACTION_ID = "transactionID";
     private static final String KEY_ACCOUNT_RECEIVER = "receiver";
     private static final String KEY_ACC_SENDER = "sender";
@@ -24,6 +26,9 @@ public class TransactionActivity extends AppCompatActivity {
     private static final String KEY_TRANSACTION_TIME = "timestamp of Transaction";
     private static final String KEY_MESSAGE = "message";
 
+    private static final String KEY_CURRENT_BALANCE = "currentBalance";
+
+
     private static String receiver = "";
     private static String sender = "";
     private static String receiverID = "";
@@ -31,6 +36,8 @@ public class TransactionActivity extends AppCompatActivity {
     private static String amount = "";
     private static String timestamp = "";
     private static String message = "";
+
+    private static String current_balance = "";
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Boolean existedAccount;
@@ -84,7 +91,9 @@ public class TransactionActivity extends AppCompatActivity {
         transaction.put(KEY_MESSAGE,message);
 
 
-        db.collection("transactions").document().set(transaction);
+        db.collection("transactions").document().getId();
+        db.collection("transactions").document(transactionId).set(transaction);
+        writeDebt("259924hf2h2");
 
 
 
@@ -94,12 +103,32 @@ public class TransactionActivity extends AppCompatActivity {
         return "";
     }
 
-    public void writeCheck(String senderId){
+    public void writeDebt(String senderId){
 
-        //db.collection("users").document("Xp01Mz36fS2mFnP0Vyqk").document("accounts");
+        //current_balance = db.collection("users").document("Xp01Mz36fS2mFnP0Vyqk").collection("accounts").document("R2Fl2DnNRRK5K4jvQcm7").get().toString();
+        current_balance = "45000";
+//        Double currentBalance = Double.parseDouble(current_balance);
+//        Double am = Double.parseDouble(amount);
+//        Double result = currentBalance - am;
+        Map<String,Object> debt = new HashMap<>();
+        debt.put(KEY_CURRENT_BALANCE,"35000");
+        debt.put("old balance", "45000");
+        db.collection("users").document("abc").collection("accounts").getId();
+        db.collection("users").document("abc").collection("accounts").document("newId").set(debt);
+
+        Log.d("SUCCESS","Add debt successfully");
     }
 
-    public void getCheck(String recipientId){
+    public void writeEarning(String recipientId){
+        current_balance = db.collection("users").document("Xp01Mz36fS2mFnP0Vyqk").collection("accounts").document("R2Fl2DnNRRK5K4jvQcm7").get().toString();
+        Double currentBalance = Double.parseDouble(current_balance);
+        Double am = Double.parseDouble(amount);
+        Double result = currentBalance + am;
+        Map<String,Object> debt = new HashMap<>();
+        debt.put(KEY_CURRENT_BALANCE,result.toString());
+        db.collection("users").document("Xp01Mz36fS2mFnP0Vyqk").collection("accounts").document("R2Fl2DnNRRK5K4jvQcm7").set(debt);
+        Log.d("SUCCESS","Add debt successfully");
+
 
     }
 
