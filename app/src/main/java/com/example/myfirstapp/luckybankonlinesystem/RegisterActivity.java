@@ -2,22 +2,23 @@ package com.example.myfirstapp.luckybankonlinesystem;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
+import com.example.myfirstapp.luckybankonlinesystem.Fragment.DatePickerDialog;
+import com.example.myfirstapp.luckybankonlinesystem.Fragment.WaitingDialog;
 import com.google.firebase.auth.FirebaseAuth;
 
-public  class RegisterActivity extends AppCompatActivity {
+import java.util.Objects;
+import java.util.logging.Logger;
 
-    EditText fullName, dateOfBirth, phoneNumber, email, inputPassword, re_enterPassword, currentAmount, address, nationalID;
-    Button register, cancel;
+
+public class RegisterActivity extends AppCompatActivity {
+
+    EditText txtFullName, txtDateOfBirth, txtPhoneNumber, txtEmail, txtPassword, txtRePassword, txtAddress;
     FirebaseAuth auth;
 
     @Override
@@ -25,154 +26,147 @@ public  class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         //EditText
-        fullName = (EditText)findViewById(R.id.txtFullName);
-        dateOfBirth = (EditText)findViewById(R.id.txtDateOfBirth);
-        phoneNumber = (EditText)findViewById(R.id.txtPhoneNumber);
-        email = (EditText)findViewById(R.id.txtEmail);
-        inputPassword = (EditText)findViewById(R.id.txtInputPassword);
-        re_enterPassword = (EditText)findViewById(R.id.txtRe_enterPassword);
-        address = (EditText)findViewById(R.id.txtAddress);
-        nationalID = (EditText)findViewById(R.id.txtNationalID);
-        //Buttons
-        register = (Button)findViewById(R.id.btnRegister);
-        //cancel = (Button)findViewById(R.id.btnCancel);
+        txtFullName = findViewById(R.id.txtFullName);
+        txtDateOfBirth = findViewById(R.id.txtDateOfBirth);
+        txtDateOfBirth.setOnClickListener(v -> {
+            DatePickerDialog dialog = new DatePickerDialog(new DatePickerDialog.OnDatePickedListener() {
+                @Override
+                public void onDateOk(int date, int month, int year) {
+                    ((EditText) v).setText(Date.getInstance(date, month, year).toString());
+                }
+
+                @Override
+                public void onDateError(int date, int month, int year) {
+                    v.requestFocus();
+                    ((EditText) v).setError("Age must be equal or greater than 18");
+                }
+            }, (date, month, year) -> {
+                Date dateObj = Date.getInstance();
+                Date minValidDate = Date.getInstance(date, month, year + 18);
+                return minValidDate.getEpochSecond() <= dateObj.getEpochSecond();
+            });
+            dialog.show(getSupportFragmentManager(), null);
+        });
+        txtPhoneNumber = findViewById(R.id.txtPhoneNumber);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtPassword = findViewById(R.id.txtInputPassword);
+        txtRePassword = findViewById(R.id.txtRe_enterPassword);
+        txtAddress = findViewById(R.id.txtAddress);
+        //Button
+        findViewById(R.id.btnRegister).setOnClickListener(v -> RegisterEvent());
         //Initialize
         auth = FirebaseAuth.getInstance();
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RegisterEvent();
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
     }
+
     private void RegisterEvent() {
-        if (!valAddress()|!valdateofBirth()|!valEmail()|!valfullName()|!valinputPass()|!valrePass()|!valphoneNum()|!valnationid()){
-            return;
-        }
-        String reg_email=email.getText().toString();
-        String reg_password=inputPassword.getText().toString();
-////        String reg_fullname=fullName.getText().toString();
-////        String reg_phonenum=phoneNumber.getText().toString();
-////        String reg_datebirth=dateOfBirth.getText().toString();
-////        String reg_repassword=re_enterPassword.getText().toString();
-////        String reg_naitionid=nationalID.getText().toString();
-////        String reg_address=address.getText().toString();
-////        String reg_currentamount=currentAmount.getText().toString();
-        auth.createUserWithEmailAndPassword(reg_email,reg_password)
-                .addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete( Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(RegisterActivity.this,"Register success",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(RegisterActivity.this,ProfileActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }else{
-                            Toast.makeText(RegisterActivity.this,"Register fail",Toast.LENGTH_LONG).show();
-                        }
+//        if (!valAddress() || !valDateOfBirth() || !valEmail() || !valFullName() || !valInputPass() || !valRePass() || !valPhoneNum()) {
+//            return;
+//        }
+        String email = txtEmail.getText().toString();
+        String password = txtPassword.getText().toString();
+//        String fullName = txtFullName.getText().toString();
+//        String phoneNum = txtPhoneNumber.getText().toString();
+//        String dateOfBirth = txtDateOfBirth.getText().toString();
+//        String rePassword = txtRePassword.getText().toString();
+//        String address = txtAddress.getText().toString();
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        String uid = Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getUser()).getUid();
+                        Logger.getLogger("DEBUG").warning("create successfully");
+                    } else {
+                        Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-
     }
-    private Boolean valfullName(){
-        String valfullName=fullName.getText().toString();
-        if (valfullName.isEmpty()){
-            fullName.setError("Please Enter Your Name");
+
+    private boolean valFullName() {
+        String fullName = txtFullName.getText().toString();
+        if (fullName.isEmpty()) {
+            txtFullName.setError("Please Enter Your Name");
             return false;
-        }else {
-            fullName.setError(null);
+        } else {
+            txtFullName.setError(null);
             return true;
         }
     }
-    private Boolean valEmail(){
-        String valEmail= email.getText().toString().trim();
+
+    private boolean valEmail() {
+        String email = txtEmail.getText().toString().trim();
         String emailCond = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        if (valEmail.isEmpty()){
-            email.setError("Please Enter Your Email");
+        if (email.isEmpty()) {
+            txtEmail.setError("Please Enter Your Email");
             return false;
-        }else if (!valEmail.matches(emailCond)){
-            email.setError("Invaild Email");
+        } else if (!email.matches(emailCond)) {
+            txtEmail.setError("Invalid Email");
             return false;
-        }else {
-            email.setError(null);
-            return true;
-        }
-    }
-    private Boolean valinputPass(){
-        String valinputPass=inputPassword.getText().toString().trim();
-        String passCond="\"(?=\\S+$)\"+\".{4,}\"+\"(?=.*[a-zA-Z])\"";
-        if (valinputPass.isEmpty()){
-            inputPassword.setError("Please Enter PassWord");
-            return false;
-        }else if (!valinputPass.matches(passCond)){
-            inputPassword.setError("PassWord is too weak");
-            return false;
-        }else {
-            inputPassword.setError(null);
-            return true;
-        }
-    }
-    private Boolean valrePass(){
-        String valrePass=re_enterPassword.getText().toString();
-        String valinputPass=inputPassword.getText().toString().trim();
-        if (valrePass.isEmpty()){
-            re_enterPassword.setError("Please Type Your PassWord Again");
-            return false;
-        }else if (!valrePass.matches(valinputPass)){
-            re_enterPassword.setError("Dosen't match the IputPassWord");
-            return false;
-        }else {
-            re_enterPassword.setError(null);
-            return true;
-        }
-    }
-    private Boolean valAddress(){
-        String valAddress=address.getText().toString();
-        if (valAddress.isEmpty()){
-            address.setError("Please Enter Your Address");
-            return false;
-        }else {
-            address.setError(null);
-            return true;
-        }
-    }
-    private Boolean valnationid(){
-        String valnationID=nationalID.getText().toString();
-        if (valnationID.isEmpty()){
-            nationalID.setError("Please Enter Nation ID");
-            return false;
-        }else {
-            nationalID.setError(null);
-            return true;
-        }
-    }
-    private Boolean valdateofBirth(){
-        String valdateofBirth=dateOfBirth.getText().toString();
-        if (valdateofBirth.isEmpty()){
-            dateOfBirth.setError("Please Enter Your Date of Birth");
-            return false;
-        }else {
-            dateOfBirth.setError(null);
-            return true;
-        }
-    }
-    private Boolean valphoneNum(){
-        String valphoneNum=phoneNumber.getText().toString();
-        if (valphoneNum.isEmpty()){
-            phoneNumber.setError("Please Enter Your Phone Number");
-            return false;
-        }else {
-            phoneNumber.setError(null);
+        } else {
+            txtEmail.setError(null);
             return true;
         }
     }
 
+    private boolean valInputPass() {
+        String password = txtPassword.getText().toString().trim();
+        String passCond = "\"(?=\\S+$)\"+\".{4,}\"+\"(?=.*[a-zA-Z])\"";
+        if (password.isEmpty()) {
+            txtPassword.setError("Please Enter PassWord");
+            return false;
+        } else if (!password.matches(passCond)) {
+            txtPassword.setError("Password is too weak");
+            return false;
+        } else {
+            txtPassword.setError(null);
+            return true;
+        }
+    }
+
+    private boolean valRePass() {
+        String password = txtRePassword.getText().toString();
+        String rePassword = txtPassword.getText().toString().trim();
+        if (rePassword.isEmpty()) {
+            txtRePassword.setError("Please Type Your Password Again");
+            return false;
+        } else if (!rePassword.equals(password)) {
+            txtRePassword.setError("Doesn't match the InputPassword");
+            return false;
+        } else {
+            txtRePassword.setError(null);
+            return true;
+        }
+    }
+
+    private boolean valAddress() {
+        String valAddress = txtAddress.getText().toString();
+        if (valAddress.isEmpty()) {
+            txtAddress.setError("Please Enter Your Address");
+            return false;
+        } else {
+            txtAddress.setError(null);
+            return true;
+        }
+    }
+
+    private boolean valDateOfBirth() {
+        String dateOfBirth = txtDateOfBirth.getText().toString();
+        if (dateOfBirth.isEmpty()) {
+            txtDateOfBirth.setError("Please Enter Your Date of Birth");
+            return false;
+        } else {
+            txtDateOfBirth.setError(null);
+            return true;
+        }
+    }
+
+    private boolean valPhoneNum() {
+        String phoneNum = txtPhoneNumber.getText().toString();
+        if (phoneNum.isEmpty()) {
+            txtPhoneNumber.setError("Please Enter Your Phone Number");
+            return false;
+        } else {
+            txtPhoneNumber.setError(null);
+            return true;
+        }
+    }
 
 }

@@ -10,13 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LOBSDark">
         <activity android:name="com.example.myfirstapp.luckybankonlinesystem.TransactionActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>
