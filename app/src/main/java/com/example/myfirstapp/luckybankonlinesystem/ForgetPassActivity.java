@@ -19,7 +19,7 @@ import com.google.firebase.auth.SignInMethodQueryResult;
 public class ForgetPassActivity extends AppCompatActivity{
     private static final String TAG = "ForgetPassACtivity";
     EditText email;
-    private static String EMAIL_TO_STRING = "";
+    private String EMAIL_TO_STRING = "";
     Button btnSend;
     private FirebaseAuth fbauth;
 
@@ -29,7 +29,8 @@ public class ForgetPassActivity extends AppCompatActivity{
         setContentView(R.layout.activity_forget_pass);
         fbauth = FirebaseAuth.getInstance();
         email = findViewById(R.id.etEmail);
-        EMAIL_TO_STRING = email.getText().toString();
+        //EMAIL_TO_STRING = email.getText().toString().trim();
+        EMAIL_TO_STRING = "augusttran@outlook.com";
         btnSend = findViewById(R.id.btnSend);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +46,7 @@ public class ForgetPassActivity extends AppCompatActivity{
                                     public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                                         SignInMethodQueryResult result = task.getResult();
                                         if (result.getSignInMethods().isEmpty()){
+                                            Log.d("ForgetPassActivity","Email Not Exist");
                                             Toast.makeText(ForgetPassActivity.this, "Email not existed!", Toast.LENGTH_SHORT).show();
                                         }
                                         else{
@@ -60,7 +62,8 @@ public class ForgetPassActivity extends AppCompatActivity{
                                         }
                                     }
                                 });
-                    }catch(NullPointerException e){
+                    }catch(IllegalArgumentException e){
+                        Log.d("ForgetPassActivity","Failed");
                         e.printStackTrace();
                     }
             }
