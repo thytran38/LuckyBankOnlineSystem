@@ -7,13 +7,14 @@ import java.util.Locale;
 
 public class TransactionModel {
     private String transactionID;
-    private long transactionDateCreated;
+    private final long transactionDateCreated;
     private String senderId;
     private String recipientId;
     private Double transactionAmount;
     private String transactionType;
 
     public TransactionModel() {
+        transactionDateCreated = System.currentTimeMillis();
     }
 
     public String getTransactionID() {
