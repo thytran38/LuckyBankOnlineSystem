@@ -260,7 +260,7 @@
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/btn_bg"
-                    android:layout_below="@+id/BtnSaveButton"
+                    android:layout_below="@id/BtnProfile_SaveButton"
                     android:text="Cancel"
                     android:layout_marginTop="5dp"
                     android:layout_centerHorizontal="true"

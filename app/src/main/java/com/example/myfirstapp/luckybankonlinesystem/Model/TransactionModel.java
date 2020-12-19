@@ -1,18 +1,21 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
-import android.view.animation.TranslateAnimation;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
-import com.example.myfirstapp.luckybankonlinesystem.Class.DateTime;
 
 public class TransactionModel {
     private String transactionID;
-    private DateTime transactionDateCreated;
+    private final long transactionDateCreated;
     private String senderId;
     private String recipientId;
     private Double transactionAmount;
     private String transactionType;
 
-    public TransactionModel() { }
+    public TransactionModel() {
+        transactionDateCreated = System.currentTimeMillis();
+    }
 
     public String getTransactionID() {
         return transactionID;
@@ -22,12 +25,10 @@ public class TransactionModel {
         this.transactionID = transactionID;
     }
 
-    public DateTime getTransactionDateCreated() {
-        return transactionDateCreated;
-    }
-
-    public void setTransactionDateCreated(DateTime transactionDateCreated) {
-        this.transactionDateCreated = transactionDateCreated;
+    public String getTransactionDateCreated() {
+        Date time = new Date(transactionDateCreated * 1000);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
+        return simpleDateFormat.format(time);
     }
 
     public String getSenderId() {

@@ -3,46 +3,45 @@ package com.example.myfirstapp.luckybankonlinesystem.Class;
 import androidx.annotation.NonNull;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class Date {
     private static GregorianCalendar calendar;
-    private static Date instance;
+    private final java.util.Date date;
 
     private Date() {
         calendar = (GregorianCalendar) GregorianCalendar.getInstance(TimeZone.getTimeZone("ICT"));
+        date = new java.util.Date(calendar.getTimeInMillis());
     }
 
     private Date(int day, int month, int year) throws IllegalArgumentException {
         this();
-        if (isValidDate(day, month, year))
-            throw new IllegalArgumentException(String.format(Locale.ENGLISH,
+        if (!isValidDate(day, month, year))
+            throw new IllegalArgumentException(String.format(Locale.US,
                     "%d/%d/%d is not a valid date", day, month, year));
+        calendar.clear();
+        calendar.set(year, month, day);
+        date.setTime(calendar.getTimeInMillis());
     }
 
     private Date(long epochSecond) {
         this();
-        calendar.setTimeInMillis(epochSecond * 1000);
+        date.setTime(epochSecond * 1000);
     }
 
     public static Date getInstance() {
-        if (instance == null)
-            instance = new Date();
-        return instance;
+        return new Date();
     }
 
     public static Date getInstance(int day, int month, int year) {
-        if (instance == null)
-            instance = new Date(day, month, year);
-        return instance;
+        return new Date(day, month, year);
     }
 
     public static Date getInstance(long epochSecond) {
-        if (instance == null)
-            instance = new Date(epochSecond);
-        return instance;
+        return new Date(epochSecond);
     }
 
     public static boolean isValidDate(int day, int month, int year) {
@@ -66,13 +65,25 @@ public class Date {
     }
 
     public long getEpochSecond() {
-        return calendar.getTimeInMillis() / 1000;
+        return date.getTime() / 1000;
+    }
+
+    public int getDate() {
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public int getMonth() {
+        return calendar.get(Calendar.MONTH) + 1;
+    }
+
+    public int getYear() {
+        return calendar.get(Calendar.YEAR);
     }
 
     @NonNull
     @Override
     public String toString() {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        return format.format(calendar.getTime());
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        return format.format(date);
     }
 }

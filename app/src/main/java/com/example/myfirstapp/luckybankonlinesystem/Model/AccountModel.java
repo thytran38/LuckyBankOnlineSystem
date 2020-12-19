@@ -1,14 +1,19 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
-import com.example.myfirstapp.luckybankonlinesystem.Class.DateTime;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class AccountModel {
     private String accountNumber;
-    private DateTime dateCreated;
+    private final long dateCreated;
     private String accountOwner;
     private String accountType;
 
-    public AccountModel() { }
+    public AccountModel() {
+        dateCreated = System.currentTimeMillis() / 1000;
+    }
 
     public String getAccountNumber() {
         return accountNumber;
@@ -18,12 +23,10 @@ public class AccountModel {
         this.accountNumber = accountNumber;
     }
 
-    public DateTime getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(DateTime dateCreated) {
-        this.dateCreated = dateCreated;
+    public String getDateCreated() {
+        Date time = new Date(dateCreated * 1000);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
+        return simpleDateFormat.format(time);
     }
 
     public String getAccountOwner() {
