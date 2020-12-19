@@ -12,11 +12,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_margin="20dp"
             android:gravity="center"
@@ -31,23 +31,20 @@
                 app:srcCompat="@mipmap/logo" />
 
             <TextView
-                android:id="@+id/icon"
+                android:id="@+id/tvForgotPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:contentDescription="logo"
-                android:text="Login into your LOBS account"
+                android:layout_marginTop="28dp"
+                android:text="Forgot password?"
                 android:textColor="@color/login_form_details"
-                android:textSize="15dp"
-                android:textStyle="normal"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/btnSend" />
 
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="65dp"
+                android:layout_marginTop="145dp"
                 android:background="@drawable/et_bg"
                 android:hint="Email address"
                 android:inputType="textEmailAddress"
@@ -59,53 +56,17 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintTop_toBottomOf="@+id/icon" />
 
-            <EditText
-                android:id="@+id/txtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/et_bg"
-                android:drawableEnd="@drawable/ic_eye"
-                android:drawableRight="@drawable/ic_eye"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="16dp"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
-                android:textSize="15sp" />
-
             <Button
                 android:id="@+id/btnSend"
-                android:layout_width="163dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="76dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/btn_bg"
-                android:text="Login"
+                android:text="Reset Password"
                 android:textAllCaps="false"
                 android:textColor="@color/black_LightMode"
-                android:textSize="19sp"
+                android:textSize="15sp"
                 app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
-
-            <TextView
-                android:id="@+id/tvRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="72dp"
-                android:text="@string/register_saying"
-                android:textColor="@color/login_form_details"
-                android:textSize="16sp"
-                app:layout_constraintHorizontal_bias="0.467"
-                app:layout_constraintTop_toBottomOf="@id/btnSend" />
-
-            <TextView
-                android:id="@+id/tvForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="Forgot password?"
-                android:textColor="@color/login_form_details"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/btnSend" />
 
             <View
                 android:layout_width="match_parent"
