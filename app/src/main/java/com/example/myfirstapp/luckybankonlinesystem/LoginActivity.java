@@ -19,9 +19,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        userName = (EditText)findViewById(R.id.txtUserName);
+        userName = (EditText)findViewById(R.id.etEmail);
         password = (EditText)findViewById(R.id.txtPassword);
-        login = (Button)findViewById(R.id.btnLogin);
+        login = (Button)findViewById(R.id.btnSend);
         register = (TextView)findViewById(R.id.tvRegister);
         forgetPass = (TextView)findViewById(R.id.tvForgotPassword);
 
@@ -55,11 +55,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent forgetPassIntent = new Intent(LoginActivity.this,ForgetPassActivity.class);
                 startActivity(forgetPassIntent);
-
-
-                
-
-
             }
         });
 
