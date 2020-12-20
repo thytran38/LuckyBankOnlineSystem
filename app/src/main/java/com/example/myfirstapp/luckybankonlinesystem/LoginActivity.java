@@ -6,10 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText userName, password;
     Button login, register_login;
     TextView register, forgetPass;
+    FirebaseAuth auth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         login = (Button)findViewById(R.id.btnSend);
         register = (TextView)findViewById(R.id.tvRegister);
         forgetPass = (TextView)findViewById(R.id.tvForgotPassword);
+
 
         login.setOnClickListener(v -> {
             try {
@@ -48,6 +54,9 @@ public class LoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                LoginEvent();
+
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
@@ -71,4 +80,17 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
     }
+
+    private void LoginEvent() {
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser.isEmailVerified()){
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        }else {
+            Toast.makeText(LoginActivity.this,"Email chua duoc xac nhan",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
 }
