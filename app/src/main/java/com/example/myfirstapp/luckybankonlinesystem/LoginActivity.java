@@ -8,10 +8,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.logging.Logger;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,16 +34,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        userName = (EditText)findViewById(R.id.txtUserName);
+        userName = (EditText)findViewById(R.id.etEmail);
         password = (EditText)findViewById(R.id.txtPassword);
-        login = (Button)findViewById(R.id.btnLogin);
+        login = (Button)findViewById(R.id.btnSend);
         register = (TextView)findViewById(R.id.tvRegister);
         forgetPass = (TextView)findViewById(R.id.tvForgotPassword);
 
 
         login.setOnClickListener(v -> {
-
-
             try {
                 Thread.sleep(2000);
             } catch (Exception e) {
@@ -47,7 +54,11 @@ public class LoginActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 LoginEvent();
+
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
 
         });
@@ -57,16 +68,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent forgetPassIntent = new Intent(LoginActivity.this,ForgetPassActivity.class);
                 startActivity(forgetPassIntent);
-
-
-                
-
-
             }
         });
 
-
-
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                CustomerModel model = task.getResult().toObject(CustomerModel.class);
+                                Logger.getLogger("DEBUG").warning(model.getBirthDate());
+                            }
+                        });
     }
 
     private void LoginEvent() {

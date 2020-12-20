@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -25,7 +24,7 @@
                 android:id="@+id/imageView6"
                 android:layout_width="242dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="55dp"
                 android:layout_marginBottom="15dp"
                 app:srcCompat="@drawable/lobs_logo" />
 
@@ -33,6 +32,7 @@
                 android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:contentDescription="logo"
                 android:text="View current user profile"
                 android:textColor="@color/login_form_details"
@@ -43,14 +43,14 @@
                 android:id="@+id/tvFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
+                android:layout_marginTop="25dp"
                 android:hint="Full name"
                 android:padding="16dp"
                 android:src="@drawable/ic_user"
                 android:text="Fullname"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/txtProfile_FullName"
@@ -61,7 +61,7 @@
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvDateofBirth"
@@ -72,7 +72,7 @@
                 android:text="Date Of Birth"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/txtProfile_DateOfBirth"
@@ -82,50 +82,36 @@
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp" />
+                android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tvGender"
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:src="@drawable/ic_user"
-                android:text="Gender"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
-
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp">
                 <RadioButton
                     android:id="@+id/rdProfile_Female"
-                    android:layout_width="156dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="5dp"
                     android:buttonTint="@color/white"
+                    android:layout_marginRight="35dp"
                     android:text="Female"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:textSize="14sp" />
 
                 <RadioButton
                     android:id="@+id/rdProfile_Male"
-                    android:layout_width="158dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="240dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:buttonTint="@color/white"
+                    android:layout_marginLeft="35dp"
                     android:text="Male"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="15dp" />
-            </RelativeLayout>
+                    android:textSize="14sp" />
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/tvPhoneNumber"
@@ -136,7 +122,7 @@
                 android:text="Phone Number"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/txtProfile_PhoneNumber"
@@ -146,7 +132,7 @@
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvProfile_Email"
@@ -157,7 +143,7 @@
                 android:text="Email"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/txtProfile_Email"
@@ -179,7 +165,7 @@
                 android:text="Address"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/txtProfile_Address"
@@ -191,83 +177,18 @@
                 android:textColorHint="@color/login_form_details"
                 android:textSize="15dp" />
 
-            <TextView
-                android:id="@+id/tvNationalID"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/BtnProfile_SaveButton"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:src="@drawable/ic_user"
-                android:text="National ID"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
-
-            <EditText
-                android:id="@+id/txtProfile_NationalID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_bg"
-                android:padding="16dp"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/tvDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:src="@drawable/ic_user"
-                android:text="Description"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
-
-            <EditText
-                android:id="@+id/txtProfile_Description"
-                android:layout_width="match_parent"
-                android:layout_height="111dp"
-                android:background="@drawable/et_bg"
-                android:padding="16dp"
-                android:textAlignment="inherit"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
-                android:textSize="20dp" />
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
-
-                <Button
-                    android:id="@+id/BtnProfile_SaveButton"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="95dp"
-                    android:layout_marginRight="95dp"
-                    android:background="@drawable/btn_bg"
-                    android:text="Save"
-                    android:layout_centerHorizontal="true"
-
-                    android:textAllCaps="false"
-                    android:textStyle="bold" />
-                <Button
-                    android:id="@+id/btnMPCancel"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_bg"
-                    android:layout_below="@+id/BtnSaveButton"
-                    android:text="Cancel"
-                    android:layout_marginTop="5dp"
-                    android:layout_centerHorizontal="true"
-                    android:backgroundTint="#E1341E"
-                    android:textAllCaps="false"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
+                android:layout_marginLeft="95dp"
+                android:layout_marginRight="95dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/btn_bg"
+                android:text="Save"
+                android:layout_centerHorizontal="true"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"
