@@ -48,14 +48,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LoginEvent();
-
-
-
             }
 
         });
-
-
 
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +71,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void LoginEvent() {
 
-        if (user.isEmailVerified()){
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser.isEmailVerified()){
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         }else {
