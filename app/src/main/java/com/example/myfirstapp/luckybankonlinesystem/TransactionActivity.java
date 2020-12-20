@@ -8,6 +8,8 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -37,9 +39,14 @@ public class TransactionActivity extends AppCompatActivity {
     private static String timestamp = "";
     private static String message = "";
 
+    private static String UID = "";
+    private static String Email = "";
+
+
     private static String current_balance = "";
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     private Boolean existedAccount;
     private String idOfReceiver;
     private String transactionId;
@@ -53,30 +60,39 @@ public class TransactionActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_a_transaction);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null)
+        {
+            sender = user.getDisplayName();
+            Email = user.getEmail();
+            UID = user.getUid();
+        }else{
+
+        }
 
         reciEt = (EditText)findViewById(R.id.etRecipientID);
         messageEt = (EditText)findViewById(R.id.etMessage);
         amountEt = (EditText)findViewById(R.id.etAmount);
 
-//        idOfReceiver = reciEt.getText().toString();
-//        receiver = db.collection("users").document(idOfReceiver).get().toString();
-//        sender = db.collection("users").document().get().toString();
-//        receiverID = idOfReceiver;
-//        senderID = "get id from current login session";
-//        amount = amountEt.getText().toString();
-//        message = messageEt.getText().toString();
-//        timestamp = "";
-//
-//        transactionId = IdGenerator(receiverID,senderID,timestamp);
+        idOfReceiver = reciEt.getText().toString();
+        receiver = db.collection("users").document(idOfReceiver).get().toString();
+        sender = db.collection("users").document().get().toString();
+        receiverID = idOfReceiver;
+        senderID = "get id from current login session";
+        amount = amountEt.getText().toString();
+        message = messageEt.getText().toString();
+        timestamp = "";
 
-        idOfReceiver = "" ;
-        receiver = "Tran Thi B";
-        sender = "Nguyen Van A";
-        receiverID = "525jj2nf";
-        senderID = "259924hf2h2";
-        amount = "2500";
-        message = "Thanks";
-        timestamp = "03/12/2020 14:16:24";
+        //transactionId = IdGenerator(receiverID,senderID,timestamp);
+
+//        idOfReceiver = "" ;
+//        receiver = "Tran Thi B";
+//        sender = "Nguyen Van A";
+//        receiverID = "525jj2nf";
+//        senderID = "259924hf2h2";
+//        amount = "2500";
+//        message = "Thanks";
+//        timestamp = "03/12/2020 14:16:24";
 
         transactionId = "2498Jjrw25HH";
 
