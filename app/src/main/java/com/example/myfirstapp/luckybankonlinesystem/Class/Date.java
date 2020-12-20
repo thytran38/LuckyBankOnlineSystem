@@ -2,6 +2,7 @@ package com.example.myfirstapp.luckybankonlinesystem.Class;
 
 import androidx.annotation.NonNull;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -10,7 +11,7 @@ import java.util.TimeZone;
 
 public class Date {
     private static GregorianCalendar calendar;
-    private final java.util.Date date;
+    private java.util.Date date;
 
     private Date() {
         calendar = (GregorianCalendar) GregorianCalendar.getInstance(TimeZone.getTimeZone("ICT"));
@@ -32,6 +33,12 @@ public class Date {
         date.setTime(epochSecond * 1000);
     }
 
+    private Date(String formattedTimeStr) throws ParseException {
+        this();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        date = simpleDateFormat.parse(formattedTimeStr);
+    }
+
     public static Date getInstance() {
         return new Date();
     }
@@ -43,6 +50,8 @@ public class Date {
     public static Date getInstance(long epochSecond) {
         return new Date(epochSecond);
     }
+
+    public static Date getInstance(String formattedTimeStr) throws ParseException {return new Date(formattedTimeStr);}
 
     public static boolean isValidDate(int day, int month, int year) {
         if (month > 12 || month <= 0)

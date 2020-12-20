@@ -42,8 +42,6 @@ public class ProfileActivity extends AppCompatActivity {
         phonenumber = (EditText)findViewById(R.id.txtProfile_PhoneNumber);
         email = (EditText)findViewById(R.id.txtProfile_Email);
         address = (EditText)findViewById(R.id.txtProfile_Address);
-        nationalid = (EditText)findViewById(R.id.txtProfile_NationalID);
-        description = (EditText)findViewById(R.id.txtProfile_Description);
 
         save = (Button) findViewById(R.id.BtnProfile_SaveButton);
         female = (RadioButton) save.findViewById(R.id.rdProfile_Female);
