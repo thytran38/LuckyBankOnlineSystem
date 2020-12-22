@@ -25,7 +25,8 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="55dp"
                 android:layout_marginBottom="15dp"
-                app:srcCompat="@drawable/lobs_logo" />
+                app:srcCompat="@drawable/lobs_logo"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/icon"
@@ -44,10 +45,12 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/et_bg"
                 android:hint="Full name"
+                android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtDateOfBirth"
@@ -57,55 +60,45 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/et_bg"
                 android:hint="Date of birth"
+                android:inputType="datetime"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
                 android:textSize="15dp"
                 android:focusable="false"
-                android:focusableInTouchMode="false" />
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
+                android:focusableInTouchMode="false"
+                android:autofillHints="" />
+                <RadioGroup
+                    android:id="@+id/genderGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+                    <RadioButton
+                        android:id="@+id/rdFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="35dp"
+                        android:paddingRight="5dp"
+                        android:buttonTint="@color/white"
+                        android:text="Female"
+                        android:gravity="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/tvGender"
-                    android:layout_width="109dp"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:src="@drawable/ic_user"
-                    android:text="Gender :"
-                    android:textColor="@color/login_form_details"
-                    android:textColorHint="@color/login_form_details"
-                    android:textSize="15dp" />
-
-                <RadioButton
-                    android:id="@+id/rdFemale"
-                    android:layout_width="110dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="120dp"
-                    android:layout_marginRight="5dp"
-                    android:buttonTint="@color/white"
-                    android:text="Female"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-
-                <RadioButton
-                    android:id="@+id/rdMale"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="250dp"
-                    android:layout_marginRight="5dp"
-                    android:buttonTint="@color/white"
-                    android:text="Male"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-            </RelativeLayout>
+                    <RadioButton
+                        android:id="@+id/rdMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="35dp"
+                        android:paddingRight="5dp"
+                        android:buttonTint="@color/white"
+                        android:text="Male"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                </RadioGroup>
 
             <EditText
                 android:id="@+id/txtPhoneNumber"
@@ -115,9 +108,11 @@
                 android:background="@drawable/et_bg"
                 android:hint="Phone number"
                 android:padding="16dp"
+                android:inputType="phone"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtEmail"
@@ -126,10 +121,12 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/et_bg"
                 android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtInputPassword"
@@ -138,10 +135,12 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/et_bg"
                 android:hint="Input password"
+                android:inputType="textPassword"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtRe_enterPassword"
@@ -149,11 +148,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/et_bg"
+                android:inputType="textPassword"
                 android:hint="Re-enter password"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/txtAddress"
