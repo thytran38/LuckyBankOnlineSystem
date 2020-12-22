@@ -8,4 +8,5 @@
     <string name="email_sent">An email has been sent to your mailbox. \nPlease read and follow as the email instructs.</string>
     <string name="valid_email_pls">A valid email, can you?</string>
     <string name="bad_email">Email in wrong format.</string>
+    <string name="confirm_leaving">Are you sure you want to leave <b>LOBS</b>?</string>
 </resources>

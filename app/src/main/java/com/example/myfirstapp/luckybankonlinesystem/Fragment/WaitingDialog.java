@@ -19,6 +19,7 @@ import java.util.Objects;
 
 public class WaitingDialog extends DialogFragment {
 
+    public static Object Builder;
     private final int waitingAnimationId;
     private int waitingTime;
     private Task waitingTask;

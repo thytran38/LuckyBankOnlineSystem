@@ -78,8 +78,6 @@ public class ForgetPassActivity extends AppCompatActivity{
                                         }
                                     }
                                 });
-
-
                     }
             }
         });
@@ -89,7 +87,7 @@ public class ForgetPassActivity extends AppCompatActivity{
         @Override
         public void onBackPressed() {
             super.onBackPressed();
-            Intent backHome = new Intent();
+            Intent backHome = new Intent(ForgetPassActivity.this,MainActivity.class);
             startActivity(backHome);
         }
 

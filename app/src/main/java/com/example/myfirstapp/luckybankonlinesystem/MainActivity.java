@@ -1,18 +1,20 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.ScreenSlidePageFragment;
+import com.example.myfirstapp.luckybankonlinesystem.Fragment.WaitingDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ViewPager viewPager;
     Adapter adapter;
     Integer[] colors = null;
+    WaitingDialog confirmDialog;
 
     TextView totalBalanceTv, usernameTv, accNumTv;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -68,6 +71,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(darkFlag == Configuration.UI_MODE_NIGHT_YES){
 
         }
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder abc = new AlertDialog.Builder(this,R.style.AppTheme_DialogTheme);
+
+        abc.setMessage(R.string.confirm_leaving)
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = abc.create();
+        alertDialog.show();
 
 
     }
