@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:title="Home"
+        android:id="@+id/mainActivity"
+        android:enabled="true"
+        android:icon="@drawable/home_black"
+        app:cnb_backgroundColor="@color/yellow_DarkMode"
+        app:cnb_iconColor="@color/gray_dark_DarkMode"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/gray_dark_DarkMode" />
+
+
+    <item
+        android:title="Transactions"
+        android:id="@+id/transactionActivity"
+        android:enabled="true"
+        android:icon="@drawable/transact_black"
+        app:cnb_backgroundColor="@color/yellow_DarkMode"
+        app:cnb_iconColor="@color/gray_dark_DarkMode"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/gray_dark_DarkMode"
+        />
+    <item
+        android:id="@+id/wallet"
+        android:title="Wallet"
+        android:enabled="true"
+        android:icon="@drawable/account_black"
+        app:cnb_backgroundColor="@color/yellow_DarkMode"
+        app:cnb_iconColor="@color/gray_dark_DarkMode"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/gray_dark_DarkMode"
+        />
+
+    <item
+        android:title="User Info"
+        android:id="@+id/userInfo"
+        android:enabled="true"
+        android:icon="@drawable/user_black"
+        app:cnb_backgroundColor="@color/yellow_DarkMode"
+        app:cnb_iconColor="@color/gray_dark_DarkMode"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/gray_dark_DarkMode"
+        />
+
+    <item
+        android:title="Currency"
+        android:id="@+id/currency"
+        android:enabled="true"
+        android:icon="@drawable/money_black"
+        app:cnb_backgroundColor="@color/yellow_DarkMode"
+        app:cnb_iconColor="@color/gray_dark_DarkMode"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/gray_dark_DarkMode"
+        />
+</menu>

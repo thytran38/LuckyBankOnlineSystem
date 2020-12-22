@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transactionActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="3">
@@ -73,19 +74,17 @@
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="130dp"
                 android:layout_height="61dp"
-                android:layout_marginTop="40dp"/>
-
+                android:layout_marginTop="40dp" />
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="257dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/btn_bg"
-                android:textAlignment="center">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:textAlignment="center"></androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </ScrollView>
