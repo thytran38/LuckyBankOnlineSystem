@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
@@ -14,24 +13,26 @@ import com.example.myfirstapp.luckybankonlinesystem.Fragment.DatePickerDialog;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WaitingDialog;
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
-import java.util.logging.Logger;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText txtFullName, txtDateOfBirth, txtPhoneNumber, txtEmail, txtPassword, txtRePassword, txtAddress;
-    FirebaseAuth auth;
-    FirebaseFirestore db;
-    RadioGroup genderGroup;
+    private EditText txtFullName, txtDateOfBirth, txtPhoneNumber, txtEmail, txtPassword, txtRePassword, txtAddress;
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
+    private RadioGroup genderGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +75,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void RegisterEvent() {
-        if (!valAddress() || !valDateOfBirth() || !valEmail() || !valFullName() || !valRePass() || !valPhoneNum()
-                || !valGenderChosen()) {
-            Toast.makeText(this, "All fields are required!", Toast.LENGTH_LONG).show();
+        if (!(valFullName() && valDateOfBirth() && valEmail() && valInputPass() && valRePass() && valGenderChosen() && valAddress() && valPhoneNum())) {
+            Toast.makeText(this, "All fields must be correct!", Toast.LENGTH_LONG).show();
             return;
         }
         String email = txtEmail.getText().toString();
@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         String phoneNum = txtPhoneNumber.getText().toString();
         String dateOfBirth = txtDateOfBirth.getText().toString();
         String address = txtAddress.getText().toString();
-        auth.createUserWithEmailAndPassword(email, password)
+        Task<AuthResult> registerTask = auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = task.getResult().getUser();
@@ -94,10 +94,8 @@ public class RegisterActivity extends AppCompatActivity {
                         model.setCustomerId(uid);
                         try {
                             model.setBirthDate(dateOfBirth);
-                            Logger.getLogger("DEBUG").warning(dateOfBirth);
                         } catch (ParseException e) {
                             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-                            Logger.getLogger("ERROR").warning(e.getMessage());
                         }
                         model.setEmail(email);
                         model.setFullName(fullName);
@@ -125,6 +123,8 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+        WaitingDialog dialog = new WaitingDialog(R.raw.loading_animation, registerTask);
+        dialog.show(getSupportFragmentManager(), null);
     }
 
     private boolean valGenderChosen() {
@@ -159,17 +159,41 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean valInputPass() {
         String password = txtPassword.getText().toString().trim();
-        String passCond = "(\\w\\d){8,}";
         if (password.isEmpty()) {
             txtPassword.setError("Please enter password");
             return false;
-        } else if (!password.matches(passCond)) {
-            txtPassword.setError("Password is too weak");
+        } else if (password.length() < 8) {
+            txtPassword.setError("Password is too short!");
             return false;
-        } else {
-            txtPassword.setError(null);
-            return true;
+        } else if (!containLowerCase(password) || !containUpperCase(password) || !containSpecialChar(password) || toStream(password).anyMatch(c -> c.equals(" "))) {
+            txtPassword.setError("Password must contain at least 1 upper case, lower case, special character and don't contain \" \"");
+            return false;
         }
+        txtPassword.setError(null);
+        return true;
+    }
+
+    private static boolean containUpperCase(String str) {
+        for (char c : str.toCharArray())
+            if (Character.isUpperCase(c))
+                return true;
+        return false;
+    }
+
+    private static boolean containLowerCase(String str) {
+        for (char c : str.toCharArray())
+            if (Character.isLowerCase(c))
+                return true;
+        return false;
+    }
+
+    private static boolean containSpecialChar(String str) {
+        String specialChars = ",./!@#$%^&*()-_+=~[]\\|{}[]";
+        Supplier<Stream<String>> supplier = () -> toStream(str);
+        for (char c : specialChars.toCharArray())
+            if (supplier.get().anyMatch(item -> item.equals(String.valueOf(c))))
+                return true;
+        return false;
     }
 
     private boolean valRePass() {
@@ -218,6 +242,14 @@ public class RegisterActivity extends AppCompatActivity {
             txtPhoneNumber.setError(null);
             return true;
         }
+    }
+
+    private static Stream<String> toStream(String text) {
+        String[] res = new String[text.length()];
+        for (int i = 0; i < text.length(); i++) {
+            res[i] = String.valueOf(text.charAt(i));
+        }
+        return Arrays.stream(res);
     }
 
 }
