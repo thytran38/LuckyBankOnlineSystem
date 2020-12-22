@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class LoginActivity extends AppCompatActivity {
 
     EditText userName, password;
-    Button login, register_login;
+    Button login;
     TextView register, forgetPass;
 
     @Override
@@ -45,30 +45,14 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-
+        register.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
 
-        forgetPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent forgetPassIntent = new Intent(LoginActivity.this,ForgetPassActivity.class);
-                startActivity(forgetPassIntent);
-            }
+        forgetPass.setOnClickListener(v -> {
+            Intent forgetPassIntent = new Intent(LoginActivity.this,ForgetPassActivity.class);
+            startActivity(forgetPassIntent);
         });
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get()
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                CustomerModel model = task.getResult().toObject(CustomerModel.class);
-                                Logger.getLogger("DEBUG").warning(model.getBirthDate());
-                            }
-                        });
     }
 }
