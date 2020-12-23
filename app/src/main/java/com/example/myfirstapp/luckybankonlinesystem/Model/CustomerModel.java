@@ -1,26 +1,40 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
-public class CustomerModel {
-    private String customerId, fullName, phoneNumber, email;
+import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
+import com.google.firebase.firestore.Exclude;
 
-    private boolean gender;
+import java.text.ParseException;
+import java.util.ArrayList;
+
+public class CustomerModel {
+
+    public enum CustomerGender {
+        Male, Female;
+    }
+
+    private String customerId;
+    private String fullName, phoneNumber, email, address;
+    private ArrayList<AccountModel> accounts;
+
+    private CustomerGender gender;
 
     private long birthDate;
 
-    public long getBirthDate() {
-        return birthDate;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public void setBirthDate(long birthDate) {
-        this.birthDate = birthDate;
-    }
-
+    @Exclude
     public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public String getBirthDate() {
+        return Date.getInstance(birthDate).toString();
+    }
+
+    public void setBirthDate(String date) throws ParseException {
+        birthDate = Date.getInstance(date).getEpochSecond();
     }
 
     public String getFullName() {
@@ -47,11 +61,27 @@ public class CustomerModel {
         this.email = email;
     }
 
-    public boolean isGender() {
+    public void setGender(CustomerGender gender) {
+        this.gender = gender;
+    }
+
+    public CustomerGender getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
-        this.gender = gender;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setAccounts(ArrayList<AccountModel> accounts) {
+        this.accounts = accounts;
+    }
+
+    public ArrayList<AccountModel> getAccounts() {
+        return accounts;
     }
 }
