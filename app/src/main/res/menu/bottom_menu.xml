@@ -4,7 +4,7 @@
     >
     <item
         android:title="Home"
-        android:id="@+id/mainActivity"
+        android:id="@+id/nav_main"
         android:enabled="true"
         android:icon="@drawable/home_black"
         app:cnb_backgroundColor="@color/yellow_DarkMode"
@@ -15,7 +15,7 @@
 
     <item
         android:title="Transactions"
-        android:id="@+id/transactionActivity"
+        android:id="@+id/nav_transaction"
         android:enabled="true"
         android:icon="@drawable/transact_black"
         app:cnb_backgroundColor="@color/yellow_DarkMode"
@@ -24,7 +24,7 @@
         app:cnb_textColor="@color/gray_dark_DarkMode"
         />
     <item
-        android:id="@+id/wallet"
+        android:id="@+id/nav_wallet"
         android:title="Wallet"
         android:enabled="true"
         android:icon="@drawable/account_black"
@@ -36,7 +36,7 @@
 
     <item
         android:title="User Info"
-        android:id="@+id/userInfo"
+        android:id="@+id/nav_userinfo"
         android:enabled="true"
         android:icon="@drawable/user_black"
         app:cnb_backgroundColor="@color/yellow_DarkMode"
@@ -47,7 +47,7 @@
 
     <item
         android:title="Currency"
-        android:id="@+id/currency"
+        android:id="@+id/nav_currency"
         android:enabled="true"
         android:icon="@drawable/money_black"
         app:cnb_backgroundColor="@color/yellow_DarkMode"
