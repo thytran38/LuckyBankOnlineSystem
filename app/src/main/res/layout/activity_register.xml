@@ -69,6 +69,7 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:autofillHints="" />
+
                 <RadioGroup
                     android:id="@+id/genderGroup"
                     android:layout_width="wrap_content"
