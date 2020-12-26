@@ -38,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        startActivity(new Intent(this, LoginActivity.class));
         //EditText
         txtFullName = findViewById(R.id.txtFullName);
         txtDateOfBirth = findViewById(R.id.txtDateOfBirth);

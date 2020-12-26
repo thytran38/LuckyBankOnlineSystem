@@ -17,14 +17,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.annotation.Nullable;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -37,77 +33,77 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        fullname = (EditText)findViewById(R.id.txtProfile_FullName);
-        dateofbirth = (EditText)findViewById(R.id.txtProfile_DateOfBirth);
-        phonenumber = (EditText)findViewById(R.id.txtProfile_PhoneNumber);
-        email = (EditText)findViewById(R.id.txtProfile_Email);
-        address = (EditText)findViewById(R.id.txtProfile_Address);
-
-        save = (Button) findViewById(R.id.BtnProfile_SaveButton);
-        female = (RadioButton) save.findViewById(R.id.rdProfile_Female);
-        male = (RadioButton) save.findViewById(R.id.rdProfile_Male);
-
-        // Connect to  Firebase's Authentication
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        // Connect to  Firebase's FireStore
-        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        // Check id account information
-        String userId = firebaseAuth.getCurrentUser().getUid();
-        // Current user account
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+//        fullname = (EditText)findViewById(R.id.txtProfile_FullName);
+//        dateofbirth = (EditText)findViewById(R.id.txtProfile_DateOfBirth);
+//        phonenumber = (EditText)findViewById(R.id.txtProfile_PhoneNumber);
+//        email = (EditText)findViewById(R.id.txtProfile_Email);
+//        address = (EditText)findViewById(R.id.txtProfile_Address);
+//
+//        save = (Button) findViewById(R.id.BtnProfile_SaveButton);
+//        female = (RadioButton) save.findViewById(R.id.rdProfile_Female);
+//        male = (RadioButton) save.findViewById(R.id.rdProfile_Male);
+//
+//        // Connect to  Firebase's Authentication
+//        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+//        // Connect to  Firebase's FireStore
+//        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+//        // Check id account information
+//        String userId = firebaseAuth.getCurrentUser().getUid();
+//        // Current user account
+//        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         // Load data from Firebase back to system
-        DocumentReference documentReference = firestore.collection("users").document(userId);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if(documentSnapshot.exists()){
-                    fullname.setText(documentSnapshot.getString("fName"));
-                    dateofbirth.setText(documentSnapshot.getString("birthdate"));
-                    phonenumber.setText(documentSnapshot.getString("phone"));
-                    email.setText(documentSnapshot.getString("email"));
-                    address.setText(documentSnapshot.getString("address"));
-                    nationalid.setText(documentSnapshot.getString("nationalId"));
-                    description.setText(documentSnapshot.getString("description"));
-                }else {
-                    Log.d("tag", "onEvent: Document do not exists");
-                }
-            }
-        });
+//            DocumentReference documentReference = firestore.collection("users").document(userId);
+//            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+//                @Override
+//                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+//                    if(documentSnapshot.exists()){
+//                        fullname.setText(documentSnapshot.getString("fName"));
+//                        dateofbirth.setText(documentSnapshot.getString("birthdate"));
+//                        phonenumber.setText(documentSnapshot.getString("phone"));
+//                        email.setText(documentSnapshot.getString("email"));
+//                        address.setText(documentSnapshot.getString("address"));
+//                        nationalid.setText(documentSnapshot.getString("nationalId"));
+//                        description.setText(documentSnapshot.getString("description"));
+//                    }else {
+//                        Log.d("tag", "onEvent: Document do not exists");
+//                    }
+//                }
+//            });
 
         // Edit account's information
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String Email = email.getText().toString();
-                firebaseUser.updateEmail(Email).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        DocumentReference docRef = firestore.collection("users").document(firebaseUser.getUid());
-                        Map<String,Object> edited = new HashMap<>();
-                        edited.put("fName",fullname.getText().toString());
-                        edited.put("birthdate",dateofbirth.getText().toString());
-                        edited.put("phone",phonenumber.getText().toString());
-                        edited.put("email",Email);
-                        edited.put("address",address.getText().toString());
-                        edited.put("nationalId", nationalid.getText().toString());
-                        edited.put("description", description.getText().toString());
-                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(ProfileActivity.this, "Your profile account has been updated", Toast.LENGTH_SHORT).show();
-                                //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                                finish();
-                            }
-                        });
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ProfileActivity.this, "Update profile failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+//        save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final String Email = email.getText().toString();
+//                firebaseUser.updateEmail(Email).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        DocumentReference docRef = firestore.collection("users").document(firebaseUser.getUid());
+//                        Map<String,Object> edited = new HashMap<>();
+//                        edited.put("fName",fullname.getText().toString());
+//                        edited.put("birthdate",dateofbirth.getText().toString());
+//                        edited.put("phone",phonenumber.getText().toString());
+//                        edited.put("email",Email);
+//                        edited.put("address",address.getText().toString());
+//                        edited.put("nationalId", nationalid.getText().toString());
+//                        edited.put("description", description.getText().toString());
+//                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                Toast.makeText(ProfileActivity.this, "Your profile account has been updated", Toast.LENGTH_SHORT).show();
+//                                //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+//                                finish();
+//                            }
+//                        });
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(ProfileActivity.this, "Update profile failed", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//        });
     }
 }

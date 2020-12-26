@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(darkFlag == Configuration.UI_MODE_NIGHT_YES){
 
         }
-
-
     }
 
     @Override

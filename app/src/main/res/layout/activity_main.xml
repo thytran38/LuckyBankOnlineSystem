@@ -84,7 +84,7 @@
             </androidx.viewpager2.widget.ViewPager2>
 
             <androidx.recyclerview.widget.RecyclerView
-
+                android:id="@+id/rvTransactionOverview"
                 android:layout_width="match_parent"
 
                 android:layout_height="257dp"
