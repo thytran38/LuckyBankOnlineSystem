@@ -52,6 +52,7 @@
                 android:hint="Email address"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
                 android:textSize="15sp"
@@ -70,6 +71,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="16dp"
+                android:textCursorDrawable="@null"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
                 android:textSize="15sp" />

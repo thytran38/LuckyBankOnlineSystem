@@ -5,4 +5,7 @@
     <string name="success_message">Successfully!</string>
     <string name="register_saying">New to LOBS? <b>Register</b> now! </string>
     <string name="error_notification">Are you sure want to suspend this account?</string>
+    <string name="email_sent">An email has been sent to your mailbox. \nPlease read and follow as the email instructs.</string>
+    <string name="valid_email_pls">A valid email, can you?</string>
+    <string name="bad_email">Email in wrong format.</string>
 </resources>

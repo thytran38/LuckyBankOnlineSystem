@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         forgetPass = (TextView)findViewById(R.id.tvForgotPassword);
 
         // Connect to Firebase
-        firebaseAuth = FirebaseAuth.getInstance();
 
+        firebaseAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(v -> {
             LoginEvent();
         });
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"logged in successfully",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(LoginActivity.this,ProfileActivity.class));
                 }else {
-                    Logger.getLogger("DEBUG").warning(task.getException().getMessage());
+                    Toast.makeText(LoginActivity.this,"Login Failed",Toast.LENGTH_LONG).show();
                 }
             }
         });
