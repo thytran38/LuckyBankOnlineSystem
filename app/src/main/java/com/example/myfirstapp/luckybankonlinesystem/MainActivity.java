@@ -2,11 +2,9 @@ package com.example.myfirstapp.luckybankonlinesystem;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -14,25 +12,20 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.CurrencyFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.MainFragment;
-import com.example.myfirstapp.luckybankonlinesystem.Fragment.ScreenSlidePageFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.TransactionFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.UserInfoFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class MainActivity extends AppCompatActivity implements ChipNavigationBar.OnItemSelectedListener  {
 
     ViewPager viewPager;
     Adapter adapter;
     Integer[] colors = null;
+    public static final int nav_main = 1000380;
+    public static final int nav_transaction = 1000187;
+    public TextView mainTv;
 
     TextView totalBalanceTv, usernameTv, accNumTv;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -42,62 +35,89 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         usernameTv = findViewById(R.id.tvUserName);
-        totalBalanceTv = findViewById(R.id.tvTotalBalance);
+        totalBalanceTv = findViewById(R.id.tvTotalTransaction);
         accNumTv = findViewById(R.id.tvAccnumber);
-        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
         //adapter = new Adapter(fragmentArrayList, this);
+        loadFragments(new TransactionFragment());
+        ChipNavigationBar chipNavigationBar = findViewById(R.id.menu);
+        chipNavigationBar.setMenuOrientation(ChipNavigationBar.MenuOrientation.HORIZONTAL);
+        //chipNavigationBar.setMenuResource(R.menu.bottom_menu);
+        //chipNavigationBar.setOnItemSelectedListener(navListener);
+        chipNavigationBar.setOnItemSelectedListener(navListener);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.menu);
-        bottomNavigationView.setOnNavigationItemReselectedListener(navListener);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+        //onItemSelected(nav_transaction);
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
 
 
-        db.collection("accounts")
-                .whereEqualTo("Fmg3Jc1BqGGBZEmAUoN5", true)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                usernameTv.setText( document.getData().toString());
-                            }
-                        } else {
-                            usernameTv.setText("Not get user info");
-                        }
-                    }
-                });
     }
 
-    private BottomNavigationView.OnNavigationItemReselectedListener navListener = new BottomNavigationView.OnNavigationItemReselectedListener() {
+
+
+    private ChipNavigationBar.OnItemSelectedListener navListener = new ChipNavigationBar.OnItemSelectedListener() {
+
         @Override
-        public void onNavigationItemReselected(@NonNull MenuItem item) {
+        public void onItemSelected(int i) {
             Fragment selectedFragment = null;
 
-            switch(item.getItemId()){
+            switch(i){
                 case R.id.nav_main:
                     selectedFragment = new MainFragment();
+                    loadFragments(selectedFragment);
                     break;
                 case R.id.nav_transaction:
                     selectedFragment = new TransactionFragment();
+                    loadFragments(selectedFragment);
+
                     break;
                 case R.id.nav_wallet:
                     selectedFragment = new WalletFragment();
+                    loadFragments(selectedFragment);
+
+                    //mainTv.setText("wallet");
                     break;
                 case R.id.nav_userinfo:
                     selectedFragment = new UserInfoFragment();
+                    loadFragments(selectedFragment);
+
+                    //mainTv.setText("info");
                     break;
                 case R.id.nav_currency:
                     selectedFragment = new CurrencyFragment();
+                    loadFragments(selectedFragment);
+                    //mainTv.setText("currency");
                     break;
             }
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    selectedFragment);
-            //return true;
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment);
         }
     };
+//    private ChipNavigationBar.OnNavigationItemReselectedListener navListener = new BottomNavigationView.OnNavigationItemReselectedListener() {
+//        @Override
+//        public void onNavigationItemReselected(@NonNull MenuItem item) {
+//            Fragment selectedFragment = null;
+//
+//            switch(item.getItemId()){
+//                case R.id.nav_main:
+//                    selectedFragment = new MainFragment();
+//                    break;
+//                case R.id.nav_transaction:
+//                    selectedFragment = new TransactionFragment();
+//                    break;
+//                case R.id.nav_wallet:
+//                    selectedFragment = new WalletFragment();
+//                    break;
+//                case R.id.nav_userinfo:
+//                    selectedFragment = new UserInfoFragment();
+//                    break;
+//                case R.id.nav_currency:
+//                    selectedFragment = new CurrencyFragment();
+//                    break;
+//            }
+//
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                    selectedFragment);
+//            //return true;
+//        }
+//    };
 
     @Override
     protected void onResume() {
@@ -114,7 +134,48 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public void onBackPressed() {
+        super.onBackPressed();
+
+
+    }
+
+    @Override
+    public void onItemSelected(int i) {
+        Fragment selectedFragment = null;
+
+        switch(i){
+            case R.id.nav_main:
+                selectedFragment = new MainFragment();
+                //mainTv.setText("main");
+                break;
+            case R.id.nav_transaction:
+                selectedFragment = new TransactionFragment();
+                //mainTv.setText("trans");
+                break;
+            case R.id.nav_wallet:
+                selectedFragment = new WalletFragment();
+                //mainTv.setText("wallet");
+                break;
+            case R.id.nav_userinfo:
+                selectedFragment = new UserInfoFragment();
+                //mainTv.setText("info");
+                break;
+            case R.id.nav_currency:
+                selectedFragment = new CurrencyFragment();
+                //mainTv.setText("currency");
+                break;
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment);
+    }
+
+    public boolean loadFragments(Fragment fr)
+    {
+        if(fr!=null){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container,fr)
+                    .commit();
+        }
+        return true;
     }
 }

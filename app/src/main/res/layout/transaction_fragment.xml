@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     tools:context=".Fragment.MainFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="131dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="55dp"
+                android:baselineAlignBottom="true"
+                app:srcCompat="@drawable/lobs_logo"
+
+                />
+
+            <TextView
+                android:id="@+id/tv01"
+                android:layout_width="192dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+
+                android:text="Transaction Overview"
+                android:textAlignment="center"
+                android:textColor="#7E7E7E"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvTotalTransaction"
+                android:layout_width="322dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+
+                android:text="20"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="50sp" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="60dp"
+                android:background="@color/yellow_DarkMode"
+                android:text="Switch" />
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:layout_width="match_parent"
+
+                android:layout_height="257dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="68dp"
+                android:background="@drawable/btn_bg"
+                android:padding="40dp"
+                android:textAlignment="center">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/btnTrans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Transaction"
+                android:background="@drawable/btn_bg"
+                android:textAllCaps="false"/>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

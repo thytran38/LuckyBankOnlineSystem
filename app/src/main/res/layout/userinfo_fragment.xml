@@ -1,14 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     tools:context=".Fragment.MainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="131dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="55dp"
+                app:srcCompat="@drawable/lobs_logo"
+                tools:srcCompat="@drawable/lobs_logo" />
+
+            <TextView
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+                android:contentDescription="logo"
+                android:text="View current user profile"
+                android:textColor="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:hint="Full name"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:text="Fullname"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtProfile_FullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:baselineAligned="false"
+                android:padding="16dp"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvDateofBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:text="Date Of Birth"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtProfile_DateOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:padding="16dp"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdProfile_Female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="35dp"
+                    android:buttonTint="@color/white"
+                    android:text="Female"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/rdProfile_Male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:buttonTint="@color/white"
+                    android:text="Male"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tvPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:text="Phone Number"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtProfile_PhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:padding="16dp"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvProfile_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:text="Email"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtProfile_Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_bg"
+                android:enabled="false"
+                android:padding="16dp"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:src="@drawable/ic_user"
+                android:text="Address"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtProfile_Address"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:background="@drawable/et_bg"
+                android:padding="16dp"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/BtnProfile_SaveButton"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="95dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="95dp"
+                android:background="@drawable/btn_bg"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

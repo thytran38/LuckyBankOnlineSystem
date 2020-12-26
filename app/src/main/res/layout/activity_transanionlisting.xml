@@ -61,7 +61,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tvTotalBalance"
+                android:id="@+id/tvTotalTransaction"
                 android:layout_width="322dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

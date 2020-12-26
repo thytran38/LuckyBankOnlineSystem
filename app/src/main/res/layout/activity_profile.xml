@@ -37,7 +37,7 @@
                 android:contentDescription="logo"
                 android:text="View current user profile"
                 android:textColor="@color/login_form_details"
-                android:textSize="15dp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
