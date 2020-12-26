@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.DatePickerDialog;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +25,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,11 +34,12 @@ import javax.annotation.Nullable;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private EditText fullname, dateofbirth, phonenumber, email, address, nationalid, description;
+    private EditText fullname, dateofbirth, phonenumber, email, address;
     private Button save;
     private RadioGroup gender;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
+    FirebaseUser firebaseUser;
     private String userId;
 
     @Override
@@ -78,17 +82,18 @@ public class ProfileActivity extends AppCompatActivity {
         // Check id account information
         userId = firebaseAuth.getCurrentUser().getUid();
         // Current user account
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseUser = firebaseAuth.getCurrentUser();
 //
         // Load data from Firebase back to system
         DocumentReference documentReference = firestore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if(documentSnapshot.exists()){
+                if(documentSnapshot.exists()) {
                     fullname.setText(documentSnapshot.getString("fullName"));
-                    dateofbirth.setText(documentSnapshot.getString("dateOfBirth"));
-                    phonenumber.setText(documentSnapshot.getString("phone"));
+                    dateofbirth.setText(documentSnapshot.getString("birthDate"));
+//                    gender.getCheckedRadioButtonId(documentSnapshot.getString("gender"));
+                    phonenumber.setText(documentSnapshot.getString("phoneNumber"));
                     email.setText(documentSnapshot.getString("email"));
                     address.setText(documentSnapshot.getString("address"));
                 }else {
@@ -97,39 +102,37 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 //
-//        // Edit account's information
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final String Email = email.getText().toString();
-//                firebaseUser.updateEmail(Email).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        DocumentReference docRef = firestore.collection("users").document(firebaseUser.getUid());
-//                        Map<String,Object> edited = new HashMap<>();
-//                        edited.put("fName",fullname.getText().toString());
-//                        edited.put("birthdate",dateofbirth.getText().toString());
-//                        edited.put("phone",phonenumber.getText().toString());
-//                        edited.put("email",Email);
-//                        edited.put("address",address.getText().toString());
-//                        edited.put("nationalId", nationalid.getText().toString());
-//                        edited.put("description", description.getText().toString());
-//                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                Toast.makeText(ProfileActivity.this, "Your profile account has been updated", Toast.LENGTH_SHORT).show();
-//                                //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-//                                finish();
-//                            }
-//                        });
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(ProfileActivity.this, "Update profile failed", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
+        // Edit account's information
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String Email = email.getText().toString();
+                firebaseUser.updateEmail(Email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        DocumentReference docRef = firestore.collection("users").document(firebaseUser.getUid());
+                        Map<String,Object> edited = new HashMap<>();
+
+                        edited.put("fullName", fullname.getText().toString());
+                        edited.put("birthDate", dateofbirth.getText().toString());
+                        edited.put("phoneNumber", phonenumber.getText().toString());
+                        edited.put("address", address.getText().toString());
+
+                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(ProfileActivity.this, "Your profile account has been updated", Toast.LENGTH_SHORT).show();
+                                //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            }
+                        });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ProfileActivity.this, "Update profile failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 }
