@@ -1,5 +1,6 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -7,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myfirstapp.luckybankonlinesystem.Class.PasswordToggleActionListener;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WaitingDialog;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.google.android.gms.tasks.Task;
@@ -16,20 +18,22 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Locale;
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText tvUserName, tvPassword;
     private FirebaseAuth firebaseAuth;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Logger.getLogger("OK").warning("created activity login");
         tvUserName = (EditText) findViewById(R.id.etEmail);
         tvPassword = (EditText) findViewById(R.id.etPassword);
+
+        PasswordToggleActionListener listener = new PasswordToggleActionListener();
+        tvPassword.setOnTouchListener(listener);
 
         // Connect to Firebase
         firebaseAuth = FirebaseAuth.getInstance();
