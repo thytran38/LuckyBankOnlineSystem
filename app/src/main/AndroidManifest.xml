@@ -63,12 +63,21 @@
 <!--            </intent-filter>-->
         </activity>
         <activity android:name=".CurrencyConverterActivity">
+
+        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.FingerprintAuthen">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".BottomBarActivity"/>
+        <activity android:name=".SplashScreenActivity"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".ForgetPassActivity"/>
+        <activity android:name=".MainActivity"/>
 
     </application>
-
 </manifest>
