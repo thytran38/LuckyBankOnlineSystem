@@ -35,8 +35,8 @@
                 />
 
             <TextView
-                android:id="@+id/tv01"
-                android:layout_width="116dp"
+                android:id="@+id/tvHi"
+                android:layout_width="212dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="40dp"

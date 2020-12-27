@@ -35,7 +35,7 @@
                 />
 
             <TextView
-                android:id="@+id/tv01"
+                android:id="@+id/tvHi"
                 android:layout_width="192dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -85,9 +85,9 @@
                 android:id="@+id/btnTrans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Transaction"
                 android:background="@drawable/btn_bg"
-                android:textAllCaps="false"/>
+                android:text="New Transaction"
+                android:textAllCaps="false" />
 
             <View
                 android:id="@+id/view"

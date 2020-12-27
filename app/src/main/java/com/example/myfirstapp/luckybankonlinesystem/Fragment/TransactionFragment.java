@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -71,15 +72,30 @@ public class TransactionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MakeATransactionFragment mkaFragment = new MakeATransactionFragment();
-                mkaFragment.show(getFragmentManager(),"This new Fragment");
+                mkaFragment.show(getFragmentManager(), "This new Fragment");
                 //FragmentManager fm = getSupportManager();
                 FragmentManager fragmentManager = getFragmentManager();
                 //mkaFragment.show(getSupportFragmentManager(),"this");
-                inflater.inflate(R.layout.make_a_transaction_fragment,container,false);
+                inflater.inflate(R.layout.make_a_transaction_fragment, container, false);
 
             }
         });
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.transaction_fragment, container, false);
-        }
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        transBtn = (Button) getView().findViewById(R.id.btnTrans);
+
+        transBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment thisFragment = new MakeATransactionFragment();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container,thisFragment);
+
+            }
+        });
+    }
 }

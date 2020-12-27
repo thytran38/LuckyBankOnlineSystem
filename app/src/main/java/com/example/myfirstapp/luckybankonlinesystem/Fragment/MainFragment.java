@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 /**
  * A simple {@link MainFragment} subclass.
@@ -25,9 +29,17 @@ public class MainFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private TextView hiTv;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+
     public MainFragment() {
         // Required empty public constructor
     }
+
+
 
     /**
      * Use this factory method to create a new instance of
@@ -47,6 +59,8 @@ public class MainFragment extends Fragment {
         return fragment;
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +74,18 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        AccountModel accountModel = new AccountModel();
+
         return inflater.inflate(R.layout.main_fragment, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        hiTv = (TextView) getView().findViewById(R.id.tvHi);
+        String yourTotal = getString(R.string.total_balance);
+        String hello = "Hi " + "Thy Tran." + yourTotal;
+        hiTv.setText(hello);
+
     }
 }

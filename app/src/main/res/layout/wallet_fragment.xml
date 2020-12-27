@@ -31,7 +31,7 @@
                 tools:srcCompat="@drawable/lobs_logo" />
 
             <TextView
-                android:id="@+id/tv01"
+                android:id="@+id/tvHi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -77,8 +77,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="62dp"
+                    android:layout_marginTop="56dp"
                     android:text="113141414141"
+                    android:textAllCaps="true"
                     android:textColor="#7E7E7E"
                     android:textSize="11sp" />
 
@@ -87,10 +88,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="35dp"
                     android:text="USER NAME"
+                    android:textAllCaps="true"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
             </FrameLayout>
 

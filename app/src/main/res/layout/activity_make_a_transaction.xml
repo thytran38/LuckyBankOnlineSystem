@@ -33,7 +33,7 @@
                 app:srcCompat="@drawable/lobs_logo" />
 
             <TextView
-                android:id="@+id/tv01"
+                android:id="@+id/tvHi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/button"
                 android:text="Transfer"
                 android:textAllCaps="false"
                 android:textColor="@color/black_LightMode"

@@ -15,6 +15,7 @@ import com.example.myfirstapp.luckybankonlinesystem.Fragment.MainFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.TransactionFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.UserInfoFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -28,12 +29,16 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
     public TextView mainTv;
 
     TextView totalBalanceTv, usernameTv, accNumTv;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         usernameTv = findViewById(R.id.tvUserName);
         totalBalanceTv = findViewById(R.id.tvTotalTransaction);
         accNumTv = findViewById(R.id.tvAccnumber);
@@ -44,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         //chipNavigationBar.setMenuResource(R.menu.bottom_menu);
         //chipNavigationBar.setOnItemSelectedListener(navListener);
         chipNavigationBar.setOnItemSelectedListener(navListener);
+
+
 
         //onItemSelected(nav_transaction);
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();

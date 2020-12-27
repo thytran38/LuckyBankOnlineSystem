@@ -33,7 +33,7 @@
                 app:srcCompat="@drawable/lobs_logo" />
 
             <TextView
-                android:id="@+id/tv01"
+                android:id="@+id/tvHi"
                 android:layout_width="148dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
