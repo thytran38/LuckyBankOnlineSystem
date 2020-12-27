@@ -29,6 +29,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -37,55 +38,49 @@ import javax.crypto.SecretKey;
 
 public class FingerprintAuthen extends AppCompatActivity {
 
-    private ImageView fingerPrint;
     private TextView message;
-
-    private FingerprintManager fingerprintManager;
-    private KeyguardManager keyguardManager;
 
     private KeyStore keyStore;
     private Cipher cipher;
-    private String KEY_NAME = "AndroidKey";
+    private final String KEY_NAME = "AndroidKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_user);
-
-        fingerPrint = (ImageView) findViewById(R.id.FingerPrintIcon);
+        Logger.getLogger("OK").warning("created activity fingerprint authen");
         message = (TextView) findViewById(R.id.Meesage);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
-            keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
 
-            if(!fingerprintManager.isHardwareDetected()){
+            FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
+            if (fingerprintManager == null || !fingerprintManager.isHardwareDetected()) {
 
-                message.setText("Fingerprint scanner undetected in this device");
+                fingerprintHandler.nextActivity();
 
-            } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
+            } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
 
                 message.setText("Permission not granted to use Fingerprint Scanner");
 
-            } else if (!keyguardManager.isKeyguardSecure()){
+            } else if (!keyguardManager.isKeyguardSecure()) {
 
                 message.setText("Add Lock to your Phone in Settings");
 
-            } else if (!fingerprintManager.hasEnrolledFingerprints()){
+            } else if (!fingerprintManager.hasEnrolledFingerprints()) {
 
-                message.setText("Warining required! You should have at least one Fingerprint");
+                message.setText("Warning required! You should have at least one Fingerprint");
 
             } else {
 
                 message.setText("Please place your finger on scanner to check phone's owner's fingerprintp.");
                 generateKey();
 
-                if (cipherInit()){
+                if (cipherInit()) {
 
                     FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
-                    FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
                     fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
-
                 }
             }
         }

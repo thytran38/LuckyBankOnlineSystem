@@ -17,7 +17,7 @@ import com.example.myfirstapp.luckybankonlinesystem.Fragment.WaitingDialog;
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
 
-    private Context context;
+    private final Context context;
 
     public FingerprintHandler(Context context){
         this.context = context;
@@ -30,27 +30,30 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
     @Override
     public void onAuthenticationFailed() {
-        this.update("Not the phone's owner's fingerprint, Please try again ", false);
+        this.update("Not the phone's owner's fingerprint, Please try again", false);
     }
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
         this.update("Checked fingerprint has been successfully", true);
-        context.startActivity(new Intent(context, LoginActivity.class));
+        nextActivity();
     }
 
-    private void update(String s, boolean b) {
-        TextView message = (TextView) ((Activity)context).findViewById(R.id.Meesage);
+    private void update(String message, boolean isAuthSucceed) {
+        TextView tvMessage = (TextView) ((Activity)context).findViewById(R.id.Meesage);
         ImageView imageView = (ImageView) ((Activity)context).findViewById(R.id.FingerPrintIcon);
 
-        message.setText(s);
+        tvMessage.setText(message);
 
-        if(b == false) {
-            message.setTextColor(ContextCompat.getColor(context, R.color.yellow_dark_DarkMode));
+        if(isAuthSucceed) {
+            tvMessage.setTextColor(ContextCompat.getColor(context, R.color.yellow_dark_DarkMode));
         } else {
-            message.setTextColor(ContextCompat.getColor(context, R.color.green));
+            tvMessage.setTextColor(ContextCompat.getColor(context, R.color.green));
             imageView.setImageResource(R.drawable.ic_fingerprint_check);
         }
+    }
 
+    public void nextActivity() {
+        context.startActivity(new Intent(context, LoginActivity.class));
     }
 }
