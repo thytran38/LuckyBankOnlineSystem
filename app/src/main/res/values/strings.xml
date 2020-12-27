@@ -8,6 +8,10 @@
     <string name="email_sent">An email has been sent to your mailbox. \nPlease read and follow as the email instructs.</string>
     <string name="valid_email_pls">A valid email, can you?</string>
     <string name="bad_email">Email in wrong format.</string>
+    <string name="total_balance">\nThis is your <b>Total Balance</b>.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
     <string-array name="currencies">
         <item>USD</item>

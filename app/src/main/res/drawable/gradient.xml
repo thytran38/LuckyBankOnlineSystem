@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <bitmap android:src="@drawable/button"/>
+    </item>
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <gradient android:angle="0" android:startColor="@color/yellow_dark_DarkMode" android:centerColor="@color/yellow_light_DarkMode" android:endColor="@color/yellow_dark_DarkMode"/>
+        </shape>
+    </item>
+</layer-list>

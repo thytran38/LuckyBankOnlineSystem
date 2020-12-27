@@ -1,5 +1,7 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -12,6 +14,8 @@ public class TransactionModel {
     private String recipientId;
     private Double transactionAmount;
     private String transactionType;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public TransactionModel() {
         transactionDateCreated = System.currentTimeMillis();
@@ -62,4 +66,6 @@ public class TransactionModel {
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
     }
+
+
 }
