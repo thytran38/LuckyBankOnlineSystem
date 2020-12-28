@@ -8,10 +8,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
@@ -31,99 +31,106 @@
 
             <TextView
                 android:id="@+id/tv01"
-                android:layout_width="148dp"
+                android:layout_width="160dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="5dp"
+
                 android:text="Currency Converter"
                 android:textAlignment="center"
                 android:textColor="#7E7E7E"
                 android:textSize="16dp" />
 
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+            <!--            <LinearLayout-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content">-->
 
-                    <TextView
-                        android:id="@+id/tvFirstCurrency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="First Currency"
-                        android:gravity="center"
-                        android:textSize="14dp"
-                        android:layout_marginLeft="60dp"
-                        android:textColor="#FFC107" />
-
-
-                    <TextView
-                        android:id="@+id/tvSecondCurrency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Second Currency"
-                        android:textSize="14dp"
-                        android:layout_marginLeft="120dp"
-                        android:textColor="#FFC107" />
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvFirstCurrency"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:text="First Currency"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:textSize="14dp"-->
+            <!--                        android:layout_marginLeft="60dp"-->
+            <!--                        android:textColor="#FFC107" />-->
 
 
-                </LinearLayout>
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvSecondCurrency"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:text="Second Currency"-->
+            <!--                        android:textSize="14dp"-->
+            <!--                        android:layout_marginLeft="120dp"-->
+            <!--                        android:textColor="#FFC107" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/txtFirstCurrency"
-                        android:layout_width="120dp"
-                        android:layout_height="55dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/btn_cancel_bg"
-                        android:ems="10"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="100"
-                        android:textColorLink="#FFFFFF" />
+            <!--                </LinearLayout>-->
 
-                    <EditText
-                        android:id="@+id/txtSecondCurrency"
-                        android:layout_width="120dp"
-                        android:layout_height="55dp"
-                        android:background="@drawable/btn_cancel_bg"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:text="179.33"
-                        android:layout_marginLeft="90dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:textColorLink="#FFFFFF" />
-                </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+                <EditText
+                    android:id="@+id/txtFirstCurrency"
+                    android:layout_width="300dp"
+                    android:layout_height="65dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_cancel_bg"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:hint=" Please add a number "
+                    android:textColorLink="#FFFFFF" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="160dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
+                android:id="@+id/btnConvert"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_bg"
-                android:text="Convert" />
+                android:textStyle="bold"
+                app:icon="@drawable/ic_convert"
+                app:iconPadding="15dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <EditText
+                android:id="@+id/txtSecondCurrency"
+                android:layout_width="300dp"
+                android:layout_height="65dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/btn_cancel_bg"
-                android:textAlignment="center"
-                >
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:hint="_____________"
+                android:textColorLink="#FFFFFF" />
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/rcListRate"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/btn_cancel_bg">
 
             </androidx.recyclerview.widget.RecyclerView>
+
             <Button
-                android:layout_width="wrap_content"
+                android:id="@+id/btnRefresh"
+                android:layout_width="160dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="170dp"
-                android:text="Refresh"
-                android:background="@drawable/btn_bg"/>
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_bg"
+                android:text="Refresh" />
 
         </LinearLayout>
     </ScrollView>

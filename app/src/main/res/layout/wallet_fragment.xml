@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/wallet"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="3">
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".Fragment.MainFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
@@ -20,14 +20,15 @@
 
             <ImageView
                 android:id="@+id/imgLogo"
-                android:layout_width="131dp"
-                android:layout_height="17dp"
+                android:layout_width="151dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="55dp"
                 android:layout_marginBottom="40dp"
-                android:baselineAlignBottom="true"
 
-                app:srcCompat="@drawable/lobs_logo" />
+                android:baselineAlignBottom="true"
+                app:srcCompat="@drawable/lobs_logo"
+                tools:srcCompat="@drawable/lobs_logo" />
 
             <TextView
                 android:id="@+id/tvHi"
@@ -35,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="30dp"
-                android:text="Total Balance"
+                android:text="Wallet Overview"
                 android:textAlignment="center"
 
                 android:textColor="#7E7E7E"
@@ -47,7 +48,7 @@
                 android:layout_height="65dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:text="59590"
+                android:text="2"
                 android:textAlignment="center"
 
                 android:textColor="#FFFFFF"
@@ -58,25 +59,27 @@
                 android:layout_width="284dp"
                 android:layout_height="203dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="88dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginBottom="100dp">
 
                 <ImageView
                     android:id="@+id/imvCard1"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="190dp"
                     android:baselineAlignBottom="false"
                     android:layoutDirection="inherit"
                     android:textAlignment="center"
-                    app:srcCompat="@drawable/card" />
+                    app:srcCompat="@drawable/card"
+                    tools:srcCompat="@drawable/card" />
 
                 <TextView
                     android:id="@+id/tvAccnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="62dp"
+                    android:layout_marginTop="56dp"
                     android:text="113141414141"
+                    android:textAllCaps="true"
                     android:textColor="#7E7E7E"
                     android:textSize="11sp" />
 
@@ -85,27 +88,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="35dp"
                     android:text="USER NAME"
+                    android:textAllCaps="true"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
             </FrameLayout>
 
             <Button
                 android:id="@+id/button"
-                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="123dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="60dp"
-                android:text="Suspend Account"
+                android:text="Suspend"
                 android:textAllCaps="false"
                 android:textSize="12sp"
-                app:cornerRadius="36dp" />
+                tools:cornerRadius="60dp" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
 
         </LinearLayout>
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

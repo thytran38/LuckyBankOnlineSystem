@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imvCard1"
         android:layout_width="411dp"
         android:layout_height="278dp"
         android:baselineAlignBottom="false"
@@ -26,7 +26,7 @@
         android:text="113141414141"
         android:textColor="#7E7E7E"
         android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@id/imageView2"
+        app:layout_constraintStart_toStartOf="@id/imvCard1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -38,7 +38,7 @@
         android:text="USER NAME"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/imageView2"
+        app:layout_constraintStart_toStartOf="@id/imvCard1"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

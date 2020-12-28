@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/transactionActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="3">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".Fragment.MainFragment">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="24dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="24dp" />
-
+    <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,9 +18,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="20dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -42,7 +29,6 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="55dp"
-                android:layout_marginBottom="40dp"
                 android:baselineAlignBottom="true"
                 app:srcCompat="@drawable/lobs_logo"
 
@@ -50,12 +36,13 @@
 
             <TextView
                 android:id="@+id/tvHi"
-                android:layout_width="wrap_content"
+                android:layout_width="212dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="30dp"
-                android:text="Transactions Listing"
 
+                android:text="Total Balance"
                 android:textAlignment="center"
                 android:textColor="#7E7E7E"
                 android:textSize="14sp" />
@@ -66,26 +53,41 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:text="20"
+
+                android:text="59590"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="50sp" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:layout_width="130dp"
-                android:layout_height="61dp"
-                android:layout_marginTop="40dp" />
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="204dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="50dp">
 
+
+            </androidx.viewpager2.widget.ViewPager2>
 
             <androidx.recyclerview.widget.RecyclerView
+
                 android:layout_width="match_parent"
+
                 android:layout_height="257dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/btn_bg"
-                android:textAlignment="center"></androidx.recyclerview.widget.RecyclerView>
+                android:padding="40dp"
+                android:textAlignment="center">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+</FrameLayout>
