@@ -1,13 +1,18 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -23,20 +28,22 @@ public class WaitingDialog extends DialogFragment {
     private int waitingTime;
     private Task waitingTask;
     private LottieAnimationView animationView;
+    private final Context context;
 
-    public WaitingDialog(int waitingAnimationId) {
+    public WaitingDialog(Context context, int waitingAnimationId) {
+        this.context = context;
         this.setCancelable(false);
         this.waitingAnimationId = waitingAnimationId;
         this.waitingTime = 5;
     }
 
-    public WaitingDialog(int waitingAnimationId, int waitingTime) {
-        this(waitingAnimationId);
+    public WaitingDialog(Context context, int waitingAnimationId, int waitingTime) {
+        this(context, waitingAnimationId);
         this.waitingTime = waitingTime;
     }
 
-    public WaitingDialog(int waitingAnimationId, Task waitingTask) {
-        this(waitingAnimationId);
+    public WaitingDialog(Context context, int waitingAnimationId, Task waitingTask) {
+        this(context, waitingAnimationId);
         this.waitingTask = waitingTask;
     }
 
@@ -57,6 +64,17 @@ public class WaitingDialog extends DialogFragment {
                 .setView(view)
                 .setCancelable(false)
                 .create();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ViewGroup.LayoutParams params = Objects.requireNonNull(getDialog()).getWindow().getAttributes();
+        params.width = 200;
+        params.height = 200;
+        getDialog().getWindow().setAttributes((WindowManager.LayoutParams) params);
+        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.loading_bg);
+        getDialog().getWindow().setBackgroundDrawable(drawable);
     }
 
     private void cancel() {

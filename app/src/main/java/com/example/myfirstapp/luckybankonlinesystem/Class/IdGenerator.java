@@ -23,6 +23,4 @@ public class IdGenerator {
     public String idDecrypt(){
         return "";
     }
-
-
 }

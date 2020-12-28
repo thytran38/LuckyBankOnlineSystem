@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 public class CustomerModel {
 
+    @Exclude
+    public static final int PASSWORD_MIN_LENGTH = 8;
+
     public enum CustomerGender {
         Male, Female;
     }
@@ -34,7 +37,7 @@ public class CustomerModel {
     }
 
     public void setBirthDate(String date) throws ParseException {
-        birthDate = Date.getInstance(date).getEpochSecond();
+        birthDate = Date.getInstance(date, false).getEpochSecond();
     }
 
     public String getFullName() {

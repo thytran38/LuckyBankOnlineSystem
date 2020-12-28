@@ -1,12 +1,25 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.MenuItem;
+
 import android.widget.Adapter;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.myfirstapp.luckybankonlinesystem.Fragment.ScreenSlidePageFragment;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -29,7 +42,9 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
     public TextView mainTv;
 
     TextView totalBalanceTv, usernameTv, accNumTv;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    RecyclerView rvTransactionOverview;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         usernameTv = findViewById(R.id.tvUserName);
         totalBalanceTv = findViewById(R.id.tvTotalTransaction);
         accNumTv = findViewById(R.id.tvAccnumber);
+        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);
+        auth = FirebaseAuth.getInstance();
+        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
+
         //adapter = new Adapter(fragmentArrayList, this);
         loadFragments(new TransactionFragment());
         ChipNavigationBar chipNavigationBar = findViewById(R.id.menu);
@@ -55,6 +74,23 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         //onItemSelected(nav_transaction);
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
 
+
+        FirebaseUser user = auth.getCurrentUser();
+        if (user == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+        } else {
+            db.collection("transactions")
+                    .whereEqualTo("sender_UID", user.getUid())
+                    .get()
+                    .addOnSuccessListener(task -> {
+                        for (DocumentSnapshot snapshot : task.getDocuments()) {
+
+                        }
+                    })
+                    .addOnFailureListener(failureTask -> {
+
+                    });
+        }
 
     }
 
@@ -136,8 +172,6 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         if(darkFlag == Configuration.UI_MODE_NIGHT_YES){
 
         }
-
-
     }
 
     @Override
