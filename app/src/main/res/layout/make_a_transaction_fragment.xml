@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_setup"
                 android:text="Transfer"
                 android:textAllCaps="false"
                 android:textColor="@color/black_LightMode"

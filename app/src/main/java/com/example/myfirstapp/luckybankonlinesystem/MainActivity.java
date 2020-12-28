@@ -32,6 +32,8 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements ChipNavigationBar.OnItemSelectedListener  {
 
     ViewPager viewPager;
