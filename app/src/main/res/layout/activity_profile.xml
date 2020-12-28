@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/userInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@color/gray_dark_DarkMode"
+    android:gravity="center"
     android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +37,7 @@
                 android:contentDescription="logo"
                 android:text="View current user profile"
                 android:textColor="@color/login_form_details"
-                android:textSize="15dp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -88,15 +89,16 @@
                 android:id="@+id/rg_Profile_GenderGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
                 android:gravity="center_horizontal"
-                android:layout_marginTop="15dp">
+                android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/rdProfile_Female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/white"
                     android:layout_marginRight="35dp"
+                    android:buttonTint="@color/white"
                     android:text="Female"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
@@ -106,8 +108,8 @@
                     android:id="@+id/rdProfile_Male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/white"
                     android:layout_marginLeft="35dp"
+                    android:buttonTint="@color/white"
                     android:text="Male"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
@@ -182,12 +184,12 @@
                 android:id="@+id/BtnProfile_SaveButton"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="95dp"
-                android:layout_marginRight="95dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/btn_setup"
-                android:text="Save"
                 android:layout_centerHorizontal="true"
+                android:layout_marginLeft="95dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="95dp"
+                android:background="@drawable/btn_bg"
+                android:text="Save"
                 android:textAllCaps="false"
                 android:textStyle="bold" />
 

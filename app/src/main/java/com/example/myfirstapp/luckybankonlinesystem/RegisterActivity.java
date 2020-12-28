@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.DatePickerDialog;
-
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WaitingDialog;
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
@@ -25,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 
@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
         //EditText
         txtFullName = findViewById(R.id.txtFullName);
         txtDateOfBirth = findViewById(R.id.txtDateOfBirth);
@@ -124,15 +125,13 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-        WaitingDialog dialog = new WaitingDialog(R.raw.loading_animation, registerTask);
+        WaitingDialog dialog = new WaitingDialog(this, R.raw.loading_animation, registerTask);
         dialog.show(getSupportFragmentManager(), null);
     }
 
     private boolean valGenderChosen() {
         return findViewById(genderGroup.getCheckedRadioButtonId()) != null;
     }
-
-
 
     private boolean valFullName() {
         String fullName = txtFullName.getText().toString();
@@ -165,7 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (password.isEmpty()) {
             txtPassword.setError("Please enter password");
             return false;
-        } else if (password.length() < 8) {
+        } else if (password.length() < CustomerModel.PASSWORD_MIN_LENGTH) {
             txtPassword.setError("Password is too short!");
             return false;
         } else if (!containLowerCase(password) || !containUpperCase(password) || !containSpecialChar(password) || toStream(password).anyMatch(c -> c.equals(" "))) {
@@ -254,5 +253,4 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return Arrays.stream(res);
     }
-
 }

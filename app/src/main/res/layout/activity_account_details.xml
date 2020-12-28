@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wallet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="3">
@@ -29,19 +30,19 @@
                 app:srcCompat="@drawable/lobs_logo" />
 
             <TextView
-                android:id="@+id/tv01"
+                android:id="@+id/tvHi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="30dp"
                 android:text="Total Balance"
                 android:textAlignment="center"
-                android:layout_gravity="center_horizontal"
 
                 android:textColor="#7E7E7E"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tvTotalBalance"
+                android:id="@+id/tvTotalTransaction"
                 android:layout_width="322dp"
                 android:layout_height="65dp"
                 android:layout_gravity="center_horizontal"
@@ -61,7 +62,7 @@
                 android:layout_marginBottom="100dp">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/imvCard1"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:baselineAlignBottom="false"
