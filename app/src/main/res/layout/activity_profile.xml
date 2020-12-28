@@ -185,7 +185,7 @@
                 android:layout_marginLeft="95dp"
                 android:layout_marginRight="95dp"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_setup"
                 android:text="Save"
                 android:layout_centerHorizontal="true"
                 android:textAllCaps="false"
