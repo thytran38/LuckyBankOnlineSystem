@@ -2,7 +2,6 @@ package com.example.myfirstapp.luckybankonlinesystem;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.TextView;
