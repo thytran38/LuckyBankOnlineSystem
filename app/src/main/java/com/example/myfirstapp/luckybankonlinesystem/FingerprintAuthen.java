@@ -65,7 +65,7 @@ public class FingerprintAuthen extends AppCompatActivity {
 
             } else {
 
-                message.setText("Please place your finger on scanner to check phone's owner's fingerprintp.");
+                message.setText("Please place your finger on scanner to check phone's owner's fingerprint.");
                 generateKey();
 
                 if (cipherInit()) {

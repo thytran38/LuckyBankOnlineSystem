@@ -1,5 +1,6 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Adapter;
@@ -13,15 +14,23 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.CurrencyFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.MainFragment;
+import com.example.myfirstapp.luckybankonlinesystem.Fragment.ScreenSlidePageFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.TransactionFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.UserInfoFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
-public class MainActivity extends AppCompatActivity implements ChipNavigationBar.OnItemSelectedListener  {
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
+public class MainActivity extends AppCompatActivity implements ChipNavigationBar.OnItemSelectedListener {
 
     ViewPager viewPager;
     Adapter adapter;
@@ -30,25 +39,28 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
     public static final int nav_transaction = 1000187;
     public TextView mainTv;
 
-    private TextView totalBalanceTv, usernameTv, accNumTv;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private RecyclerView rvTransactionOverview;
-    private FirebaseAuth auth;
-    private String uID;
+    TextView totalBalanceTv, usernameTv, accNumTv;
+    RecyclerView rvTransactionOverview;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Logger.getLogger("OK").warning("CREATED MAIN ACTIVITY");
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-//        usernameTv = findViewById(R.id.tvUserName);
-//        totalBalanceTv = findViewById(R.id.tvTotalTransaction);
-//        accNumTv = findViewById(R.id.tvAccnumber);
-//        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);
-        auth = FirebaseAuth.getInstance();
+        usernameTv = findViewById(R.id.tvUserName);
+        totalBalanceTv = findViewById(R.id.tvTotalTransaction);
+        accNumTv = findViewById(R.id.tvAccnumber);
+        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);
+        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
+        CustomerModel model = getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+        Intent t = getIntent();
+        ArrayList<TransactionModel> transactions = getIntent().getParcelableArrayListExtra(SplashScreenActivity.TRANSACTION_HISTORY_KEY);
+        Logger.getLogger("OK").warning(model.getAccounts().get(0).getAccountType().name());
+        Logger.getLogger("OK").warning("count = " + transactions.size());
+        Logger.getLogger("OK").warning("amount = " + transactions.get(0).getAmount());
 
         //adapter = new Adapter(fragmentArrayList, this);
         loadFragments(new TransactionFragment());
@@ -59,39 +71,10 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         chipNavigationBar.setOnItemSelectedListener(navListener);
 
 
-
         //onItemSelected(nav_transaction);
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
 
-
-//        FirebaseUser user = auth.getCurrentUser();
-//        if (user == null) {
-//            startActivity(new Intent(this, LoginActivity.class));
-//        } else {
-//            db.collection("transactions")
-//                    .whereEqualTo("sender_UID", user.getUid())
-//                    .get()
-//                    .addOnSuccessListener(task -> {
-//                        for (DocumentSnapshot snapshot : task.getDocuments()) {
-//
-//                        }
-//                    })
-//                    .addOnFailureListener(failureTask -> {
-//
-//                    });
-//        }
-//        uID = user.getUid().toString();
-//        DocumentReference docRef = db.collection("users").document(uID);
-//        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                AccountModel accounts = documentSnapshot.toObject(AccountModel.class);
-//                TransactionModel transactions = documentSnapshot.toObject(TransactionModel.class);
-//            }
-//        });
-
     }
-
 
 
     private ChipNavigationBar.OnItemSelectedListener navListener = new ChipNavigationBar.OnItemSelectedListener() {
@@ -100,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         public void onItemSelected(int i) {
             Fragment selectedFragment = null;
 
-            switch(i){
+            switch (i) {
                 case R.id.nav_main:
                     selectedFragment = new MainFragment();
                     loadFragments(selectedFragment);
@@ -167,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         int darkFlag = getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK;
 
-        if(darkFlag == Configuration.UI_MODE_NIGHT_YES){
+        if (darkFlag == Configuration.UI_MODE_NIGHT_YES) {
 
         }
     }
@@ -183,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
     public void onItemSelected(int i) {
         Fragment selectedFragment = null;
 
-        switch(i){
+        switch (i) {
             case R.id.nav_main:
                 selectedFragment = new MainFragment();
                 //mainTv.setText("main");
@@ -208,12 +191,11 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment);
     }
 
-    public boolean loadFragments(Fragment fr)
-    {
-        if(fr!=null){
+    public boolean loadFragments(Fragment fr) {
+        if (fr != null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container,fr)
-                    .commitNow();
+                    .replace(R.id.fragment_container, fr)
+                    .commit();
         }
         return true;
     }

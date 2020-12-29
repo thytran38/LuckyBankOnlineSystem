@@ -1,5 +1,9 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -7,19 +11,36 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class TransactionModel {
+public class TransactionModel implements Parcelable {
     private String transactionID;
-    private final long transactionDateCreated;
-    private String senderId;
-    private String recipientId;
-    private Double transactionAmount;
-    private String transactionType;
-
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private long timestamp;
+    private String senderUID;
+    private String receiverUID;
+    private double amount;
 
     public TransactionModel() {
-        transactionDateCreated = System.currentTimeMillis();
+        timestamp = System.currentTimeMillis();
     }
+
+    protected TransactionModel(Parcel in) {
+        transactionID = in.readString();
+        timestamp = in.readLong();
+        senderUID = in.readString();
+        receiverUID = in.readString();
+        amount = in.readDouble();
+    }
+
+    public static final Creator<TransactionModel> CREATOR = new Creator<TransactionModel>() {
+        @Override
+        public TransactionModel createFromParcel(Parcel in) {
+            return new TransactionModel(in);
+        }
+
+        @Override
+        public TransactionModel[] newArray(int size) {
+            return new TransactionModel[size];
+        }
+    };
 
     public String getTransactionID() {
         return transactionID;
@@ -30,42 +51,46 @@ public class TransactionModel {
     }
 
     public String getTransactionDateCreated() {
-        Date time = new Date(transactionDateCreated * 1000);
+        Date time = new Date(timestamp * 1000);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
         return simpleDateFormat.format(time);
     }
 
-    public String getSenderId() {
-        return senderId;
+    public String getSenderUID() {
+        return senderUID;
     }
 
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
+    public void setSenderUID(String senderUID) {
+        this.senderUID = senderUID;
     }
 
-    public String getRecipientId() {
-        return recipientId;
+    public String getReceiverUID() {
+        return receiverUID;
     }
 
-    public void setRecipientId(String recipientId) {
-        this.recipientId = recipientId;
+    public void setReceiverUID(String receiverUID) {
+        this.receiverUID = receiverUID;
     }
 
-    public Double getTransactionAmount() {
-        return transactionAmount;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setTransactionAmount(Double transactionAmount) {
-        this.transactionAmount = transactionAmount;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
-    public String getTransactionType() {
-        return transactionType;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(transactionID);
+        dest.writeLong(timestamp);
+        dest.writeString(senderUID);
+        dest.writeString(receiverUID);
+        dest.writeDouble(amount);
     }
-
-
 }
