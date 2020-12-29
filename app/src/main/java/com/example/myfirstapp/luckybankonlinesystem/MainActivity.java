@@ -111,34 +111,7 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment);
         }
     };
-//    private ChipNavigationBar.OnNavigationItemReselectedListener navListener = new BottomNavigationView.OnNavigationItemReselectedListener() {
-//        @Override
-//        public void onNavigationItemReselected(@NonNull MenuItem item) {
-//            Fragment selectedFragment = null;
-//
-//            switch(item.getItemId()){
-//                case R.id.nav_main:
-//                    selectedFragment = new MainFragment();
-//                    break;
-//                case R.id.nav_transaction:
-//                    selectedFragment = new TransactionFragment();
-//                    break;
-//                case R.id.nav_wallet:
-//                    selectedFragment = new WalletFragment();
-//                    break;
-//                case R.id.nav_userinfo:
-//                    selectedFragment = new UserInfoFragment();
-//                    break;
-//                case R.id.nav_currency:
-//                    selectedFragment = new CurrencyFragment();
-//                    break;
-//            }
-//
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                    selectedFragment);
-//            //return true;
-//        }
-//    };
+
 
     @Override
     protected void onResume() {
