@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
@@ -20,6 +21,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class MainFragment extends Fragment {
 
+    private ViewPager viewPager;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,6 +31,7 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
     private TextView hiTv;
 
@@ -86,6 +90,9 @@ public class MainFragment extends Fragment {
         String yourTotal = getString(R.string.total_balance);
         String hello = "Hi " + "Thy Tran." + yourTotal;
         hiTv.setText(hello);
+
+
+        //getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
 
     }
 }

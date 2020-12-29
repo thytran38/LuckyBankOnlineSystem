@@ -1,26 +1,14 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.MenuItem;
-
 import android.widget.Adapter;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
-import com.example.myfirstapp.luckybankonlinesystem.Fragment.ScreenSlidePageFragment;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.CurrencyFragment;
@@ -29,6 +17,7 @@ import com.example.myfirstapp.luckybankonlinesystem.Fragment.TransactionFragment
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.UserInfoFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -41,10 +30,11 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
     public static final int nav_transaction = 1000187;
     public TextView mainTv;
 
-    TextView totalBalanceTv, usernameTv, accNumTv;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    RecyclerView rvTransactionOverview;
-    FirebaseAuth auth;
+    private TextView totalBalanceTv, usernameTv, accNumTv;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private RecyclerView rvTransactionOverview;
+    private FirebaseAuth auth;
+    private String uID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,12 +44,11 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        usernameTv = findViewById(R.id.tvUserName);
-        totalBalanceTv = findViewById(R.id.tvTotalTransaction);
-        accNumTv = findViewById(R.id.tvAccnumber);
-        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);
+//        usernameTv = findViewById(R.id.tvUserName);
+//        totalBalanceTv = findViewById(R.id.tvTotalTransaction);
+//        accNumTv = findViewById(R.id.tvAccnumber);
+//        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);
         auth = FirebaseAuth.getInstance();
-        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
 
         //adapter = new Adapter(fragmentArrayList, this);
         loadFragments(new TransactionFragment());
@@ -75,22 +64,31 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
 
 
-        FirebaseUser user = auth.getCurrentUser();
-        if (user == null) {
-            startActivity(new Intent(this, LoginActivity.class));
-        } else {
-            db.collection("transactions")
-                    .whereEqualTo("sender_UID", user.getUid())
-                    .get()
-                    .addOnSuccessListener(task -> {
-                        for (DocumentSnapshot snapshot : task.getDocuments()) {
-
-                        }
-                    })
-                    .addOnFailureListener(failureTask -> {
-
-                    });
-        }
+//        FirebaseUser user = auth.getCurrentUser();
+//        if (user == null) {
+//            startActivity(new Intent(this, LoginActivity.class));
+//        } else {
+//            db.collection("transactions")
+//                    .whereEqualTo("sender_UID", user.getUid())
+//                    .get()
+//                    .addOnSuccessListener(task -> {
+//                        for (DocumentSnapshot snapshot : task.getDocuments()) {
+//
+//                        }
+//                    })
+//                    .addOnFailureListener(failureTask -> {
+//
+//                    });
+//        }
+//        uID = user.getUid().toString();
+//        DocumentReference docRef = db.collection("users").document(uID);
+//        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                AccountModel accounts = documentSnapshot.toObject(AccountModel.class);
+//                TransactionModel transactions = documentSnapshot.toObject(TransactionModel.class);
+//            }
+//        });
 
     }
 
@@ -215,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         if(fr!=null){
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container,fr)
-                    .commit();
+                    .commitNow();
         }
         return true;
     }

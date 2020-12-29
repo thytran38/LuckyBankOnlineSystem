@@ -1,5 +1,6 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -23,8 +24,8 @@ public class SplashScreenActivity extends AppCompatActivity  {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-//        Intent intent = new Intent(this, SplashScreenActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
     }
 
