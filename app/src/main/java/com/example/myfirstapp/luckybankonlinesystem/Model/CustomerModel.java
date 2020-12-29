@@ -1,15 +1,60 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
 import com.google.firebase.firestore.Exclude;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 
-public class CustomerModel {
+public class CustomerModel implements Parcelable {
 
     @Exclude
     public static final int PASSWORD_MIN_LENGTH = 8;
+
+    public CustomerModel() { }
+
+    protected CustomerModel(Parcel in) {
+        gender = CustomerGender.valueOf(in.readString());
+        customerId = in.readString();
+        fullName = in.readString();
+        phoneNumber = in.readString();
+        email = in.readString();
+        address = in.readString();
+        accounts = in.createTypedArrayList(AccountModel.CREATOR);
+        birthDate = in.readLong();
+    }
+
+    public static final Creator<CustomerModel> CREATOR = new Creator<CustomerModel>() {
+        @Override
+        public CustomerModel createFromParcel(Parcel in) {
+            return new CustomerModel(in);
+        }
+
+        @Override
+        public CustomerModel[] newArray(int size) {
+            return new CustomerModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(gender.name());
+        dest.writeString(customerId);
+        dest.writeString(fullName);
+        dest.writeString(phoneNumber);
+        dest.writeString(email);
+        dest.writeString(address);
+        dest.writeTypedList(accounts);
+        dest.writeLong(birthDate);
+    }
 
     public enum CustomerGender {
         Male, Female;

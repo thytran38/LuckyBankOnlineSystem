@@ -1,6 +1,43 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
-public class AccountModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class AccountModel implements Parcelable {
+
+    protected AccountModel(Parcel in) {
+        accountNumber = in.readString();
+        dateCreated = in.readLong();
+        accountOwner = in.readString();
+        currentBalance = in.readDouble();
+        accountType = AccountType.valueOf(in.readString());
+    }
+
+    public static final Creator<AccountModel> CREATOR = new Creator<AccountModel>() {
+        @Override
+        public AccountModel createFromParcel(Parcel in) {
+            return new AccountModel(in);
+        }
+
+        @Override
+        public AccountModel[] newArray(int size) {
+            return new AccountModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(accountNumber);
+        dest.writeLong(dateCreated);
+        dest.writeString(accountOwner);
+        dest.writeDouble(currentBalance);
+        dest.writeString(accountType.name());
+    }
 
     public enum AccountType {
         Primary, Saving;
