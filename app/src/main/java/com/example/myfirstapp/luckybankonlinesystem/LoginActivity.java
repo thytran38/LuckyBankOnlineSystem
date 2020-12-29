@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(this, SplashScreenActivity.class));
                 }
             } else {
-                Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
         WaitingDialog dialog = new WaitingDialog(this, R.raw.loading_animation, signInTask);
