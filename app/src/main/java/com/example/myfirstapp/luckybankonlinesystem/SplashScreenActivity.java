@@ -44,7 +44,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             Task<QuerySnapshot> fetchTransactionHistoryTask = db.collection("transactions")
                     .whereEqualTo("senderUID", user.getUid())
                     .get();
-            Logger.getLogger("OK").warning("UID = " + user.getUid());
             Tasks.whenAllComplete(fetchUserInfoTask, fetchTransactionHistoryTask).addOnCompleteListener(task -> {
                 List<Task<?>> results = task.getResult();
                 Intent intent = new Intent(this, MainActivity.class);
@@ -55,8 +54,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                 CustomerModel userInfo = userInfoSnapshot.toObject(CustomerModel.class);
                 ArrayList<TransactionModel> list = new ArrayList<>();
                 for (DocumentSnapshot transactionSnapshot : transactionHistorySnapshot.getDocuments()) {
-                    Logger.getLogger("OK").warning("Added 1 item to list");
-                    list.add(transactionSnapshot.toObject(TransactionModel.class));
+                    TransactionModel model = transactionSnapshot.toObject(TransactionModel.class);
+                    model.setTransactionID(transactionSnapshot.getId());
+                    list.add(model);
                 }
                 intent.putExtra(USER_INFO_KEY, userInfo);
                 intent.putParcelableArrayListExtra(TRANSACTION_HISTORY_KEY, list);
@@ -64,5 +64,4 @@ public class SplashScreenActivity extends AppCompatActivity {
             });
         }
     }
-
 }

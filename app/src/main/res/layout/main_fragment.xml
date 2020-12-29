@@ -53,7 +53,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-
                 android:text="59590"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -70,17 +69,15 @@
             </androidx.viewpager2.widget.ViewPager2>
 
             <androidx.recyclerview.widget.RecyclerView
-
+                android:id="@+id/rvTransactionOverview"
                 android:layout_width="match_parent"
-
                 android:layout_height="257dp"
-                android:layout_gravity="center_horizontal"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:paddingTop="25dp"
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/btn_bg"
-                android:padding="40dp"
-                android:textAlignment="center">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                android:textAlignment="center" />
 
             <View
                 android:id="@+id/view2"

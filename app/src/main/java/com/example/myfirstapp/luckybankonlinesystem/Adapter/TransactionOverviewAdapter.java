@@ -30,6 +30,10 @@ public class TransactionOverviewAdapter extends RecyclerView.Adapter<Transaction
     @Override
     public void onBindViewHolder(@NonNull TransactionOverviewViewHolder holder, int position) {
         TransactionModel model = dataSource.get(position);
+        holder.setShortName(model.getReceiverName());
+        holder.setTransactionId(model.getTransactionID());
+        holder.setTransactionValue((int) model.getAmount());
+        holder.setTransactionPerformTime(model.getTimestamp());
     }
 
     @Override

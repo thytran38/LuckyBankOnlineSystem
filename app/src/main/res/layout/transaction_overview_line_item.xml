@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_height="73dp"
+<HorizontalScrollView android:layout_height="73dp"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical">
-    <LinearLayout android:layout_height="73dp"
-        android:layout_width="match_parent"
-        android:background="@color/yellow_dark_DarkMode">
+    android:fillViewport="true">
+    <LinearLayout
+        android:background="@color/yellow_dark_DarkMode"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal">
         <TextView
-            android:id="@+id/tvShortName"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
             android:background="@drawable/bg_transaction_overview_line_item"
-            android:layout_gravity="center_vertical"
-            android:textSize="13sp"
-            android:text="X"
-            android:textColor="@color/gray_dark_DarkMode"
-            android:textStyle="bold"
-            android:textAlignment="center"
             android:gravity="center"
-            android:layout_marginLeft="30dp" />
+            android:id="@+id/tvShortName"
+            android:layout_gravity="center_vertical"
+            android:layout_height="36dp"
+            android:layout_width="36dp"
+            android:text="X"
+            android:textAlignment="center"
+            android:textColor="@color/gray_dark_DarkMode"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
         <LinearLayout
-            android:layout_width="190dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="190dp"
             android:orientation="vertical">
+
             <TextView
-                android:id="@+id/tvTransactionId"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:textStyle="bold"
-                android:textSize="13dp"
-                android:textColor="@color/gray_dark_DarkMode"
-                android:text="Transaction: "
                 android:gravity="bottom"
-                android:layout_marginBottom="1.5dp" />
+                android:id="@+id/tvTransactionId"
+                android:layout_height="35dp"
+                android:layout_marginBottom="1.5dp"
+                android:layout_width="match_parent"
+                android:text="Transaction: "
+                android:textColor="@color/gray_dark_DarkMode"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tvTransactionPerformTime"
+                android:layout_height="35dp"
                 android:layout_marginTop="1.5dp"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:textColor="@color/gray_DarkMode"
                 android:text="abc"
+                android:textColor="@color/gray_DarkMode"
                 android:textSize="10dp" />
         </LinearLayout>
+
         <TextView
-            android:id="@+id/tvTransactionValue"
-            android:layout_width="70dp"
-            android:layout_height="36dp"
             android:background="@drawable/bg_transaction_overview_line_item"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:text="- 10000"
             android:gravity="center"
+            android:id="@+id/tvTransactionValue"
+            android:layout_gravity="center"
+            android:layout_height="36dp"
+            android:layout_width="70dp"
+            android:text="- 10000"
+            android:textAlignment="center"
             android:textColor="@color/gray_dark_DarkMode"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:textStyle="bold" />
     </LinearLayout>
-    <FrameLayout
-        android:layout_width="80dp"
-        android:layout_height="1.5dp"
-        android:layout_gravity="center"
-        android:background="#000" />
-</LinearLayout>
+</HorizontalScrollView>

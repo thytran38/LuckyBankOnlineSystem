@@ -10,13 +10,38 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
 public class TransactionModel implements Parcelable {
     private String transactionID;
     private long timestamp;
     private String senderUID;
     private String receiverUID;
+    private String senderName;
+    private String receiverName;
     private double amount;
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
 
     public TransactionModel() {
         timestamp = System.currentTimeMillis();
@@ -28,6 +53,8 @@ public class TransactionModel implements Parcelable {
         senderUID = in.readString();
         receiverUID = in.readString();
         amount = in.readDouble();
+        senderName = in.readString();
+        receiverName = in.readString();
     }
 
     public static final Creator<TransactionModel> CREATOR = new Creator<TransactionModel>() {
@@ -50,12 +77,6 @@ public class TransactionModel implements Parcelable {
         this.transactionID = transactionID;
     }
 
-    public String getTransactionDateCreated() {
-        Date time = new Date(timestamp * 1000);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
-        return simpleDateFormat.format(time);
-    }
-
     public String getSenderUID() {
         return senderUID;
     }
@@ -72,11 +93,11 @@ public class TransactionModel implements Parcelable {
         this.receiverUID = receiverUID;
     }
 
-    public Double getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -92,5 +113,7 @@ public class TransactionModel implements Parcelable {
         dest.writeString(senderUID);
         dest.writeString(receiverUID);
         dest.writeDouble(amount);
+        dest.writeString(senderName);
+        dest.writeString(receiverName);
     }
 }

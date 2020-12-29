@@ -1,5 +1,7 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +10,22 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.TransactionOverviewAdapter;
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.logging.Logger;
 
 /**
  * A simple {@link MainFragment} subclass.
@@ -29,17 +43,12 @@ public class MainFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView hiTv;
-
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
+    private TextView hiTv, totalTransactionTv;
+    private RecyclerView rvTransactionOverview;
 
     public MainFragment() {
         // Required empty public constructor
     }
-
-
 
     /**
      * Use this factory method to create a new instance of
@@ -82,10 +91,24 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        hiTv = (TextView) getView().findViewById(R.id.tvHi);
-        String yourTotal = getString(R.string.total_balance);
-        String hello = "Hi " + "Thy Tran." + yourTotal;
-        hiTv.setText(hello);
+        Intent intent = getActivity().getIntent();
+        CustomerModel userInfo = intent.getParcelableExtra(SplashScreenActivity.USER_INFO_KEY);
+        ArrayList<TransactionModel> transactions = intent.getParcelableArrayListExtra(SplashScreenActivity.TRANSACTION_HISTORY_KEY);
 
+        hiTv = (TextView) getView().findViewById(R.id.tvHi);
+        rvTransactionOverview = getView().findViewById(R.id.rvTransactionOverview);
+        totalTransactionTv = getView().findViewById(R.id.tvTotalTransaction);
+        double currentBalance = userInfo.getAccounts().get(0).getCurrentBalance();
+
+        String yourTotal = getString(R.string.total_balance);
+        String hello = "Hi " + userInfo.getFullName() + "\n" + yourTotal;
+
+        totalTransactionTv.setText(String.format(Locale.US, "%,d", (int) currentBalance));
+
+        rvTransactionOverview.setLayoutManager(new LinearLayoutManager(getContext()));
+        TransactionOverviewAdapter adapter = new TransactionOverviewAdapter(transactions);
+        rvTransactionOverview.setAdapter(adapter);
+
+        hiTv.setText(hello);
     }
 }
