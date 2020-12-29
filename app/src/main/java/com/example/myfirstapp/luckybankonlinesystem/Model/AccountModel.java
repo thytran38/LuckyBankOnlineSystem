@@ -1,15 +1,53 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+public class AccountModel implements Parcelable {
 
-public class AccountModel {
+    protected AccountModel(Parcel in) {
+        accountNumber = in.readString();
+        dateCreated = in.readLong();
+        accountOwner = in.readString();
+        currentBalance = in.readDouble();
+        accountType = AccountType.valueOf(in.readString());
+    }
+
+    public static final Creator<AccountModel> CREATOR = new Creator<AccountModel>() {
+        @Override
+        public AccountModel createFromParcel(Parcel in) {
+            return new AccountModel(in);
+        }
+
+        @Override
+        public AccountModel[] newArray(int size) {
+            return new AccountModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(accountNumber);
+        dest.writeLong(dateCreated);
+        dest.writeString(accountOwner);
+        dest.writeDouble(currentBalance);
+        dest.writeString(accountType.name());
+    }
+
+    public enum AccountType {
+        Primary, Saving;
+    }
+
     private String accountNumber;
-    private final long dateCreated;
+    private long dateCreated;
     private String accountOwner;
-    private String accountType;
+    private AccountType accountType;
+    private double currentBalance;
 
     public AccountModel() {
         dateCreated = System.currentTimeMillis() / 1000;
@@ -23,10 +61,12 @@ public class AccountModel {
         this.accountNumber = accountNumber;
     }
 
-    public String getDateCreated() {
-        Date time = new Date(dateCreated * 1000);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
-        return simpleDateFormat.format(time);
+    public long getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(long dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public String getAccountOwner() {
@@ -37,11 +77,19 @@ public class AccountModel {
         this.accountOwner = accountOwner;
     }
 
-    public String getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
+    }
+
+    public void setCurrentBalance(double currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
+    public double getCurrentBalance() {
+        return currentBalance;
     }
 }

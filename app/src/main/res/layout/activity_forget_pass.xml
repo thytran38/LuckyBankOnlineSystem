@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:gravity="center"
+    android:background="@color/gray_dark_DarkMode"
+
+    tools:context="com.example.myfirstapp.luckybankonlinesystem.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                app:srcCompat="@mipmap/logo" />
+
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="Forgot password?"
+                android:textColor="@color/login_form_details"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/btnSend" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="145dp"
+                android:background="@drawable/et_bg"
+                android:hint="Email address"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColor="@color/login_form_details"
+                android:textColorHint="@color/login_form_details"
+                android:textSize="15sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toBottomOf="@+id/icon" />
+
+            <TextView
+                android:id="@+id/tvTest"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginTop="25dp"
+                android:textColor="#DFDFDF"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/btnSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/btn_bg"
+                android:text="Reset Password"
+                android:textAllCaps="false"
+                android:textColor="@color/black_LightMode"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="141dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
