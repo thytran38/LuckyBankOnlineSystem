@@ -21,7 +21,7 @@
 
         <activity android:name=".LoginActivity"/>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".CurrencyConverterActivity"/>
+        <activity android:name=".Fragment.CurrencyConverterActivity"/>
         <activity android:name="com.example.myfirstapp.luckybankonlinesystem.FingerprintAuthen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

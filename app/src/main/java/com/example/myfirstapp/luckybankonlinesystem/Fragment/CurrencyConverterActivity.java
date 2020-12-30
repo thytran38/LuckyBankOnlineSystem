@@ -1,7 +1,9 @@
-package com.example.myfirstapp.luckybankonlinesystem;
+package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myfirstapp.luckybankonlinesystem.Adapter.RateAdapter;
 import com.example.myfirstapp.luckybankonlinesystem.Model.RateListModel;
+import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.google.api.Logging;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -34,7 +38,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class CurrencyConverterActivity extends AppCompatActivity {
+public class CurrencyConverterActivity extends Fragment {
     EditText FirstCurrency, SecondCurrency;
     Button sConvert, sRefresh;
     //
@@ -46,10 +50,9 @@ public class CurrencyConverterActivity extends AppCompatActivity {
     private StringRequest request;
     private String JSonURL = "https://api.ratesapi.io/api/latest?base=USD";
 
-    @Override
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_currencyconverter);
         //Initialization
         FirstCurrency = (EditText) findViewById(R.id.txtFirstCurrency);
         SecondCurrency = (EditText) findViewById(R.id.txtSecondCurrency);
@@ -65,7 +68,7 @@ public class CurrencyConverterActivity extends AppCompatActivity {
                 double value = adapter.getSelectedValue();
                 String key = adapter.getKey();
                 double source = Double.parseDouble(FirstCurrency.getText().toString());
-                SecondCurrency.setText(String.format("%.4f", source * value) + String.format("%5s",key));
+                SecondCurrency.setText(String.format("%.4f", source * value) + String.format("%5s", key));
             } catch (IllegalAccessException e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -78,6 +81,12 @@ public class CurrencyConverterActivity extends AppCompatActivity {
                 SecondCurrency.setText(null);
             }
         });
+
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            
+        return inflater.inflate(R.layout.currency_fragment, container, false);
 
     }
 
@@ -97,6 +106,8 @@ public class CurrencyConverterActivity extends AppCompatActivity {
         });
         requestQueue.add(request);
     }
+
+}
 
 
 }

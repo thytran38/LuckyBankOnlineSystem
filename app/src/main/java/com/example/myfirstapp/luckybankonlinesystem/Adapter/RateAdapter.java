@@ -9,15 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.RateViewHolder;
-import com.example.myfirstapp.luckybankonlinesystem.CurrencyConverterActivity;
 import com.example.myfirstapp.luckybankonlinesystem.Model.RateListModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.google.common.util.concurrent.AtomicDouble;
 
 import org.json.JSONException;
-
-import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class RateAdapter extends RecyclerView.Adapter<RateViewHolder> {
 
