@@ -23,6 +23,7 @@ import com.google.firebase.FirebaseApp;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity implements ChipNavigationBar.OnItemSelectedListener {
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
-
+        Logger.getLogger("DEBUG").warning("Main activity was created successfully");
         ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
 
         ChipNavigationBar chipNavigationBar = findViewById(R.id.menu);
@@ -98,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-
     }
 
     @Override

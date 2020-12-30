@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LOBSDark">
+        <service android:name=".Service.FetchingDataService" />
         <activity android:name="com.example.myfirstapp.luckybankonlinesystem.TransactionActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".BottomBarActivity" />
@@ -19,10 +20,10 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ForgetPassActivity"/>
 
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".CurrencyConverterActivity"/>
-        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.FingerprintAuthen">
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".CurrencyConverterActivity" />
+        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.FingerprintAuthenticateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

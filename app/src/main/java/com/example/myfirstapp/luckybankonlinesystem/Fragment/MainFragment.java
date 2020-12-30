@@ -18,7 +18,10 @@ import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -69,7 +72,6 @@ public class MainFragment extends Fragment {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,13 +91,13 @@ public class MainFragment extends Fragment {
         return inflater.inflate(R.layout.main_fragment, container, false);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Intent intent = getActivity().getIntent();
-        CustomerModel userInfo = intent.getParcelableExtra(SplashScreenActivity.USER_INFO_KEY);
-        ArrayList<TransactionModel> transactions = intent.getParcelableArrayListExtra(SplashScreenActivity.TRANSACTION_HISTORY_KEY);
+    public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
+        CustomerModel userInfo = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
+        ArrayList<TransactionModel> transactions = getActivity().getIntent().getParcelableArrayListExtra(FetchingDataService.TRANSACTION_HISTORY_KEY);
 
-        hiTv = (TextView) getView().findViewById(R.id.tvHi);
+        hiTv = getView().findViewById(R.id.tvHi);
         rvTransactionOverview = getView().findViewById(R.id.rvTransactionOverview);
         totalTransactionTv = getView().findViewById(R.id.tvTotalTransaction);
         double currentBalance = userInfo.getAccounts().get(0).getCurrentBalance();
