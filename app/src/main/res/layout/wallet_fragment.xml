@@ -43,14 +43,14 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tvTotalTransaction"
+                android:id="@+id/tvTotalAcc"
                 android:layout_width="322dp"
                 android:layout_height="65dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:text="2"
-                android:textAlignment="center"
+                android:text="0"
 
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="50sp" />
 
@@ -59,7 +59,7 @@
                 android:layout_width="284dp"
                 android:layout_height="203dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginBottom="100dp">
 
                 <ImageView
@@ -80,7 +80,7 @@
                     android:layout_marginTop="56dp"
                     android:text="113141414141"
                     android:textAllCaps="true"
-                    android:textColor="#7E7E7E"
+                    android:textColor="#B3B3B3"
                     android:textSize="11sp" />
 
                 <TextView
@@ -93,6 +93,18 @@
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvDetails"
+                    android:layout_width="235dp"
+                    android:layout_height="99dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="90dp"
+                    android:shadowColor="#FFFFFF"
+                    android:text="TextView"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textSize="11.5sp" />
 
             </FrameLayout>
 

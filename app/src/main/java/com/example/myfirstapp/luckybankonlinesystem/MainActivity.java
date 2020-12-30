@@ -14,7 +14,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.CurrencyFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.MainFragment;
-import com.example.myfirstapp.luckybankonlinesystem.Fragment.ScreenSlidePageFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.TransactionFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.UserInfoFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;
@@ -47,11 +46,11 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        usernameTv = findViewById(R.id.tvUserName);
-        totalBalanceTv = findViewById(R.id.tvTotalTransaction);
-        accNumTv = findViewById(R.id.tvAccnumber);
-        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);
-        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
+//        usernameTv = findViewById(R.id.tvUserName);
+//        totalBalanceTv = findViewById(R.id.tvTotalTransaction);
+//        accNumTv = findViewById(R.id.tvAccnumber);
+//        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);
+//        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
         CustomerModel model = getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
         Intent t = getIntent();
         ArrayList<TransactionModel> transactions = getIntent().getParcelableArrayListExtra(SplashScreenActivity.TRANSACTION_HISTORY_KEY);

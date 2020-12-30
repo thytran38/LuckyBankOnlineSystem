@@ -155,7 +155,7 @@
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="20dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvAddress"
@@ -171,12 +171,12 @@
             <EditText
                 android:id="@+id/txtProfile_Address"
                 android:layout_width="match_parent"
-                android:layout_height="79dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/et_bg"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/BtnProfile_SaveButton"

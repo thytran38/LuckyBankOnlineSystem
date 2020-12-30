@@ -8,11 +8,17 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
+import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
+import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link MainFragment} subclass.
@@ -21,7 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
  */
 public class MainFragment extends Fragment {
 
-    private ViewPager viewPager;
+    private ViewPager2 viewPager2;
+    private View v;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,13 +44,9 @@ public class MainFragment extends Fragment {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
-
     public MainFragment() {
         // Required empty public constructor
     }
-
-
 
     /**
      * Use this factory method to create a new instance of
@@ -78,21 +81,31 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        v = inflater.inflate(R.layout.main_fragment, container, false);
 
-        AccountModel accountModel = new AccountModel();
-
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        return v;
     }
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        CustomerModel cusm = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+        ArrayList<AccountModel> userAccounts = cusm.getAccounts();
+        AccountModel primeAcc = userAccounts.get(0);
+//        AccountModel savAcc = userAccounts.get(1);
+        String primeAccNumber = primeAcc.getAccountNumber();
+//        String savingAccNumber = savAcc.getAccountNumber();
+        viewPager2 = v.findViewById(R.id.viewPager);
+        viewPager2.setCurrentItem(R.layout.primary_card_view);
+        viewPager2.setAdapter(new CardAdapter(getActivity()));
+        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
+
+        String cusmName = cusm.getFullName().toString();
         hiTv = (TextView) getView().findViewById(R.id.tvHi);
         String yourTotal = getString(R.string.total_balance);
-        String hello = "Hi " + "Thy Tran." + yourTotal;
+        String hello = "Hi " + cusmName + yourTotal;
         hiTv.setText(hello);
 
-
-        //getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
 
     }
 }

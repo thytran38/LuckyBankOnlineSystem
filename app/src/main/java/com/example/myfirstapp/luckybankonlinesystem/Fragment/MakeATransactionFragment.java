@@ -1,12 +1,16 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -23,10 +27,12 @@ public class MakeATransactionFragment extends DialogFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private EditText fullName, reciId, amount, message;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private View v;
 //    public OnInputSelected mOnInputSelected;
 
 
@@ -52,6 +58,12 @@ public class MakeATransactionFragment extends DialogFragment {
         return fragment;
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        return super.onCreateDialog(savedInstanceState);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +87,27 @@ public class MakeATransactionFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.make_a_transaction_fragment, container, false);
+        v = inflater.inflate(R.layout.make_a_transaction_fragment, container, false);
+        return v;
+    }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        this.v = view;
 
-
-        return inflater.inflate(R.layout.make_a_transaction_fragment, container, false);
+        // Get field from view
+        fullName = (EditText) v.findViewById(R.id.etFullname);
+        reciId = (EditText)v.findViewById(R.id.etRecipientID);
+        amount = (EditText)v.findViewById(R.id.etAmount);
+        message = (EditText)v.findViewById(R.id.etMessage);
+        // Fetch arguments from bundle and set title
+        String title = getArguments().getString("title", "Enter Name");
+        getDialog().setTitle(title);
+        // Show soft keyboard automatically and request focus to field
+        fullName.requestFocus();
+        getDialog().getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
 
