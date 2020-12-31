@@ -100,5 +100,3 @@ public class CurrencyConverterActivity extends AppCompatActivity {
 
 
 }
-
-

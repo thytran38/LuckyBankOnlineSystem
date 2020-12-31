@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="3">
 
+
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/menu"
         android:layout_width="335dp"
-
         android:layout_height="61dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="630dp"
@@ -27,7 +28,6 @@
         app:cnb_radius="40dp"
         app:cnb_textAppearance="?actionBarTheme"
         app:cnb_unselectedColor="@color/gray_dark_DarkMode">
-
     </com.ismaeldivita.chipnavigation.ChipNavigationBar>
 
     <FrameLayout
@@ -35,12 +35,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/rvTransactionOverview"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTransactionOverview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+            </androidx.recyclerview.widget.RecyclerView>
     </FrameLayout>
-
-
 </RelativeLayout>

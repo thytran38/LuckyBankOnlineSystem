@@ -3,6 +3,7 @@ package com.example.myfirstapp.luckybankonlinesystem;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.KeyguardManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
@@ -10,9 +11,13 @@ import android.os.Bundle;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.FingerprintHandler;
@@ -34,46 +39,55 @@ import javax.crypto.SecretKey;
 
 public class FingerprintAuthenticateActivity extends AppCompatActivity {
 
+    private ImageView fingerPrint;
+    private TextView message;
+
+    private FingerprintManager fingerprintManager;
+    private KeyguardManager keyguardManager;
+
     private KeyStore keyStore;
     private Cipher cipher;
-    private final String KEY_NAME = "AndroidKey";
+    private String KEY_NAME = "AndroidKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_user);
-        TextView message = (TextView) findViewById(R.id.Meesage);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
-            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+        fingerPrint = (ImageView) findViewById(R.id.FingerPrintIcon);
+        message = (TextView) findViewById(R.id.Meesage);
 
-            FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
-            if (fingerprintManager == null || !fingerprintManager.isHardwareDetected()) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
+            keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
 
-                fingerprintHandler.nextActivity();
+            if(!fingerprintManager.isHardwareDetected()){
 
-            } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
+                message.setText("Fingerprint scanner undetected in this device");
+
+            } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
 
                 message.setText("Permission not granted to use Fingerprint Scanner");
 
-            } else if (!keyguardManager.isKeyguardSecure()) {
+            } else if (!keyguardManager.isKeyguardSecure()){
 
                 message.setText("Add Lock to your Phone in Settings");
 
-            } else if (!fingerprintManager.hasEnrolledFingerprints()) {
+            } else if (!fingerprintManager.hasEnrolledFingerprints()){
 
-                message.setText("Warning required! You should have at least one Fingerprint");
+                message.setText("Warining required! You should have at least one Fingerprint");
 
             } else {
 
                 message.setText("Please place your finger on scanner to check phone's owner's fingerprint.");
                 generateKey();
 
-                if (cipherInit()) {
+                if (cipherInit()){
 
                     FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
+                    FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
                     fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
+
                 }
             }
         }

@@ -9,6 +9,6 @@ public class TransferInformation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.transfer_information);
+        setContentView(R.layout.make_a_transaction_fragment);
     }
 }
