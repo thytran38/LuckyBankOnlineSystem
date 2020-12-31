@@ -1,4 +1,4 @@
-package com.example.myfirstapp.luckybankonlinesystem;
+package com.example.myfirstapp.luckybankonlinesystem.Class;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WaitingDialog;
+import com.example.myfirstapp.luckybankonlinesystem.LoginActivity;
+import com.example.myfirstapp.luckybankonlinesystem.R;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
@@ -45,7 +47,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
         tvMessage.setText(message);
 
-        if(isAuthSucceed) {
+        if(!isAuthSucceed) {
             tvMessage.setTextColor(ContextCompat.getColor(context, R.color.yellow_dark_DarkMode));
         } else {
             tvMessage.setTextColor(ContextCompat.getColor(context, R.color.green));

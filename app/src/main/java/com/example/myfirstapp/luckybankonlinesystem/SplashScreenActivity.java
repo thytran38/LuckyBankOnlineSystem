@@ -1,68 +1,91 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.logging.Logger;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    public static final String USER_INFO_KEY = "UserInfo";
-    public static final String TRANSACTION_HISTORY_KEY = "Transactions";
+    private BroadcastReceiver receiver;
+    private Intent intent;
+
+    private enum TaskCompleteState {
+        UserInfoCompleted, TransactionCompleted, BothCompleted, BothUncompleted
+    }
+
+    private TaskCompleteState state;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+
+        state = TaskCompleteState.BothUncompleted;
+
+        intent = new Intent(this, MainActivity.class);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(FetchingDataService.INTENT_KEY + "." +
+                        FetchingDataService.USER_INFO_KEY)) {
+                    CustomerModel userInfo = intent.getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
+                    SplashScreenActivity.this.intent.putExtra(FetchingDataService.USER_INFO_KEY, userInfo);
+                    if (state == TaskCompleteState.TransactionCompleted) {
+                        state = TaskCompleteState.BothCompleted;
+                        startActivity(SplashScreenActivity.this.intent);
+                    } else if (state == TaskCompleteState.BothUncompleted) {
+                        state = TaskCompleteState.UserInfoCompleted;
+                    }
+                } else if (intent.getAction().equals(FetchingDataService.INTENT_KEY + "." +
+                        FetchingDataService.TRANSACTION_HISTORY_KEY)) {
+                    ArrayList<TransactionModel> transactions = intent.getParcelableArrayListExtra(FetchingDataService.TRANSACTION_HISTORY_KEY);
+                    SplashScreenActivity.this.intent.putParcelableArrayListExtra(FetchingDataService.TRANSACTION_HISTORY_KEY, transactions);
+                    if (state == TaskCompleteState.UserInfoCompleted) {
+                        state = TaskCompleteState.BothCompleted;
+                        startActivity(SplashScreenActivity.this.intent);
+                    } else if (state == TaskCompleteState.BothUncompleted) {
+                        state = TaskCompleteState.TransactionCompleted;
+                    }
+                }
+            }
+        };
+
         if (user == null) {
-            Logger.getLogger("DEBUG").warning("user is null");
             startActivity(new Intent(this, LoginActivity.class));
         } else {
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-            Task<DocumentSnapshot> fetchUserInfoTask = db.collection("users")
-                    .document(user.getUid())
-                    .get();
-            Task<QuerySnapshot> fetchTransactionHistoryTask = db.collection("transactions")
-                    .whereEqualTo("senderUID", user.getUid())
-                    .get();
-            Logger.getLogger("OK").warning("UID = " + user.getUid());
-            Tasks.whenAllComplete(fetchUserInfoTask, fetchTransactionHistoryTask).addOnCompleteListener(task -> {
-                List<Task<?>> results = task.getResult();
-                Intent intent = new Intent(this, MainActivity.class);
-                assert results != null;
-                DocumentSnapshot userInfoSnapshot = (DocumentSnapshot) results.get(0).getResult();
-                QuerySnapshot transactionHistorySnapshot = (QuerySnapshot) results.get(1).getResult();
-                assert userInfoSnapshot != null && transactionHistorySnapshot != null;
-                CustomerModel userInfo = userInfoSnapshot.toObject(CustomerModel.class);
-                ArrayList<TransactionModel> list = new ArrayList<>();
-                for (DocumentSnapshot transactionSnapshot : transactionHistorySnapshot.getDocuments()) {
-                    Logger.getLogger("OK").warning("Added 1 item to list");
-                    list.add(transactionSnapshot.toObject(TransactionModel.class));
-                }
-                intent.putExtra(USER_INFO_KEY, userInfo);
-                intent.putParcelableArrayListExtra(TRANSACTION_HISTORY_KEY, list);
-                startActivity(intent);
-            });
+            startService(new Intent(this, FetchingDataService.class)
+                    .putExtra(FetchingDataService.SEND_USER_UID_KEY, user.getUid()));
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter(FetchingDataService.INTENT_KEY + "." + FetchingDataService.USER_INFO_KEY);
+        filter.addAction(FetchingDataService.INTENT_KEY + "." + FetchingDataService.TRANSACTION_HISTORY_KEY);
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+    }
 }
