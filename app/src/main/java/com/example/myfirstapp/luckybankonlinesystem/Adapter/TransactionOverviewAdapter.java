@@ -10,13 +10,13 @@ import com.example.myfirstapp.luckybankonlinesystem.Class.TransactionOverviewVie
 import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class TransactionOverviewAdapter extends RecyclerView.Adapter<TransactionOverviewViewHolder> {
 
-    private final List<TransactionModel> dataSource;
+    private final ArrayList<TransactionModel> dataSource;
 
-    public TransactionOverviewAdapter(List<TransactionModel> dataSource) {
+    public TransactionOverviewAdapter(ArrayList<TransactionModel> dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -39,5 +39,9 @@ public class TransactionOverviewAdapter extends RecyclerView.Adapter<Transaction
     @Override
     public int getItemCount() {
         return dataSource.size();
+    }
+
+    public ArrayList<TransactionModel> getDataSource() {
+        return dataSource;
     }
 }

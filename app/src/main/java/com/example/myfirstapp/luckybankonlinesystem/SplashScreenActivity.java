@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private Intent intent;
 
     private enum TaskCompleteState {
-        UserInfoCompleted, TransactionCompleted, BothCompleted, BothUncompleted;
+        UserInfoCompleted, TransactionCompleted, BothCompleted, BothUncompleted
     }
 
     private TaskCompleteState state;
@@ -49,7 +48,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                     CustomerModel userInfo = intent.getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
                     SplashScreenActivity.this.intent.putExtra(FetchingDataService.USER_INFO_KEY, userInfo);
                     if (state == TaskCompleteState.TransactionCompleted) {
-                        Logger.getLogger("DEBUG").warning("Completed both");
                         state = TaskCompleteState.BothCompleted;
                         startActivity(SplashScreenActivity.this.intent);
                     } else if (state == TaskCompleteState.BothUncompleted) {
