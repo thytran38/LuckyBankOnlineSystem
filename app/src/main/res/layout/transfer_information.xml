@@ -22,19 +22,18 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/logo"
-                android:layout_width="242dp"
-                android:layout_height="45dp"
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="55dp"
-                android:layout_marginBottom="15dp"
-                app:srcCompat="@drawable/lobs_logo" />
+                app:srcCompat="@mipmap/logo" />
 
             <ImageView
                 android:id="@+id/iconCheck"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginBottom="20dp"
-                android:paddingTop="2dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_round_info_24" />
 
             <TextView

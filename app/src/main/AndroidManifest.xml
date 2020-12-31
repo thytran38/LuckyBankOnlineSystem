@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LOBSDark">
-        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.FingerprintAuthen">
+        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.TransferInformation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
