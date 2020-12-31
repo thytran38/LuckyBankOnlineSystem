@@ -25,7 +25,7 @@ public class TransactionOverviewViewHolder extends RecyclerView.ViewHolder {
 
     public void setShortName(String fullName) {
         String[] words = fullName.split("\\s+");
-        String shortName = String.valueOf(words[words.length - 1].charAt(0) + words[0].charAt(0)).toUpperCase();
+        String shortName = (String.valueOf(words[words.length - 1].charAt(0)) + String.valueOf(words[0].charAt(0))).toUpperCase();
         tvShortName.setText(shortName);
     }
 

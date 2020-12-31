@@ -64,10 +64,10 @@ public class LoginActivity extends AppCompatActivity {
                     firebaseAuth.signOut();
                     Toast.makeText(this, "Your email address hasn't been verified yet", Toast.LENGTH_LONG).show();
                 } else {
-                    startActivity(new Intent(this, SplashScreenActivity.class));
+                    startActivity(new Intent(this, ProfileActivity.class));
                 }
             } else {
-                Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
         WaitingDialog dialog = new WaitingDialog(this, R.raw.loading_animation, signInTask);

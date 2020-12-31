@@ -1,25 +1,71 @@
 package com.example.myfirstapp.luckybankonlinesystem.Model;
 
-import com.google.firebase.firestore.FirebaseFirestore;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import androidx.recyclerview.widget.DiffUtil;
 
+import java.util.ArrayList;
+import java.util.Objects;
 
-public class TransactionModel {
+public class TransactionModel implements Parcelable {
     private String transactionID;
-    private final long transactionDateCreated;
-    private String senderId;
-    private String recipientId;
-    private Double transactionAmount;
-    private String transactionType;
+    private long timestamp;
+    private String senderUID;
+    private String receiverUID;
+    private String senderName;
+    private String receiverName;
+    private double amount;
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
 
     public TransactionModel() {
-        transactionDateCreated = System.currentTimeMillis();
+        timestamp = System.currentTimeMillis();
     }
+
+    protected TransactionModel(Parcel in) {
+        transactionID = in.readString();
+        timestamp = in.readLong();
+        senderUID = in.readString();
+        receiverUID = in.readString();
+        amount = in.readDouble();
+        senderName = in.readString();
+        receiverName = in.readString();
+    }
+
+    public static final Creator<TransactionModel> CREATOR = new Creator<TransactionModel>() {
+        @Override
+        public TransactionModel createFromParcel(Parcel in) {
+            return new TransactionModel(in);
+        }
+
+        @Override
+        public TransactionModel[] newArray(int size) {
+            return new TransactionModel[size];
+        }
+    };
 
     public String getTransactionID() {
         return transactionID;
@@ -29,43 +75,43 @@ public class TransactionModel {
         this.transactionID = transactionID;
     }
 
-    public String getTransactionDateCreated() {
-        Date time = new Date(transactionDateCreated * 1000);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
-        return simpleDateFormat.format(time);
+    public String getSenderUID() {
+        return senderUID;
     }
 
-    public String getSenderId() {
-        return senderId;
+    public void setSenderUID(String senderUID) {
+        this.senderUID = senderUID;
     }
 
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
+    public String getReceiverUID() {
+        return receiverUID;
     }
 
-    public String getRecipientId() {
-        return recipientId;
+    public void setReceiverUID(String receiverUID) {
+        this.receiverUID = receiverUID;
     }
 
-    public void setRecipientId(String recipientId) {
-        this.recipientId = recipientId;
+    public double getAmount() {
+        return amount;
     }
 
-    public Double getTransactionAmount() {
-        return transactionAmount;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
-    public void setTransactionAmount(Double transactionAmount) {
-        this.transactionAmount = transactionAmount;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public String getTransactionType() {
-        return transactionType;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(transactionID);
+        dest.writeLong(timestamp);
+        dest.writeString(senderUID);
+        dest.writeString(receiverUID);
+        dest.writeDouble(amount);
+        dest.writeString(senderName);
+        dest.writeString(receiverName);
     }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
-
-
 }

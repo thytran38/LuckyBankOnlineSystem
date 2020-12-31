@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.myfirstapp.luckybankonlinesystem.Class.FingerprintHandler;
+
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -35,7 +37,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
-public class FingerprintAuthen extends AppCompatActivity {
+public class FingerprintAuthenticateActivity extends AppCompatActivity {
 
     private ImageView fingerPrint;
     private TextView message;
@@ -77,7 +79,7 @@ public class FingerprintAuthen extends AppCompatActivity {
 
             } else {
 
-                message.setText("Please place your finger on scanner to check phone's owner's fingerprintp.");
+                message.setText("Please place your finger on scanner to check phone's owner's fingerprint.");
                 generateKey();
 
                 if (cipherInit()){
