@@ -74,13 +74,7 @@ public class MakeATransactionFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.make_a_transaction_fragment, container, false);
-
-
-
         return inflater.inflate(R.layout.make_a_transaction_fragment, container, false);
     }
-
 
 }

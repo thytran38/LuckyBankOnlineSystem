@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragment.MainFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="20dp"
+                android:baselineAlignBottom="true"
+                app:srcCompat="@drawable/lobs_logo" />
+
+            <TextView
+                android:id="@+id/tv01"
+                android:layout_width="160dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:text="Currency Converter"
+                android:textAlignment="center"
+                android:textColor="#7E7E7E"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/txtFirstCurrency"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_cancel_bg"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:hint=" Please add a number "
+                android:textColorLink="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnConvert"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_bg"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_convert"
+                app:iconPadding="15dp" />
+
+            <EditText
+                android:id="@+id/txtSecondCurrency"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/btn_cancel_bg"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:hint="_____________"
+                android:enabled="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textColorLink="#FFFFFF" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All are based on USD unit"
+                android:layout_marginBottom="20dp"
+                android:textAlignment="center"
+                android:textColor="#7E7E7E" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCurrencyRates"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/btn_bg"
+                android:paddingVertical="25dp" />
+
+            <TextView
+                android:id="@+id/tvGoldRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#7E7E7E"
+                android:textAlignment="center" />
+
+            <View android:layout_width="match_parent"
+                android:layout_height="60dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
