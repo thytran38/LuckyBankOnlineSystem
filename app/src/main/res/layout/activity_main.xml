@@ -11,7 +11,6 @@
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/menu"
         android:layout_width="335dp"
-
         android:layout_height="61dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -30,7 +29,6 @@
         app:cnb_radius="40dp"
         app:cnb_textAppearance="?actionBarTheme"
         app:cnb_unselectedColor="@color/gray_dark_DarkMode">
-
     </com.ismaeldivita.chipnavigation.ChipNavigationBar>
 
     <FrameLayout
@@ -38,11 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/rvTransactionOverview"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-
-
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTransactionOverview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </androidx.recyclerview.widget.RecyclerView>
+    </FrameLayout>
 </RelativeLayout>

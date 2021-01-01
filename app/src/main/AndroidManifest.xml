@@ -12,73 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LOBSDark">
-        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.TransactionActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />
-
-<!-                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".RegisterActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-
-        <activity android:name=".BottomBarActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".SplashScreenActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".ProfileActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".ForgetPassActivity"/>
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN"/>-->
-<!--                <category android:name="android.intent.category.LAUNCHER"/>-->
-<!--            </intent-filter>-->
-
-
-
-        <activity android:name=".LoginActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".MainActivity"/>
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        <activity android:name=".CurrencyConverterActivity"/>
-
+    
         <activity android:name="com.example.myfirstapp.luckybankonlinesystem.FingerprintAuthen">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".LoginActivity"/>-->
-<!--        <activity android:name=".RegisterActivity"/>-->
-<!--        <activity android:name=".BottomBarActivity"/>-->
-<!--        <activity android:name=".SplashScreenActivity"/>-->
-<!--&lt;!&ndash;        <activity android:name=".ProfileActivity"/>&ndash;&gt;-->
-<!--        <activity android:name=".ForgetPassActivity"/>-->
-<!--        <activity android:name=".MainActivity"/>-->
+
+        <activity android:name=".TransactionActivity"/>
+        <activity android:name=".CurrencyConverterActivity"/>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".BottomBarActivity"/>
+        <activity android:name=".SplashScreenActivity"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".ForgetPassActivity"/>
+        <activity android:name=".MainActivity"/>
 
     </application>
 </manifest>

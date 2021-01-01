@@ -182,7 +182,7 @@
                 android:layout_width="123dp"
                 android:layout_height="53dp"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_setup"
                 android:text="Register"
                 android:textAllCaps="false"
                 android:textColor="@color/black_LightMode"
