@@ -43,66 +43,38 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tvTotalTransaction"
+                android:id="@+id/tvTotalAcc"
                 android:layout_width="322dp"
                 android:layout_height="65dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:text="2"
-                android:textAlignment="center"
+                android:text="0"
 
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="50sp" />
 
-            <FrameLayout
-                android:id="@+id/frameLayout"
-                android:layout_width="284dp"
-                android:layout_height="203dp"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="70dp"
-                android:layout_marginBottom="100dp">
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="50dp"
+                android:padding="20dp"
 
-                <ImageView
-                    android:id="@+id/imvCard1"
-                    android:layout_width="match_parent"
-                    android:layout_height="190dp"
-                    android:baselineAlignBottom="false"
-                    android:layoutDirection="inherit"
-                    android:textAlignment="center"
-                    app:srcCompat="@drawable/card"
-                    tools:srcCompat="@drawable/card" />
+                >
 
-                <TextView
-                    android:id="@+id/tvAccnumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="56dp"
-                    android:text="113141414141"
-                    android:textAllCaps="true"
-                    android:textColor="#7E7E7E"
-                    android:textSize="11sp" />
+            </androidx.viewpager2.widget.ViewPager2>
 
-                <TextView
-                    android:id="@+id/tvUserName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="35dp"
-                    android:text="USER NAME"
-                    android:textAllCaps="true"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-            </FrameLayout>
-
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button"
                 android:layout_width="123dp"
-                android:layout_height="match_parent"
+                android:layout_height="36dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="60dp"
+                android:background="@drawable/btn_glossy"
                 android:text="Suspend"
                 android:textAllCaps="false"
                 android:textSize="12sp"

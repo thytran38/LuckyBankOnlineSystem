@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_dark_DarkMode"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@color/gray_dark_DarkMode">
+    android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:orientation="vertical"
-            android:gravity="center" >
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -25,8 +25,8 @@
                 android:layout_height="45dp"
                 android:layout_marginTop="55dp"
                 android:layout_marginBottom="15dp"
-                app:srcCompat="@drawable/lobs_logo"
-                android:contentDescription="TODO" />
+                android:contentDescription="TODO"
+                app:srcCompat="@drawable/lobs_logo" />
 
             <TextView
                 android:id="@+id/icon"
@@ -35,23 +35,22 @@
                 android:contentDescription="logo"
                 android:text="Register a new LOBS account"
                 android:textColor="@color/login_form_details"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/txtFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/et_bg"
+                android:autofillHints=""
+                android:background="@drawable/btn_bg_lightmode"
                 android:hint="Full name"
                 android:inputType="text"
                 android:padding="16dp"
-                android:textCursorDrawable="@null"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp"
-                android:autofillHints="" />
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/txtDateOfBirth"
@@ -59,127 +58,128 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/et_bg"
+                android:autofillHints=""
+                android:background="@drawable/btn_bg_lightmode"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="Date of birth"
                 android:inputType="datetime"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:autofillHints="" />
+                android:textSize="15sp" />
 
-                <RadioGroup
-                    android:id="@+id/genderGroup"
+            <RadioGroup
+                android:id="@+id/genderGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdFemale"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_horizontal">
-                    <RadioButton
-                        android:id="@+id/rdFemale"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_marginRight="35dp"
-                        android:paddingRight="5dp"
-                        android:buttonTint="@color/white"
-                        android:text="Female"
-                        android:gravity="center"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
+                    android:layout_height="50dp"
+                    android:layout_marginRight="35dp"
+                    android:buttonTint="@color/white"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:text="Female"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
 
-                    <RadioButton
-                        android:id="@+id/rdMale"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="35dp"
-                        android:paddingRight="5dp"
-                        android:buttonTint="@color/white"
-                        android:text="Male"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                </RadioGroup>
+                <RadioButton
+                    android:id="@+id/rdMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="35dp"
+                    android:buttonTint="@color/white"
+                    android:paddingRight="5dp"
+                    android:text="Male"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </RadioGroup>
 
             <EditText
                 android:id="@+id/txtPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:background="@drawable/et_bg"
+                android:autofillHints=""
+                android:background="@drawable/btn_bg_lightmode"
                 android:hint="Phone number"
-                android:padding="16dp"
                 android:inputType="number"
-                android:textCursorDrawable="@null"
+                android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp"
-                android:autofillHints="" />
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/et_bg"
+                android:autofillHints=""
+                android:background="@drawable/btn_bg_lightmode"
                 android:hint="Email"
-                android:textCursorDrawable="@null"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp"
-                android:autofillHints="" />
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/txtInputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/et_bg"
+                android:autofillHints=""
+                android:background="@drawable/btn_bg_lightmode"
                 android:drawableEnd="@drawable/ic_eye"
                 android:hint="Input password"
                 android:inputType="textPassword"
                 android:padding="16dp"
-                android:textCursorDrawable="@null"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp"
-                android:autofillHints="" />
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/txtRe_enterPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/et_bg"
+                android:autofillHints=""
+                android:background="@drawable/btn_bg_lightmode"
                 android:drawableEnd="@drawable/ic_eye"
-                android:inputType="textPassword"
                 android:hint="Re-enter password"
+                android:inputType="textPassword"
                 android:padding="16dp"
-                android:textCursorDrawable="@null"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp"
-                android:autofillHints="" />
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/txtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/et_bg"
+                android:background="@drawable/btn_bg_lightmode"
                 android:hint="Address"
                 android:padding="16dp"
-                android:textCursorDrawable="@null"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="15dp" />
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRegister"
-                android:layout_width="307dp"
+                android:layout_width="123dp"
                 android:layout_height="53dp"
                 android:layout_marginTop="35dp"
                 android:background="@drawable/btn_setup"
@@ -190,7 +190,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

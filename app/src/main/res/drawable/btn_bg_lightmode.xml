@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/blue_LightMode" />
+    <solid android:color="@color/gray_light_DarkMode" />
+    <gradient android:startColor="@color/gray_dark_DarkMode"  android:centerColor="@color/gray_light_DarkMode"  android:endColor="@color/gray_dark_DarkMode" android:angle="135" />
     <corners android:radius="25dp" />
+        <stroke
+            android:width="0.2dp"
+            android:color="@color/yellow_DarkMode" />
 </shape>

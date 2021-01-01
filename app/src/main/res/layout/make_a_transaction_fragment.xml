@@ -21,6 +21,11 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
@@ -40,6 +45,7 @@
                 android:id="@+id/notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:contentDescription="logo"
                 android:text="Transaction has not been executed"
                 android:textColor="@color/login_form_details"
@@ -88,8 +94,6 @@
                     android:textColor="@color/login_form_details"
                     android:textColorHint="@color/login_form_details"
                     android:textSize="18sp" />
-
-
                 <EditText
                     android:id="@+id/txtBeneficiaryName"
                     android:layout_width="match_parent"

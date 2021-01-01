@@ -1,12 +1,14 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -20,6 +22,7 @@ import com.example.myfirstapp.luckybankonlinesystem.R;
 public class TransactionFragment extends Fragment {
 
     private Button transBtn;
+    private View v;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,14 +67,14 @@ public class TransactionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.transaction_fragment, container, false);
-        Button transBtn = (Button) view.findViewById(R.id.btnTrans);
+        v = inflater.inflate(R.layout.transaction_fragment, container, false);
+        Button transBtn = (Button) v.findViewById(R.id.btnTrans);
         //transBtn = (Button) getView().findViewById(R.id.btnTrans);
 
         transBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MakeATransactionFragment mkaFragment = new MakeATransactionFragment();
+                NewTransactionDialog mkaFragment = new NewTransactionDialog();
                 mkaFragment.show(getFragmentManager(), "This new Fragment");
                 //FragmentManager fm = getSupportManager();
                 FragmentManager fragmentManager = getFragmentManager();
@@ -81,20 +84,24 @@ public class TransactionFragment extends Fragment {
             }
         });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.transaction_fragment, container, false);
+        return v;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        transBtn = (Button) getView().findViewById(R.id.btnTrans);
+        transBtn = (Button) v.findViewById(R.id.btnTrans);
 
         transBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Fragment thisFragment = new MakeATransactionFragment();
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container,thisFragment);
-
+                DialogFragment thisFragment = new NewTransactionDialog();
+                try{
+                    thisFragment.show(getChildFragmentManager(),"New Transaction");
+                }
+                catch(Exception e){
+                    Log.d("Exception", e.getCause().toString());
+                }
+                Log.d("This button","Clicked");
             }
         });
     }

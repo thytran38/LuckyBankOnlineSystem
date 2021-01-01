@@ -3,7 +3,9 @@ package com.example.myfirstapp.luckybankonlinesystem.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.recyclerview.widget.DiffUtil;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -13,6 +15,7 @@ public class TransactionModel implements Parcelable {
     private long timestamp;
     private String senderUID;
     private String receiverUID;
+    private String message;
     private String senderName;
     private String receiverName;
     private double amount;
@@ -97,6 +100,14 @@ public class TransactionModel implements Parcelable {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getMessage(){
+        return this.message;
+    }
+
+    public void setMessage(String newMess){
+        this.message = newMess;
     }
 
     @Override

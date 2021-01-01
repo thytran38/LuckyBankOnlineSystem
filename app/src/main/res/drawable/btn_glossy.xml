@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <size android:width="200dp" android:height="40dp"/>
     <solid android:color="@color/yellow_dark_DarkMode" />
     <gradient android:startColor="@color/yellow_dark_DarkMode" android:centerColor="@color/yellow_middle" android:endColor="@color/yellow_dark_DarkMode" />
     <stroke android:width="0.3dp"
         android:color="@color/black_LightMode" />
     <corners android:radius="38dp" />
+    <padding
+        android:bottom="7dp"
+        android:left="25dp"
+        android:right="25dp"
+        android:top="7dp" />
 
 
 </shape>
