@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -106,7 +106,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
 
     public void init() {
-        CustomerModel csm = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+        CustomerModel csm = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
         fullName = csm.getFullName().toUpperCase().toString();
         Logger.getLogger("debug").warning(String.valueOf(csm.getGender()));
         dateOfBirth = csm.getBirthDate().toString();
@@ -122,7 +122,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         addressEt = (EditText) rootView.findViewById(R.id.txtProfile_Address);
         rdMale = (RadioButton) rootView.findViewById(R.id.rdProfile_Male);
         rdFemale = (RadioButton) rootView.findViewById(R.id.rdProfile_Female);
-        save = (Button) rootView.findViewById(R.id.BtnProfile_SaveButton);
+        save = (Button) rootView.findViewById(R.id.btnTransactionNow);
 
         fullnameEt.setText(fullName);
         dateofbirthEt.setText(dateOfBirth);

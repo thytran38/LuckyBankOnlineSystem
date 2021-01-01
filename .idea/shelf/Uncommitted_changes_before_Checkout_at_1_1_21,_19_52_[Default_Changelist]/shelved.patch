@@ -1,0 +1,438 @@
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfirstapp.luckybankonlinesystem;\n\nimport android.content.Intent;\nimport android.content.res.Configuration;\nimport android.os.Bundle;\nimport android.widget.Adapter;\nimport android.widget.TextView;\n\nimport androidx.annotation.Nullable;\nimport androidx.appcompat.app.AppCompatActivity;\nimport androidx.fragment.app.Fragment;\nimport androidx.recyclerview.widget.RecyclerView;\nimport androidx.viewpager.widget.ViewPager;\n\nimport com.example.myfirstapp.luckybankonlinesystem.Fragment.CurrencyFragment;\nimport com.example.myfirstapp.luckybankonlinesystem.Fragment.MainFragment;\nimport com.example.myfirstapp.luckybankonlinesystem.Fragment.TransactionFragment;\nimport com.example.myfirstapp.luckybankonlinesystem.Fragment.UserInfoFragment;\nimport com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;\nimport com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;\nimport com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;\nimport com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;\nimport com.google.firebase.FirebaseApp;\nimport com.google.firebase.firestore.FirebaseFirestore;\nimport com.ismaeldivita.chipnavigation.ChipNavigationBar;\n\nimport java.util.ArrayList;\nimport java.util.logging.Logger;\n\npublic class MainActivity extends AppCompatActivity implements ChipNavigationBar.OnItemSelectedListener {\n\n    ViewPager viewPager;\n    Adapter adapter;\n    Integer[] colors = null;\n    public static final int nav_main = 1000380;\n    public static final int nav_transaction = 1000187;\n    public TextView mainTv;\n\n    TextView totalBalanceTv, usernameTv, accNumTv;\n    RecyclerView rvTransactionOverview;\n\n    @Override\n    protected void onCreate(@Nullable Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n        Logger.getLogger(\"OK\").warning(\"CREATED MAIN ACTIVITY\");\n        FirebaseApp.initializeApp(this);\n        FirebaseFirestore db = FirebaseFirestore.getInstance();\n\n//        usernameTv = findViewById(R.id.tvUserName);\n//        totalBalanceTv = findViewById(R.id.tvTotalTransaction);\n//        accNumTv = findViewById(R.id.tvAccnumber);\n//        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);\n//        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();\n        CustomerModel model = getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);\n        Intent t = getIntent();\n        ArrayList<TransactionModel> transactions = getIntent().getParcelableArrayListExtra(FetchingDataService.TRANSACTION_HISTORY_KEY);\n        Logger.getLogger(\"OK\").warning(model.getAccounts().get(0).getAccountType().name());\n        Logger.getLogger(\"OK\").warning(\"count = \" + transactions.size());\n        Logger.getLogger(\"OK\").warning(\"amount = \" + transactions.get(0).getAmount());\n\n        //adapter = new Adapter(fragmentArrayList, this);\n        loadFragments(new TransactionFragment());\n        ChipNavigationBar chipNavigationBar = findViewById(R.id.menu);\n        chipNavigationBar.setMenuOrientation(ChipNavigationBar.MenuOrientation.HORIZONTAL);\n        //chipNavigationBar.setMenuResource(R.menu.bottom_menu);\n        //chipNavigationBar.setOnItemSelectedListener(navListener);\n        chipNavigationBar.setOnItemSelectedListener(navListener);\n\n\n        //onItemSelected(nav_transaction);\n        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();\n\n    }\n\n\n    private ChipNavigationBar.OnItemSelectedListener navListener = new ChipNavigationBar.OnItemSelectedListener() {\n\n        @Override\n        public void onItemSelected(int i) {\n            Fragment selectedFragment = null;\n\n            switch (i) {\n                case R.id.nav_main:\n                    selectedFragment = new MainFragment();\n                    loadFragments(selectedFragment);\n                    break;\n                case R.id.nav_transaction:\n                    selectedFragment = new TransactionFragment();\n                    loadFragments(selectedFragment);\n\n                    break;\n                case R.id.nav_wallet:\n                    selectedFragment = new WalletFragment();\n                    loadFragments(selectedFragment);\n\n                    //mainTv.setText(\"wallet\");\n                    break;\n                case R.id.nav_userinfo:\n                    selectedFragment = new UserInfoFragment();\n                    loadFragments(selectedFragment);\n\n                    //mainTv.setText(\"info\");\n                    break;\n                case R.id.nav_currency:\n                    selectedFragment = new CurrencyFragment();\n                    loadFragments(selectedFragment);\n                    //mainTv.setText(\"currency\");\n                    break;\n            }\n            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment);\n        }\n    };\n\n\n    @Override\n    protected void onResume() {\n        super.onResume();\n\n        int darkFlag = getResources().getConfiguration().uiMode\n                & Configuration.UI_MODE_NIGHT_MASK;\n\n        if (darkFlag == Configuration.UI_MODE_NIGHT_YES) {\n\n        }\n    }\n\n    @Override\n    public void onBackPressed() {\n        super.onBackPressed();\n\n\n    }\n\n    @Override\n    public void onItemSelected(int i) {\n        Fragment selectedFragment = null;\n\n        switch (i) {\n            case R.id.nav_main:\n                selectedFragment = new MainFragment();\n                //mainTv.setText(\"main\");\n                break;\n            case R.id.nav_transaction:\n                selectedFragment = new TransactionFragment();\n                //mainTv.setText(\"trans\");\n                break;\n            case R.id.nav_wallet:\n                selectedFragment = new WalletFragment();\n                //mainTv.setText(\"wallet\");\n                break;\n            case R.id.nav_userinfo:\n                selectedFragment = new UserInfoFragment();\n                //mainTv.setText(\"info\");\n                break;\n            case R.id.nav_currency:\n                selectedFragment = new CurrencyFragment();\n                //mainTv.setText(\"currency\");\n                break;\n        }\n        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment);\n    }\n\n    public boolean loadFragments(Fragment fr) {\n        if (fr != null) {\n            getSupportFragmentManager().beginTransaction()\n                    .replace(R.id.fragment_container, fr)\n                    .commit();\n        }\n        return true;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/MainActivity.java	(revision 5e488f461787a60b81699a0d5ed82de697ce7884)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/MainActivity.java	(date 1609505393000)
+@@ -1,16 +1,11 @@
+ package com.example.myfirstapp.luckybankonlinesystem;
+ 
+-import android.content.Intent;
+-import android.content.res.Configuration;
++import android.annotation.SuppressLint;
+ import android.os.Bundle;
+-import android.widget.Adapter;
+-import android.widget.TextView;
+ 
+ import androidx.annotation.Nullable;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.fragment.app.Fragment;
+-import androidx.recyclerview.widget.RecyclerView;
+-import androidx.viewpager.widget.ViewPager;
+ 
+ import com.example.myfirstapp.luckybankonlinesystem.Fragment.CurrencyFragment;
+ import com.example.myfirstapp.luckybankonlinesystem.Fragment.MainFragment;
+@@ -19,154 +14,58 @@
+ import com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;
+ import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
+ import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
+-import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
+ import com.google.firebase.FirebaseApp;
+ import com.google.firebase.firestore.FirebaseFirestore;
++
+ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+ 
+-import java.util.ArrayList;
+-import java.util.logging.Logger;
+-
+ public class MainActivity extends AppCompatActivity implements ChipNavigationBar.OnItemSelectedListener {
+ 
+-    ViewPager viewPager;
+-    Adapter adapter;
+-    Integer[] colors = null;
+-    public static final int nav_main = 1000380;
+-    public static final int nav_transaction = 1000187;
+-    public TextView mainTv;
+-
+-    TextView totalBalanceTv, usernameTv, accNumTv;
+-    RecyclerView rvTransactionOverview;
+-
+     @Override
+     protected void onCreate(@Nullable Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
+-        Logger.getLogger("OK").warning("CREATED MAIN ACTIVITY");
+-        FirebaseApp.initializeApp(this);
+-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+-
+-//        usernameTv = findViewById(R.id.tvUserName);
+-//        totalBalanceTv = findViewById(R.id.tvTotalTransaction);
+-//        accNumTv = findViewById(R.id.tvAccnumber);
+-//        rvTransactionOverview = findViewById(R.id.rvTransactionOverview);
+-//        ArrayList<ScreenSlidePageFragment> fragmentArrayList = new ArrayList<ScreenSlidePageFragment>();
+-        CustomerModel model = getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
+-        Intent t = getIntent();
+-        ArrayList<TransactionModel> transactions = getIntent().getParcelableArrayListExtra(FetchingDataService.TRANSACTION_HISTORY_KEY);
+-        Logger.getLogger("OK").warning(model.getAccounts().get(0).getAccountType().name());
+-        Logger.getLogger("OK").warning("count = " + transactions.size());
+-        Logger.getLogger("OK").warning("amount = " + transactions.get(0).getAmount());
+-
+-        //adapter = new Adapter(fragmentArrayList, this);
+-        loadFragments(new TransactionFragment());
+         ChipNavigationBar chipNavigationBar = findViewById(R.id.menu);
+         chipNavigationBar.setMenuOrientation(ChipNavigationBar.MenuOrientation.HORIZONTAL);
+-        //chipNavigationBar.setMenuResource(R.menu.bottom_menu);
+-        //chipNavigationBar.setOnItemSelectedListener(navListener);
+-        chipNavigationBar.setOnItemSelectedListener(navListener);
+-
+-
+-        //onItemSelected(nav_transaction);
+-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MainFragment()).commit();
+-
+-    }
+-
+-
+-    private ChipNavigationBar.OnItemSelectedListener navListener = new ChipNavigationBar.OnItemSelectedListener() {
+-
+-        @Override
+-        public void onItemSelected(int i) {
+-            Fragment selectedFragment = null;
+-
+-            switch (i) {
+-                case R.id.nav_main:
+-                    selectedFragment = new MainFragment();
+-                    loadFragments(selectedFragment);
+-                    break;
+-                case R.id.nav_transaction:
+-                    selectedFragment = new TransactionFragment();
+-                    loadFragments(selectedFragment);
+-
+-                    break;
+-                case R.id.nav_wallet:
+-                    selectedFragment = new WalletFragment();
+-                    loadFragments(selectedFragment);
+-
+-                    //mainTv.setText("wallet");
+-                    break;
+-                case R.id.nav_userinfo:
+-                    selectedFragment = new UserInfoFragment();
+-                    loadFragments(selectedFragment);
+-
+-                    //mainTv.setText("info");
+-                    break;
+-                case R.id.nav_currency:
+-                    selectedFragment = new CurrencyFragment();
+-                    loadFragments(selectedFragment);
+-                    //mainTv.setText("currency");
+-                    break;
+-            }
+-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment);
+-        }
+-    };
+-
+-
+-    @Override
+-    protected void onResume() {
+-        super.onResume();
+-
+-        int darkFlag = getResources().getConfiguration().uiMode
+-                & Configuration.UI_MODE_NIGHT_MASK;
+-
+-        if (darkFlag == Configuration.UI_MODE_NIGHT_YES) {
+-
+-        }
++        chipNavigationBar.setOnItemSelectedListener(this);
++        chipNavigationBar.setItemSelected(R.id.nav_main, true);
+     }
+ 
+     @Override
+     public void onBackPressed() {
+         super.onBackPressed();
+-
+-
+     }
+ 
++    @SuppressLint("NonConstantResourceId")
+     @Override
+     public void onItemSelected(int i) {
+         Fragment selectedFragment = null;
+-
+         switch (i) {
+             case R.id.nav_main:
+                 selectedFragment = new MainFragment();
+-                //mainTv.setText("main");
+                 break;
+             case R.id.nav_transaction:
+                 selectedFragment = new TransactionFragment();
+-                //mainTv.setText("trans");
+                 break;
+             case R.id.nav_wallet:
+                 selectedFragment = new WalletFragment();
+-                //mainTv.setText("wallet");
+                 break;
+             case R.id.nav_userinfo:
+                 selectedFragment = new UserInfoFragment();
+-                //mainTv.setText("info");
+                 break;
+             case R.id.nav_currency:
+                 selectedFragment = new CurrencyFragment();
+-                //mainTv.setText("currency");
+                 break;
+         }
+-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment);
++        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+     }
+ 
+-    public boolean loadFragments(Fragment fr) {
+-        if (fr != null) {
+-            getSupportFragmentManager().beginTransaction()
+-                    .replace(R.id.fragment_container, fr)
+-                    .commit();
+-        }
+-        return true;
+-    }
++//    public boolean loadFragments(Fragment fr) {
++//        if (fr != null) {
++//            getSupportFragmentManager().beginTransaction()
++//                    .replace(R.id.fragment_container, fr)
++//                    .commit();
++//        }
++//        return true;
++//    }
+ }
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Fragment/MainFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfirstapp.luckybankonlinesystem.Fragment;\n\nimport android.os.Bundle;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.TextView;\n\nimport androidx.annotation.Nullable;\nimport androidx.fragment.app.Fragment;\nimport androidx.viewpager2.widget.ViewPager2;\n\nimport com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;\nimport com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;\nimport com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;\nimport com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;\nimport com.example.myfirstapp.luckybankonlinesystem.R;\nimport com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;\nimport com.google.firebase.auth.FirebaseAuth;\nimport com.google.firebase.firestore.FirebaseFirestore;\n\nimport java.util.ArrayList;\n\n/**\n * A simple {@link MainFragment} subclass.\n * Use the {@link MainFragment#newInstance} factory method to\n * create an instance of this fragment.\n */\npublic class MainFragment extends Fragment {\n\n    private ViewPager2 viewPager2;\n    private View v;\n\n    // TODO: Rename parameter arguments, choose names that match\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\n    private static final String ARG_PARAM1 = \"param1\";\n    private static final String ARG_PARAM2 = \"param2\";\n\n    // TODO: Rename and change types of parameters\n    private String mParam1;\n    private String mParam2;\n\n\n    private TextView hiTv;\n\n    FirebaseFirestore db = FirebaseFirestore.getInstance();\n\n    public MainFragment() {\n        // Required empty public constructor\n    }\n\n    /**\n     * Use this factory method to create a new instance of\n     * this fragment using the provided parameters.\n     *\n     * @param param1 Parameter 1.\n     * @param param2 Parameter 2.\n     * @return A new instance of fragment Fragment.\n     */\n    // TODO: Rename and change types and number of parameters\n    public static MainFragment newInstance(String param1, String param2) {\n        MainFragment fragment = new MainFragment();\n        Bundle args = new Bundle();\n        args.putString(ARG_PARAM1, param1);\n        args.putString(ARG_PARAM2, param2);\n        fragment.setArguments(args);\n        return fragment;\n    }\n\n\n\n    @Override\n    public void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        if (getArguments() != null) {\n            mParam1 = getArguments().getString(ARG_PARAM1);\n            mParam2 = getArguments().getString(ARG_PARAM2);\n        }\n    }\n\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\n                             Bundle savedInstanceState) {\n        // Inflate the layout for this fragment\n        v = inflater.inflate(R.layout.main_fragment, container, false);\n\n        return v;\n    }\n\n\n    @Override\n    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {\n        CustomerModel cusm = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);\n        ArrayList<AccountModel> userAccounts = cusm.getAccounts();\n        AccountModel primeAcc = userAccounts.get(0);\n//        AccountModel savAcc = userAccounts.get(1);\n        String primeAccNumber = primeAcc.getAccountNumber();\n//        String savingAccNumber = savAcc.getAccountNumber();\n        viewPager2 = v.findViewById(R.id.viewPager);\n        viewPager2.setCurrentItem(R.layout.primary_card_view);\n        viewPager2.setAdapter(new CardAdapter(getActivity()));\n        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());\n\n        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();\n        String cusmName1 = firebaseAuth.getCurrentUser().getUid();\n        String cusmName = cusm.getCustomerId();\n        hiTv = (TextView) getView().findViewById(R.id.tvHi);\n        String yourTotal = getString(R.string.total_balance);\n        String hello = \"Hi \" + cusmName1 + yourTotal;\n        hiTv.setText(hello);\n\n\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Fragment/MainFragment.java	(revision 5e488f461787a60b81699a0d5ed82de697ce7884)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Fragment/MainFragment.java	(date 1609505426000)
+@@ -1,11 +1,20 @@
+ package com.example.myfirstapp.luckybankonlinesystem.Fragment;
+ 
++import android.content.BroadcastReceiver;
++import android.content.Context;
++import android.content.Intent;
++import android.content.IntentFilter;
+ import android.os.Bundle;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.TextView;
+ 
++import org.jetbrains.annotations.NotNull;
++
++import java.util.ArrayList;
++import java.util.Locale;
++import java.util.Objects;
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ import androidx.viewpager2.widget.ViewPager2;
+@@ -14,12 +23,18 @@
+ import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
+ import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
+ import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
++import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
+ import com.example.myfirstapp.luckybankonlinesystem.R;
+-import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
++import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+ import com.google.firebase.auth.FirebaseAuth;
+ import com.google.firebase.firestore.FirebaseFirestore;
++import androidx.localbroadcastmanager.content.LocalBroadcastManager;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
+ 
+-import java.util.ArrayList;
++import com.example.myfirstapp.luckybankonlinesystem.Adapter.TransactionOverviewAdapter;
++import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
++
+ 
+ /**
+  * A simple {@link MainFragment} subclass.
+@@ -68,14 +83,14 @@
+     }
+ 
+ 
++    private TextView hiTv, totalTransactionTv;
++    private RecyclerView rvTransactionOverview;
++
++    private BroadcastReceiver receiver;
+ 
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        if (getArguments() != null) {
+-            mParam1 = getArguments().getString(ARG_PARAM1);
+-            mParam2 = getArguments().getString(ARG_PARAM2);
+-        }
+     }
+ 
+     @Override
+@@ -85,12 +100,52 @@
+         v = inflater.inflate(R.layout.main_fragment, container, false);
+ 
+         return v;
++
++    }
++
++    @Override
++    public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
++        CustomerModel userInfo = Objects.requireNonNull(getActivity()).getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
++        ArrayList<TransactionModel> transactions = getActivity().getIntent().getParcelableArrayListExtra(FetchingDataService.TRANSACTION_HISTORY_KEY);
++
++        hiTv = Objects.requireNonNull(getView()).findViewById(R.id.tvHi);
++        rvTransactionOverview = getView().findViewById(R.id.rvTransactionOverview);
++        totalTransactionTv = getView().findViewById(R.id.tvTotalTransaction);
++
++        setCurrentBalance(userInfo.getAccounts().get(0).getCurrentBalance());
++
++        rvTransactionOverview.setLayoutManager(new LinearLayoutManager(getContext()));
++        TransactionOverviewAdapter adapter = new TransactionOverviewAdapter(transactions);
++        rvTransactionOverview.setAdapter(adapter);
++
++        setHelloString(userInfo.getFullName());
++
++        receiver = new BroadcastReceiver() {
++            @Override
++            public void onReceive(Context context, Intent intent) {
++                if (intent.getAction().equals(FetchingDataService.INTENT_KEY + "." + FetchingDataService.USER_INFO_KEY)) {
++                    CustomerModel userInfo = intent.getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
++                    setCurrentBalance(userInfo.getAccounts().get(0).getCurrentBalance());
++                } else if (intent.getAction().equals(FetchingDataService.INTENT_KEY + "." + FetchingDataService.TRANSACTION_HISTORY_KEY)) {
++                    ArrayList<TransactionModel> transactions = intent.getParcelableArrayListExtra(FetchingDataService.TRANSACTION_HISTORY_KEY);
++                    updateTransactionHistoryList(transactions.get(transactions.size() - 1));
++                }
++            }
++        };
++    }
++
++    @Override
++    public void onStart() {
++        super.onStart();
++        IntentFilter filter = new IntentFilter(FetchingDataService.INTENT_KEY + "." + FetchingDataService.USER_INFO_KEY);
++        filter.addAction(FetchingDataService.INTENT_KEY + "." + FetchingDataService.TRANSACTION_HISTORY_KEY);
++        LocalBroadcastManager.getInstance(Objects.requireNonNull(getActivity())).registerReceiver(receiver, filter);
+     }
+ 
+ 
+     @Override
+     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+-        CustomerModel cusm = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
++        CustomerModel cusm = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+         ArrayList<AccountModel> userAccounts = cusm.getAccounts();
+         AccountModel primeAcc = userAccounts.get(0);
+ //        AccountModel savAcc = userAccounts.get(1);
+@@ -107,8 +162,26 @@
+         hiTv = (TextView) getView().findViewById(R.id.tvHi);
+         String yourTotal = getString(R.string.total_balance);
+         String hello = "Hi " + cusmName1 + yourTotal;
++    public void onPause() {
++        super.onPause();
++        LocalBroadcastManager.getInstance(Objects.requireNonNull(getActivity())).unregisterReceiver(receiver);
++    }
++
++    private void setHelloString(String name) {
++        String yourTotal = getString(R.string.total_balance);
++        String hello = "Hi " + name + "\n" + yourTotal;
+         hiTv.setText(hello);
++    }
+ 
++    private void setCurrentBalance(double currentBalance) {
++        totalTransactionTv.setText(String.format(Locale.US, "%,d", (int) currentBalance));
++    }
+ 
++
++    private void updateTransactionHistoryList(TransactionModel lastTransaction) {
++        TransactionOverviewAdapter adapter = (TransactionOverviewAdapter) rvTransactionOverview.getAdapter();
++        assert adapter != null;
++        adapter.getDataSource().add(lastTransaction);
++        adapter.notifyItemInserted(adapter.getItemCount() - 1);
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Model/TransactionModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myfirstapp.luckybankonlinesystem.Model;\n\nimport android.os.Parcel;\nimport android.os.Parcelable;\n\npublic class TransactionModel implements Parcelable {\n    private String transactionID;\n    private long timestamp;\n    private String senderUID;\n    private String receiverUID;\n    private String message;\n    private String senderName;\n    private String receiverName;\n    private double amount;\n\n    public long getTimestamp() {\n        return timestamp;\n    }\n\n    public void setTimestamp(long timestamp) {\n        this.timestamp = timestamp;\n    }\n\n    public String getSenderName() {\n        return senderName;\n    }\n\n    public void setSenderName(String senderName) {\n        this.senderName = senderName;\n    }\n\n    public String getReceiverName() {\n        return receiverName;\n    }\n\n    public void setReceiverName(String receiverName) {\n        this.receiverName = receiverName;\n    }\n\n    public TransactionModel() {\n        timestamp = System.currentTimeMillis();\n    }\n\n    protected TransactionModel(Parcel in) {\n        transactionID = in.readString();\n        timestamp = in.readLong();\n        senderUID = in.readString();\n        receiverUID = in.readString();\n        amount = in.readDouble();\n        senderName = in.readString();\n        receiverName = in.readString();\n    }\n\n    public static final Creator<TransactionModel> CREATOR = new Creator<TransactionModel>() {\n        @Override\n        public TransactionModel createFromParcel(Parcel in) {\n            return new TransactionModel(in);\n        }\n\n        @Override\n        public TransactionModel[] newArray(int size) {\n            return new TransactionModel[size];\n        }\n    };\n\n    public String getTransactionID() {\n        return transactionID;\n    }\n\n    public void setTransactionID(String transactionID) {\n        this.transactionID = transactionID;\n    }\n\n    public String getSenderUID() {\n        return senderUID;\n    }\n\n    public void setSenderUID(String senderUID) {\n        this.senderUID = senderUID;\n    }\n\n    public String getReceiverUID() {\n        return receiverUID;\n    }\n\n    public void setReceiverUID(String receiverUID) {\n        this.receiverUID = receiverUID;\n    }\n\n    public double getAmount() {\n        return amount;\n    }\n\n    public void setAmount(double amount) {\n        this.amount = amount;\n    }\n\n    public String getMessage(){\n        return this.message;\n    }\n\n    public void setMessage(String newMess){\n        this.message = newMess;\n    }\n\n    @Override\n    public int describeContents() {\n        return 0;\n    }\n\n    @Override\n    public void writeToParcel(Parcel dest, int flags) {\n        dest.writeString(transactionID);\n        dest.writeLong(timestamp);\n        dest.writeString(senderUID);\n        dest.writeString(receiverUID);\n        dest.writeDouble(amount);\n        dest.writeString(senderName);\n        dest.writeString(receiverName);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Model/TransactionModel.java	(revision 5e488f461787a60b81699a0d5ed82de697ce7884)
++++ app/src/main/java/com/example/myfirstapp/luckybankonlinesystem/Model/TransactionModel.java	(date 1609505509000)
+@@ -3,6 +3,13 @@
+ import android.os.Parcel;
+ import android.os.Parcelable;
+ 
++import java.text.SimpleDateFormat;
++import java.util.Date;
++import java.util.Locale;
++
++import java.util.ArrayList;
++import java.util.Objects;
++
+ public class TransactionModel implements Parcelable {
+     private String transactionID;
+     private long timestamp;
+@@ -118,4 +125,4 @@
+         dest.writeString(senderName);
+         dest.writeString(receiverName);
+     }
+-}
+\ No newline at end of file
++}
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n\n    android:gravity=\"center\"\n    android:background=\"@color/gray_dark_DarkMode\"\n\n    tools:context=\"com.example.myfirstapp.luckybankonlinesystem.LoginActivity\">\n\n    <ScrollView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\">\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_gravity=\"center_horizontal\"\n            android:layout_margin=\"20dp\"\n            android:gravity=\"center\"\n            android:orientation=\"vertical\">\n\n\n            <ImageView\n                android:id=\"@+id/imageView5\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"55dp\"\n                app:srcCompat=\"@mipmap/logo\" />\n\n            <TextView\n                android:id=\"@+id/icon\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"40dp\"\n                android:contentDescription=\"logo\"\n                android:text=\"Login into your LOBS account\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"15dp\"\n                android:textStyle=\"normal\"\n                app:layout_constraintHorizontal_bias=\"0.496\"\n                app:layout_constraintTop_toTopOf=\"parent\" />\n\n            <EditText\n                android:id=\"@+id/etEmail\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"65dp\"\n                android:background=\"@drawable/btn_bg_lightmode\"\n                android:hint=\"Email address\"\n                android:inputType=\"textEmailAddress\"\n                android:padding=\"16dp\"\n                android:textCursorDrawable=\"@null\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"15sp\"\n                app:layout_constraintBottom_toTopOf=\"@+id/txtPassword\"\n                app:layout_constraintHorizontal_bias=\"0.0\"\n                app:layout_constraintTop_toBottomOf=\"@+id/icon\" />\n\n            <EditText\n                android:id=\"@+id/etPassword\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"20dp\"\n                android:background=\"@drawable/btn_bg_lightmode\"\n                android:drawableEnd=\"@drawable/ic_eye\"\n                android:hint=\"Password\"\n                android:inputType=\"textPassword\"\n                android:padding=\"16dp\"\n                android:textCursorDrawable=\"@null\"\n                android:textColor=\"@color/login_form_details\"\n                android:textColorHint=\"@color/login_form_details\"\n                android:textSize=\"15sp\" />\n\n            <androidx.appcompat.widget.AppCompatButton\n                android:id=\"@+id/btnSend\"\n                android:layout_width=\"163dp\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"76dp\"\n                android:background=\"@drawable/btn_glossy\"\n                android:text=\"Login\"\n                android:textAllCaps=\"false\"\n                android:textColor=\"@color/black_LightMode\"\n                android:textSize=\"19sp\"\n                app:layout_constraintTop_toBottomOf=\"@+id/txtPassword\" />\n\n            <TextView\n                android:id=\"@+id/tvRegister\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"72dp\"\n                android:text=\"@string/register_saying\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"16sp\"\n                app:layout_constraintHorizontal_bias=\"0.467\"\n                app:layout_constraintTop_toBottomOf=\"@id/btnSend\" />\n\n            <TextView\n                android:id=\"@+id/tvForgotPassword\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"28dp\"\n                android:text=\"Forgot password?\"\n                android:textColor=\"@color/login_form_details\"\n                android:textSize=\"16sp\"\n                app:layout_constraintTop_toBottomOf=\"@id/btnSend\" />\n\n            <View\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"50dp\" />\n        </LinearLayout>\n    </ScrollView>\n</LinearLayout>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login.xml	(revision 5e488f461787a60b81699a0d5ed82de697ce7884)
++++ app/src/main/res/layout/activity_login.xml	(date 1609505358000)
+@@ -81,6 +81,7 @@
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="76dp"
+                 android:background="@drawable/btn_glossy"
++
+                 android:text="Login"
+                 android:textAllCaps="false"
+                 android:textColor="@color/black_LightMode"
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    package=\"com.example.myfirstapp.luckybankonlinesystem\">\n    <uses-permission android:name=\"android.permission.INTERNET\"/>\n    <uses-feature android:name=\"android.hardware.fingerprint\" android:required=\"true\" />\n    <uses-permission-sdk-23 android:name=\"android.permission.USE_FINGERPRINT\"/>\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.LOBSDark\">\n        <activity android:name=\"com.example.myfirstapp.luckybankonlinesystem.TransactionActivity\"/>\n        <activity android:name=\".RegisterActivity\"/>\n        <activity android:name=\".BottomBarActivity\"/>\n        <activity android:name=\".SplashScreenActivity\"/>\n        <activity android:name=\".ProfileActivity\"/>\n        <activity android:name=\".ForgetPassActivity\"/>\n        <activity android:name=\".LoginActivity\"/>\n        <activity android:name=\".MainActivity\"/>\n        <activity android:name=\".CurrencyConverterActivity\"/>\n\n        <activity android:name=\"com.example.myfirstapp.luckybankonlinesystem.FingerprintAuthen\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n\n    </application>\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 5e488f461787a60b81699a0d5ed82de697ce7884)
++++ app/src/main/AndroidManifest.xml	(date 1609505381000)
+@@ -12,16 +12,7 @@
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+         android:theme="@style/Theme.LOBSDark">
+-        <activity android:name="com.example.myfirstapp.luckybankonlinesystem.TransactionActivity"/>
+-        <activity android:name=".RegisterActivity"/>
+-        <activity android:name=".BottomBarActivity"/>
+-        <activity android:name=".SplashScreenActivity"/>
+-        <activity android:name=".ProfileActivity"/>
+-        <activity android:name=".ForgetPassActivity"/>
+-        <activity android:name=".LoginActivity"/>
+-        <activity android:name=".MainActivity"/>
+-        <activity android:name=".CurrencyConverterActivity"/>
+-
++    
+         <activity android:name="com.example.myfirstapp.luckybankonlinesystem.FingerprintAuthen">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+@@ -29,5 +20,15 @@
+             </intent-filter>
+         </activity>
+ 
++        <activity android:name=".TransactionActivity"/>
++        <activity android:name=".CurrencyConverterActivity"/>
++        <activity android:name=".LoginActivity"/>
++        <activity android:name=".RegisterActivity"/>
++        <activity android:name=".BottomBarActivity"/>
++        <activity android:name=".SplashScreenActivity"/>
++        <activity android:name=".ProfileActivity"/>
++        <activity android:name=".ForgetPassActivity"/>
++        <activity android:name=".MainActivity"/>
++
+     </application>
+ </manifest>
+\ No newline at end of file

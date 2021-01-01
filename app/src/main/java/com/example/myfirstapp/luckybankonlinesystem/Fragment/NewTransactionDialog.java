@@ -21,14 +21,15 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
@@ -43,7 +44,7 @@ public class NewTransactionDialog extends DialogFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private EditText fullName, reciId, amount, message;
-    private String senderID,partnerID;
+    private String senderID, partnerID;
     private Button transferBtn;
     private String partnerAccountNum;
     private CollectionReference collectionReference;
@@ -57,10 +58,15 @@ public class NewTransactionDialog extends DialogFragment {
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_DATE_CREATED = "datecreated";
 
+    CustomerModel customerModel;
+    ArrayList<AccountModel> accountModelArrayList;
+    AccountModel primAcc;
+    private double inputAmount;
+    private double currBalance;
+
+
     private final CollectionReference transactionRecord = db.collection("transactions");
     private CollectionReference userTransaction;
-
-
 
 
     // TODO: Rename and change types of parameters
@@ -127,9 +133,9 @@ public class NewTransactionDialog extends DialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try{
+        try {
             //mOnInputSelected = (OnInputSelected) getTargetFragment();
-        }catch (ClassCastException e){
+        } catch (ClassCastException e) {
             //Log.e(TAG, "onAttach: ClassCastException : " + e.getMessage() );
         }
     }
@@ -149,98 +155,84 @@ public class NewTransactionDialog extends DialogFragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.v = view;
-//        CustomerModel customerModel = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
 //
-//        String senderIDTest = "5252582852852";
-//        fullName = (EditText) v.findViewById(R.id.etFullname);
-//        reciId = (EditText)v.findViewById(R.id.etAccnum);
-//        amount = (EditText)v.findViewById(R.id.etAmount);
-//        message = (EditText)v.findViewById(R.id.etMessage);
-//
-//        putObjectToHashMap();
+        customerModel = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
+
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        LocalBroadcastManager.getInstance(context).registerReceiver(receiver, IntentFilter);
+//        LocalBroadcastManager.getInstance(context).registerReceiver(receiver, IntentFilter);
 
-        transferBtn = (Button)v.findViewById(R.id.btnTransfer);
+        transferBtn = getView().findViewById(R.id.btnTransactionNow);
         transferBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "This btn", Toast.LENGTH_SHORT).show();
+                if (reciId.getText().toString().isEmpty() || fullName.getText().toString().isEmpty() || amount.getText().toString().isEmpty() || message.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "No empty field.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Logger.getLogger("debug000").warning("clicked");
-                //requestNewTransaction();
+                Toast.makeText(getActivity(), "Request created.", Toast.LENGTH_SHORT).show();
+//                requestNewTransaction();
+                transactionForm();
             }
         });
     }
 
-    public void requestNewTransaction(){
-//        checkAccountValidation();
-//        validateFields();
-//        if(checkAccountValidation()  && validateFields())
-//            {
-//            }
-        transactionForm();
+    public void requestNewTransaction() {
+        if (accountExist() && sufficientBalance()) {
+            transactionForm();
+        }
+    }
+
+    public boolean accountExist(){
+        boolean f = false;
+        db.collection("users").document(partnerAccountNum).collection("accounts").get();
+
+        return f;
 
     }
 
-
-    public boolean validateFields(){
-        if(reciId.getText().toString().isEmpty() || fullName.getText().toString().isEmpty() || amount.getText().toString().isEmpty() || message.getText().toString().isEmpty()){
-            Toast.makeText(getActivity(), "No empty field.", Toast.LENGTH_SHORT).show();
-            return false;}
-        else return true;
+    public boolean sufficientBalance(){
+        boolean f = false;
+        accountModelArrayList = customerModel.getAccounts();
+        primAcc = accountModelArrayList.get(0);
+        currBalance  = primAcc.getCurrentBalance();
+        if(currBalance > inputAmount){
+            f = true;
+        }
+        return f;
     }
 
-    public boolean checkAccountValidation() {
-        boolean valid = false;
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        partnerAccountNum = reciId.getText().toString();
-        collectionReference = db.collection("user").document("pIKOVzXcWQhu0cNZvlyjxm7x0K12").collection("accounts").document("0").getParent();
-        Logger.getLogger("debug000").warning(String.valueOf(collectionReference.getParent().toString()));
-
-
-
-
-
-
-        return true;
+    public boolean correctAmount(){
+        boolean f = false;
+        double mod = inputAmount % 500;
+        if((int)mod == 0){
+            f = true;
+        }
+        return f;
     }
 
-    public void transactionForm(){
+    public void transactionForm() {
 //        this.customerModel = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
         TransactionModel newTransaction = new TransactionModel();
-        newTransaction.setReceiverUID(reciId.getText().toString());
-        newTransaction.setSenderUID("1414144114");
-        double newAmount = Double.parseDouble(amount.getText().toString());
-        newTransaction.setAmount(newAmount);
-        String newMes = message.getText().toString();
-        newTransaction.setMessage(newMes);
-        Logger.getLogger("debug000").warning("reci" +reciId.getText().toString());
-        //Logger.getLogger("debug000").warning("senderId"+customerModel.getCustomerId().toString());
-        Logger.getLogger("debug000").warning( "amount"+String.valueOf(newAmount) );
 
-        putObjectToHashMap();
+        fullName = (EditText) v.findViewById(R.id.etBeneficiary);
+        reciId = (EditText) v.findViewById(R.id.etBeneAccount);
+        amount = (EditText) v.findViewById(R.id.etTransAmount);
+        message = (EditText) v.findViewById(R.id.etTransMes);
 
-    }
+        String fname = fullName.getText().toString();
+        partnerAccountNum = reciId.getText().toString();
+        String famount = amount.getText().toString();
+        String fmessage = message.getText().toString();
 
-    public void putObjectToHashMap(){
-        //Query to Receiver's accounts
-        //this.userTransaction = db.collection("users").document(customerModel.getCustomerId()).collection("accounts").document("0").getParent();
+        inputAmount = Double.parseDouble(famount);
 
-        String getUserFromFullnameQuery = db.collection("users").whereEqualTo("fullName","Thy Tran Yen").get().toString();
-        Logger.getLogger("debug000").warning(getUserFromFullnameQuery);
-        Logger.getLogger("debug000").warning(userTransaction.whereEqualTo("email","ax4409h@gmail.com").toString());
-        //DocumentReference = db.collection("users").document("IKOVzXcWQhu0cNZvlyjxm7x0K12").collection("transactions").document("0");
-        Map<String, Object> note = new HashMap<>();
-
-
-
-
-
+        Toast.makeText(getActivity(), fname + partnerAccountNum + famount + fmessage, Toast.LENGTH_SHORT).show();
+        Logger.getLogger("debug000").warning(fname + "  " + partnerAccountNum + "  " + famount + "  " + fmessage);
 
     }
 

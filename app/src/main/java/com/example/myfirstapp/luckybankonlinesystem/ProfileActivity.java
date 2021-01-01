@@ -1,12 +1,10 @@
 package com.example.myfirstapp.luckybankonlinesystem;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -15,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.DatePickerDialog;
-import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +23,6 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         email = (EditText)findViewById(R.id.txtProfile_Email);
         address = (EditText)findViewById(R.id.txtProfile_Address);
         gender = (RadioGroup)findViewById(R.id.rg_Profile_GenderGroup);
-        save = (Button) findViewById(R.id.BtnProfile_SaveButton);
+        save = (Button) findViewById(R.id.btnTransactionNow);
 
         // Connect to  Firebase's Authentication
         firebaseAuth = FirebaseAuth.getInstance();

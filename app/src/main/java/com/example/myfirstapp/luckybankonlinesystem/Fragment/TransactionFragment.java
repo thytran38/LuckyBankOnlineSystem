@@ -79,7 +79,7 @@ public class TransactionFragment extends Fragment {
                 //FragmentManager fm = getSupportManager();
                 FragmentManager fragmentManager = getFragmentManager();
                 //mkaFragment.show(getSupportFragmentManager(),"this");
-                inflater.inflate(R.layout.make_a_transaction_fragment, container, false);
+                inflater.inflate(R.layout.transaction_fragment, container, false);
 
             }
         });

@@ -223,7 +223,7 @@
                     android:background="@color/login_form_details"/>
 
                 <Button
-                    android:id="@+id/BtnProfile_SaveButton"
+                    android:id="@+id/btnTransactionNow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
