@@ -1,14 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/userInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.MakeATransactionFragment">
+    android:background="@color/gray_dark_DarkMode"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/golddddd"
+        android:gravity="center">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                app:srcCompat="@mipmap/logo" />
+
+            <ImageView
+                android:id="@+id/iconCheck"
+                android:layout_width="46dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_round_info_24" />
+
+            <TextView
+                android:id="@+id/notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="logo"
+                android:text="Transaction has been executed"
+                android:textColor="@color/login_form_details"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCurrentBalance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="500,000,000 VND"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="40dp" />
+
+            <TextView
+                android:id="@+id/tvCurrentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="logo"
+                android:text="10:05 Friday 13/11/2020"
+                android:textColor="@color/login_form_details"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBeneficiaryName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_user"
+                    android:text="Beneficiary's name"
+                    android:textColor="@color/login_form_details"
+                    android:textColorHint="@color/login_form_details"
+                    android:textSize="18sp" />
+
+
+                <EditText
+                    android:id="@+id/etBeneficiary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="80"
+                    android:background="@drawable/btn_bg_lightmode"
+                    android:hint=""
+                    android:padding="16dp"
+                    android:textColor="@color/login_form_details"
+                    android:textColorHint="@color/login_form_details"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/tvBeneficiaryAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_user"
+                    android:text="Beneficiary's account"
+                    android:textColor="@color/login_form_details"
+                    android:textColorHint="@color/login_form_details"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etBeneAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="80"
+                    android:background="@drawable/btn_bg_lightmode"
+                    android:hint=""
+                    android:padding="16dp"
+                    android:textColor="@color/login_form_details"
+                    android:textColorHint="@color/login_form_details"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_user"
+                    android:text="Amount (multiplication of 500 VND)"
+                    android:textColor="@color/login_form_details"
+                    android:textColorHint="@color/login_form_details"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etTransAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="80"
+                    android:background="@drawable/btn_bg_lightmode"
+                    android:hint=""
+                    android:padding="16dp"
+                    android:textColor="@color/login_form_details"
+                    android:textColorHint="@color/login_form_details"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_user"
+                    android:text="Message"
+                    android:textColor="@color/login_form_details"
+                    android:textColorHint="@color/login_form_details"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etTransMes"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:alpha="40"
+                    android:background="@drawable/btn_bg_lightmode"
+                    android:hint=""
+                    android:padding="16dp"
+                    android:textColor="@color/login_form_details"
+                    android:textColorHint="@color/login_form_details"
+                    android:textSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/BtnProfile_SaveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="55dp"
+                    android:background="@drawable/btn_glossy"
+                    android:text="Transfer now"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -10,25 +10,78 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myfirstapp.luckybankonlinesystem.Adapter.TransactionOverviewAdapter;
-import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
-import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
-import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
+import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
+import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
+import com.example.myfirstapp.luckybankonlinesystem.R;
+import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.TransactionOverviewAdapter;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
+
+
+/**
+ * A simple {@link MainFragment} subclass.
+ * Use the {@link MainFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class MainFragment extends Fragment {
+
+    private ViewPager2 viewPager2;
+    private View v;
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+
+    private TextView hiTv;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public MainFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment Fragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static MainFragment newInstance(String param1, String param2) {
+        MainFragment fragment = new MainFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     private TextView hiTv, totalTransactionTv;
     private RecyclerView rvTransactionOverview;
@@ -43,7 +96,11 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        // Inflate the layout for this fragment
+        v = inflater.inflate(R.layout.main_fragment, container, false);
+
+        return v;
+
     }
 
     @Override
@@ -85,7 +142,26 @@ public class MainFragment extends Fragment {
         LocalBroadcastManager.getInstance(Objects.requireNonNull(getActivity())).registerReceiver(receiver, filter);
     }
 
+
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        CustomerModel cusm = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+        ArrayList<AccountModel> userAccounts = cusm.getAccounts();
+        AccountModel primeAcc = userAccounts.get(0);
+//        AccountModel savAcc = userAccounts.get(1);
+        String primeAccNumber = primeAcc.getAccountNumber();
+//        String savingAccNumber = savAcc.getAccountNumber();
+        viewPager2 = v.findViewById(R.id.viewPager);
+        viewPager2.setCurrentItem(R.layout.primary_card_view);
+        viewPager2.setAdapter(new CardAdapter(getActivity()));
+        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String cusmName1 = firebaseAuth.getCurrentUser().getUid();
+        String cusmName = cusm.getCustomerId();
+        hiTv = (TextView) getView().findViewById(R.id.tvHi);
+        String yourTotal = getString(R.string.total_balance);
+        String hello = "Hi " + cusmName1 + yourTotal;
     public void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(Objects.requireNonNull(getActivity())).unregisterReceiver(receiver);
@@ -100,6 +176,7 @@ public class MainFragment extends Fragment {
     private void setCurrentBalance(double currentBalance) {
         totalTransactionTv.setText(String.format(Locale.US, "%,d", (int) currentBalance));
     }
+
 
     private void updateTransactionHistoryList(TransactionModel lastTransaction) {
         TransactionOverviewAdapter adapter = (TransactionOverviewAdapter) rvTransactionOverview.getAdapter();

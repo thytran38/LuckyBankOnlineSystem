@@ -19,15 +19,15 @@ import java.util.Map;
 
 public class TransactionActivity extends AppCompatActivity {
     private EditText reciEt, idEt, messageEt, amountEt;
-    private Button transBtn, cancBtn;
+    private Button transBtn;
 
-    private static final String KEY_TRANSACTION_ID = "transactionID";
+    private static final String KEY_TRANSACTION_ID = "transactionid";
     private static final String KEY_ACCOUNT_RECEIVER = "receiver";
     private static final String KEY_ACC_SENDER = "sender";
-    private static final String KEY_RECEIVER_UID = "receiver UID";
-    private static final String KEY_SENDER_UID = "sender UID";
+    private static final String KEY_RECEIVER_UID = "receiverid";
+    private static final String KEY_SENDER_UID = "senderid";
     private static final String KEY_AMOUNT = "amount";
-    private static final String KEY_TRANSACTION_TIME = "timestamp of Transaction";
+    private static final String KEY_TRANSACTION_TIME = "timestamp";
     private static final String KEY_MESSAGE = "message";
 
     private static final String KEY_CURRENT_BALANCE = "currentBalance";
@@ -72,7 +72,7 @@ public class TransactionActivity extends AppCompatActivity {
 
         }
 
-        reciEt = (EditText)findViewById(R.id.etRecipientID);
+        reciEt = (EditText)findViewById(R.id.etAccnum);
         messageEt = (EditText)findViewById(R.id.etMessage);
         amountEt = (EditText)findViewById(R.id.etAmount);
 

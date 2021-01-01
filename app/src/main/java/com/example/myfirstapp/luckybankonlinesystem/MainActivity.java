@@ -12,6 +12,11 @@ import com.example.myfirstapp.luckybankonlinesystem.Fragment.MainFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.TransactionFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.UserInfoFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class MainActivity extends AppCompatActivity implements ChipNavigationBar.OnItemSelectedListener {
@@ -20,10 +25,8 @@ public class MainActivity extends AppCompatActivity implements ChipNavigationBar
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ChipNavigationBar chipNavigationBar = findViewById(R.id.menu);
         chipNavigationBar.setMenuOrientation(ChipNavigationBar.MenuOrientation.HORIZONTAL);
-
         chipNavigationBar.setOnItemSelectedListener(this);
         chipNavigationBar.setItemSelected(R.id.nav_main, true);
     }

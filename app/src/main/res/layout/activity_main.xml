@@ -12,8 +12,9 @@
         android:id="@+id/menu"
         android:layout_width="335dp"
         android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="630dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/round"
         android:elevation="18dp"
         android:padding="2dp"
@@ -33,13 +34,12 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTransactionOverview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
             </androidx.recyclerview.widget.RecyclerView>
     </FrameLayout>
 </RelativeLayout>

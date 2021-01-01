@@ -26,6 +26,7 @@
     <color name="gray_DarkMode">#211e21</color>
     <color name="gray_dark_DarkMode">#010002</color>
     <color name="yellow_light_DarkMode">#fef1bd</color>
+    <color name="yellow_middle">#FFE168</color>
     <color name="yellow_DarkMode">#fdd246</color>
     <color name="yellow_dark_DarkMode">#ffc62c</color>
     

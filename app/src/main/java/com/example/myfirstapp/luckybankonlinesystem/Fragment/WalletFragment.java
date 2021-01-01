@@ -4,18 +4,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
+import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
+import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link WalletFragment} subclass.
@@ -33,13 +37,12 @@ public class WalletFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String uID;
+    private View v;
     private TextView nameTv, accnumTv;
-    private String thisName, thisAccNum;
-    AccountModel am = new AccountModel();
-
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+    private String USER_NAME, ACCOUNT_NUMBER;
+    private TextView detailTv,numAcc;
+    private EditText numAcc2;
+    private ViewPager2 viewPager2;
 
 
     public WalletFragment() {
@@ -78,53 +81,52 @@ public class WalletFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //uID = user.getUid();
-        uID = "D57bMMXqpwRAJC8zDfisd1YvKgm1";
-
-
-
-        //thisName = FirebaseAuth.getInstance()..getDisplayName();
-//        nameTv.setText(uID);
-
-//
-//        if (user != null) {
-//            for (UserInfo profile : user.getProviderData()) {
-//                // Id of the provider (ex: google.com)
-//                String providerId = profile.getProviderId();
-//
-//                // UID specific to the provider
-//                String uid = profile.getUid();
-//
-//                // Name, email address, and profile photo Url
-//                String name = profile.getDisplayName();
-//                String email = profile.getEmail();
-//                Uri photoUrl = profile.getPhotoUrl();
-//            }
-//        }
-
-
-        db.collection("users").document(uID).collection("accounts")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        //am = (AccountModel) queryDocumentSnapshots.toObjects(AccountModel.class);
-                       // accnumTv.setText(am.getAccountNumber());
-                        //thisAccNum = queryDocumentSnapshots.toObjects(am);
-                    }
-                });
-
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.wallet_fragment, container, false);
+        v =  inflater.inflate(R.layout.wallet_fragment, container, false);
+        return v;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        nameTv = (TextView) getView().findViewById(R.id.tvUserName);
-        nameTv.setText(uID);
+       this.v = view;
+       init();
+        viewPager2 = v.findViewById(R.id.viewPager_2);
+        viewPager2.setCurrentItem(R.layout.primary_card_view);
+        viewPager2.setAdapter(new CardAdapter(getActivity()));
+        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
+    }
 
-        accnumTv = (TextView) getView().findViewById(R.id.tvAccnumber);
-        accnumTv.setText(uID);
+
+    public void init(){
+
+        CustomerModel cm = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+//        AccountModel[] am = getActivity().getIntent().getExtras().getParcelableArray(SplashScreenActivity.);
+        USER_NAME = cm.getFullName().toUpperCase().toString();
+        ArrayList<AccountModel> userAccounts = cm.getAccounts();
+        AccountModel primeAcc = userAccounts.get(0);
+        String primeAccNumber = primeAcc.getAccountNumber();
+        long dateCreatedInLong = primeAcc.getDateCreated();
+        Date dateCreatedInDate = Date.getInstance(dateCreatedInLong);
+        String date = dateCreatedInDate.toString();
+        double cBalance = primeAcc.getCurrentBalance();
+        String cBalanceStr = String.valueOf(cBalance);
+        String total = date + cBalanceStr;
+
+        ACCOUNT_NUMBER = primeAccNumber;
+        nameTv = (TextView) v.findViewById(R.id.tvUserName);
+        nameTv.setText(USER_NAME);
+
+        accnumTv = (TextView) v.findViewById(R.id.tvAccnumber);
+        accnumTv.setText(ACCOUNT_NUMBER);
+
+//        detailTv = (TextView)v.findViewById(R.id.tvDetails);
+//        detailTv.setText(total);
+
+        numAcc = (TextView)v.findViewById(R.id.tvTotalAcc);
+        int numOfAcc = userAccounts.size();
+        System.out.println(numOfAcc);
+        //Log.d("debug",String.valueOf(numOfAcc));
+ //       Logger.getLogger("debug",String.valueOf(numOfAcc));
+//        numAcc.setText(String.valueOf(numOfAcc));
     }
 }
