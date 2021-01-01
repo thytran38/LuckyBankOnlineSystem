@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#99000100"
+    android:layout_height="wrap_content"
+    android:background="@color/gray_DarkMode"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     tools:context=".Fragment.MainFragment">
@@ -21,49 +21,53 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
             <ImageView
-                android:id="@+id/imgLogo"
-                android:layout_width="131dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="55dp"
-                android:layout_marginBottom="40dp"
-                android:baselineAlignBottom="true"
-                app:srcCompat="@drawable/lobs_logo" />
+                android:id="@+id/imageView2"
+                android:layout_width="132dp"
+                android:layout_height="22dp"
+                android:src="@drawable/lobs_logo" />
 
             <TextView
                 android:id="@+id/tvHi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="30dp"
-                android:text="Make A New Transaction"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="New Transaction"
                 android:textAlignment="center"
-                android:textColor="#7E7E7E"
+                android:textColor="@color/gray_LightMode"
                 android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/etFullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg"
                 android:hint="Full Name of Recipient "
                 android:padding="16dp"
+                android:textAlignment="center"
                 android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
+                android:textColorHint="@color/white_LightMode"
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/etRecipientID"
+                android:id="@+id/etAccnum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/et_bg"
-                android:hint="ID Recipient"
+                android:hint="Account Number of Recipient"
                 android:padding="16dp"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
+                android:textAlignment="center"
+                android:textColor="@color/gray_LightMode"
+                android:textColorHint="@color/white_LightMode"
                 android:textSize="14sp" />
 
             <EditText
@@ -72,24 +76,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/et_bg"
-                android:hint="Amount of Transaction"
+                android:hint="Amount of Transaction (in Vietnamdong)"
                 android:padding="16dp"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
+                android:textAlignment="center"
+                android:textColor="@color/gray_LightMode"
+                android:textColorHint="@color/white_LightMode"
                 android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/etMessage"
                 android:layout_width="match_parent"
-                android:layout_height="93dp"
+                android:layout_height="116dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/et_bg"
                 android:hint="Message"
                 android:textAlignment="center"
-                android:textColor="@color/login_form_details"
-                android:textColorHint="@color/login_form_details"
+                android:textColor="@color/gray_LightMode"
+                android:textColorHint="@color/white_LightMode"
                 android:textSize="14sp" />
 
             <Button
@@ -105,7 +110,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="90dp" />
 
         </LinearLayout>
     </ScrollView>

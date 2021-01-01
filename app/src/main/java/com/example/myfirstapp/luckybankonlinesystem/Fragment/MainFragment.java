@@ -16,6 +16,7 @@ import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -100,10 +101,12 @@ public class MainFragment extends Fragment {
         viewPager2.setAdapter(new CardAdapter(getActivity()));
         viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
 
-        String cusmName = cusm.getFullName().toString();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String cusmName1 = firebaseAuth.getCurrentUser().getUid();
+        String cusmName = cusm.getCustomerId();
         hiTv = (TextView) getView().findViewById(R.id.tvHi);
         String yourTotal = getString(R.string.total_balance);
-        String hello = "Hi " + cusmName + yourTotal;
+        String hello = "Hi " + cusmName1 + yourTotal;
         hiTv.setText(hello);
 
 

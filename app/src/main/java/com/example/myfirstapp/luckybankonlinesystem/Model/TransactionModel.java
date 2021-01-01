@@ -3,9 +3,6 @@ package com.example.myfirstapp.luckybankonlinesystem.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.firebase.firestore.Exclude;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -16,6 +13,7 @@ public class TransactionModel implements Parcelable {
     private long timestamp;
     private String senderUID;
     private String receiverUID;
+    private String message;
     private double amount;
 
     public TransactionModel() {
@@ -78,6 +76,14 @@ public class TransactionModel implements Parcelable {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public String getMessage(){
+        return this.message;
+    }
+
+    public void setMessage(String newMess){
+        this.message = newMess;
     }
 
     @Override

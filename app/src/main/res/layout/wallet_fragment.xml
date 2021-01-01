@@ -54,59 +54,18 @@
                 android:textColor="#FFFFFF"
                 android:textSize="50sp" />
 
-            <FrameLayout
-                android:id="@+id/frameLayout"
-                android:layout_width="284dp"
-                android:layout_height="203dp"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="100dp">
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="50dp"
+                android:padding="20dp"
 
-                <ImageView
-                    android:id="@+id/imvCard1"
-                    android:layout_width="match_parent"
-                    android:layout_height="190dp"
-                    android:baselineAlignBottom="false"
-                    android:layoutDirection="inherit"
-                    android:textAlignment="center"
-                    app:srcCompat="@drawable/card"
-                    tools:srcCompat="@drawable/card" />
+                >
 
-                <TextView
-                    android:id="@+id/tvAccnumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="56dp"
-                    android:text="113141414141"
-                    android:textAllCaps="true"
-                    android:textColor="#B3B3B3"
-                    android:textSize="11sp" />
-
-                <TextView
-                    android:id="@+id/tvUserName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="35dp"
-                    android:text="USER NAME"
-                    android:textAllCaps="true"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/tvDetails"
-                    android:layout_width="235dp"
-                    android:layout_height="99dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="90dp"
-                    android:shadowColor="#FFFFFF"
-                    android:text="TextView"
-                    android:textColor="#FFFFFF"
-                    android:textColorHighlight="#FFFFFF"
-                    android:textSize="11.5sp" />
-
-            </FrameLayout>
+            </androidx.viewpager2.widget.ViewPager2>
 
             <Button
                 android:id="@+id/button"

@@ -1,12 +1,14 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -72,7 +74,7 @@ public class TransactionFragment extends Fragment {
         transBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MakeATransactionFragment mkaFragment = new MakeATransactionFragment();
+                NewTransactionDialog mkaFragment = new NewTransactionDialog();
                 mkaFragment.show(getFragmentManager(), "This new Fragment");
                 //FragmentManager fm = getSupportManager();
                 FragmentManager fragmentManager = getFragmentManager();
@@ -92,9 +94,14 @@ public class TransactionFragment extends Fragment {
         transBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment thisFragment = new MakeATransactionFragment();
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container,thisFragment);
-
+                DialogFragment thisFragment = new NewTransactionDialog();
+                try{
+                    thisFragment.show(getChildFragmentManager(),"New Transaction");
+                }
+                catch(Exception e){
+                    Log.d("Exception", e.getCause().toString());
+                }
+                Log.d("This button","Clicked");
             }
         });
     }

@@ -72,7 +72,7 @@ public class TransactionActivity extends AppCompatActivity {
 
         }
 
-        reciEt = (EditText)findViewById(R.id.etRecipientID);
+        reciEt = (EditText)findViewById(R.id.etAccnum);
         messageEt = (EditText)findViewById(R.id.etMessage);
         amountEt = (EditText)findViewById(R.id.etAmount);
 

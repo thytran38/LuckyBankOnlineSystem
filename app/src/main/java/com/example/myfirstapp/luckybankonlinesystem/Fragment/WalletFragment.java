@@ -1,7 +1,6 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
 import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
+import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
@@ -89,6 +90,10 @@ public class WalletFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
        this.v = view;
        init();
+        viewPager2 = v.findViewById(R.id.viewPager_2);
+        viewPager2.setCurrentItem(R.layout.primary_card_view);
+        viewPager2.setAdapter(new CardAdapter(getActivity()));
+        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
     }
 
 
@@ -114,12 +119,13 @@ public class WalletFragment extends Fragment {
         accnumTv = (TextView) v.findViewById(R.id.tvAccnumber);
         accnumTv.setText(ACCOUNT_NUMBER);
 
-        detailTv = (TextView)v.findViewById(R.id.tvDetails);
-        detailTv.setText(total);
+//        detailTv = (TextView)v.findViewById(R.id.tvDetails);
+//        detailTv.setText(total);
 
         numAcc = (TextView)v.findViewById(R.id.tvTotalAcc);
         int numOfAcc = userAccounts.size();
-        Log.d("debug",String.valueOf(numOfAcc));
+        System.out.println(numOfAcc);
+        //Log.d("debug",String.valueOf(numOfAcc));
  //       Logger.getLogger("debug",String.valueOf(numOfAcc));
 //        numAcc.setText(String.valueOf(numOfAcc));
     }
