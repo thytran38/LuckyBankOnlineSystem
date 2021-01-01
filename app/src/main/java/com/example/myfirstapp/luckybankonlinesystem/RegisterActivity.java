@@ -90,7 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
         Task<AuthResult> registerTask = auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = task.getResult().getUser();
+                        FirebaseUser user = Objects.requireNonNull(task.getResult()).getUser();
+                        assert user != null;
                         String uid = user.getUid();
                         CustomerModel model = new CustomerModel();
                         model.setCustomerId(uid);

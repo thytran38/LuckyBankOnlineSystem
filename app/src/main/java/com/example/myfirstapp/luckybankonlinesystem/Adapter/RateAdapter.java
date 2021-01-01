@@ -1,6 +1,8 @@
 package com.example.myfirstapp.luckybankonlinesystem.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,46 +11,59 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.RateViewHolder;
-import com.example.myfirstapp.luckybankonlinesystem.CurrencyConverterActivity;
 import com.example.myfirstapp.luckybankonlinesystem.Model.RateListModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.google.common.util.concurrent.AtomicDouble;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class RateAdapter extends RecyclerView.Adapter<RateViewHolder> {
 
-    String[] currencies;
-    Context context;
-    RateListModel model;
-    Double value;
-    String key;
+    private final String[] currencies;
+    private final Context context;
+    private final RateListModel model;
+    private Double value;
+    private String key;
+    private int oldColorCode;
+    private int index;
 
     public RateAdapter(Context context, String jsonObj) throws JSONException {
-
         currencies = context.getResources().getStringArray(R.array.currencies);
         model = new RateListModel(jsonObj, context);
         this.context = context;
+        index = -1;
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
     @NonNull
     @Override
     public RateViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.rate_row_item, parent, false);
-        return new RateViewHolder(view);
+        final View view = LayoutInflater.from(context).inflate(R.layout.rate_row_item, parent, false);
+        final RateViewHolder viewHolder = new RateViewHolder(view);
+        oldColorCode = viewHolder.getKeyField().getCurrentTextColor();
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RateViewHolder holder, int position) {
-        holder.setKey(currencies[position]);
+        holder.getKeyField().setText(currencies[position]);
         holder.itemView.setOnClickListener(v -> {
+            index = position;
             value = model.getValue(currencies[position]);
             key = currencies[position];
+            notifyDataSetChanged();
         });
-        holder.setValue(model.getValue(currencies[position]));
+        if (index == position) {
+            markAsSelected(holder);
+        } else {
+            restoreDefault(holder, oldColorCode);
+        }
+        holder.getValueField().setText(String.valueOf(model.getValue(currencies[position])));
     }
 
     @Override
@@ -66,5 +81,19 @@ public class RateAdapter extends RecyclerView.Adapter<RateViewHolder> {
         if (key == null)
             throw new IllegalAccessException("Please choose a rate");
         return key;
+    }
+
+    private void markAsSelected(RateViewHolder holder) {
+        holder.getKeyField().setTypeface(null, Typeface.BOLD);
+        holder.getKeyField().setTextColor(Color.rgb(0,0,0));
+        holder.getValueField().setTypeface(null, Typeface.BOLD);
+        holder.getValueField().setTextColor(Color.rgb(0,0,0));
+    }
+
+    private void restoreDefault(RateViewHolder holder, int colorCode) {
+        holder.getKeyField().setTypeface(null, Typeface.NORMAL);
+        holder.getKeyField().setTextColor(colorCode);
+        holder.getValueField().setTypeface(null, Typeface.NORMAL);
+        holder.getValueField().setTextColor(colorCode);
     }
 }

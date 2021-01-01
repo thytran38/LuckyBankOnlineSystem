@@ -30,4 +30,11 @@
         <item>TRY</item>
         <item>ZAR</item>
     </string-array>
+    <string-array name="gold">
+        <item>BTC</item>
+        <item>ETH</item>
+        <item>XAG</item>
+        <item>XAU</item>
+        <item>XPT</item>
+    </string-array>
 </resources>

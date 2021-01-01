@@ -18,11 +18,11 @@ public class RateViewHolder extends RecyclerView.ViewHolder {
         tvValue = itemView.findViewById(R.id.tvValue);
     }
 
-    public void setKey(String key) {
-        tvKey.setText(key);
+    public TextView getKeyField() {
+        return tvKey;
     }
 
-    public void setValue(double value) {
-        tvValue.setText(String.valueOf(value));
+    public TextView getValueField() {
+        return tvValue;
     }
 }
