@@ -11,8 +11,9 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/golddddd"
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,17 +24,17 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
+                android:layout_width="292dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="55dp"
                 app:srcCompat="@mipmap/logo" />
 
             <ImageView
                 android:id="@+id/iconCheck"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginBottom="20dp"
+                android:layout_width="46dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:src="@drawable/ic_round_info_24" />
 
             <TextView
@@ -41,25 +42,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="logo"
-                android:text="Transaction has not been executed"
+                android:text="Transaction has been executed"
                 android:textColor="@color/login_form_details"
-                android:textSize="16dp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/transactionNumber"
+                android:id="@+id/tvCurrentBalance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="500,000,000 VND"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="40dp" />
 
             <TextView
-                android:id="@+id/dateTime"
+                android:id="@+id/tvCurrentDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="logo"
@@ -74,7 +75,6 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/city"
                 android:orientation="vertical">
 
                 <TextView
@@ -91,10 +91,11 @@
 
 
                 <EditText
-                    android:id="@+id/txtBeneficiaryName"
+                    android:id="@+id/etBeneficiary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/et_bg2"
+                    android:alpha="80"
+                    android:background="@drawable/btn_bg_lightmode"
                     android:hint=""
                     android:padding="16dp"
                     android:textColor="@color/login_form_details"
@@ -104,7 +105,7 @@
 
                 <TextView
                     android:id="@+id/tvBeneficiaryAccount"
-                    android:layout_width="209dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:src="@drawable/ic_user"
@@ -114,10 +115,11 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/txtBeneficiaryAccount"
+                    android:id="@+id/etBeneAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/et_bg2"
+                    android:alpha="80"
+                    android:background="@drawable/btn_bg_lightmode"
                     android:hint=""
                     android:padding="16dp"
                     android:textColor="@color/login_form_details"
@@ -125,21 +127,22 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/tvTradingCode"
-                    android:layout_width="190dp"
+                    android:id="@+id/tvAmount"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:src="@drawable/ic_user"
-                    android:text="Trading code"
+                    android:text="Amount (multiplication of 500 VND)"
                     android:textColor="@color/login_form_details"
                     android:textColorHint="@color/login_form_details"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/txtTradingCode"
+                    android:id="@+id/etTransAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/et_bg2"
+                    android:alpha="80"
+                    android:background="@drawable/btn_bg_lightmode"
                     android:hint=""
                     android:padding="16dp"
                     android:textColor="@color/login_form_details"
@@ -148,7 +151,7 @@
 
                 <TextView
                     android:id="@+id/tvMessage"
-                    android:layout_width="190dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:src="@drawable/ic_user"
@@ -158,25 +161,26 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/txtMessage"
+                    android:id="@+id/etTransMes"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/et_bg2"
+                    android:layout_height="85dp"
+                    android:alpha="40"
+                    android:background="@drawable/btn_bg_lightmode"
                     android:hint=""
                     android:padding="16dp"
                     android:textColor="@color/login_form_details"
                     android:textColorHint="@color/login_form_details"
                     android:textSize="18sp" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/BtnProfile_SaveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="55dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/btn_bg"
-                    android:text="Make a new transaction"
+                    android:layout_marginTop="55dp"
+                    android:background="@drawable/btn_glossy"
+                    android:text="Transfer now"
                     android:textAllCaps="false"
                     android:textStyle="bold" />
 

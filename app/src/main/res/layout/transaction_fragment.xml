@@ -81,11 +81,11 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnTrans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_glossy"
                 android:text="New Transaction"
                 android:textAllCaps="false" />
 

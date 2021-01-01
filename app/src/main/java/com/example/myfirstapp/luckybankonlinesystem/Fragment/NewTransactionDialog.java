@@ -1,7 +1,11 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +19,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -64,6 +67,7 @@ public class NewTransactionDialog extends DialogFragment {
     private String mParam1;
     private String mParam2;
     private View v;
+    private Context context;
 //    public OnInputSelected mOnInputSelected;
 
 
@@ -102,7 +106,23 @@ public class NewTransactionDialog extends DialogFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+//        IntentFilter filter = new IntentFilter(FetchingDataService.INTENT_KEY + "." + FetchingDataService.USER_INFO_KEY);
+//        filter.addAction(FetchingDataService.INTENT_KEY + "." + FetchingDataService.TRANSACTION_HISTORY_KEY);
+//        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
+
+        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(context);
+        lbm.registerReceiver(receiver, new IntentFilter("filter_string"));
     }
+
+    public BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                String str = intent.getStringExtra("key");
+                // get all your data from intent and do what you want
+            }
+        }
+    };
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -118,34 +138,40 @@ public class NewTransactionDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.make_a_transaction_fragment, container, false);
+        v = inflater.inflate(R.layout.fragment_make_a_transaction, container, false);
         return v;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        context = activity;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         this.v = view;
-        CustomerModel customerModel = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
-        Logger.getLogger("debug000").warning("line 132" + customerModel.getCustomerId());
-        Logger.getLogger("debug000").warning(customerModel.getCustomerId());
-
-        String senderIDTest = "5252582852852";
-        fullName = (EditText) v.findViewById(R.id.etFullname);
-        reciId = (EditText)v.findViewById(R.id.etAccnum);
-        amount = (EditText)v.findViewById(R.id.etAmount);
-        message = (EditText)v.findViewById(R.id.etMessage);
-
-        putObjectToHashMap();
+//        CustomerModel customerModel = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+//
+//        String senderIDTest = "5252582852852";
+//        fullName = (EditText) v.findViewById(R.id.etFullname);
+//        reciId = (EditText)v.findViewById(R.id.etAccnum);
+//        amount = (EditText)v.findViewById(R.id.etAmount);
+//        message = (EditText)v.findViewById(R.id.etMessage);
+//
+//        putObjectToHashMap();
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        LocalBroadcastManager.getInstance(context).registerReceiver(receiver, IntentFilter);
 
         transferBtn = (Button)v.findViewById(R.id.btnTransfer);
         transferBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                requestNewTransaction();
+                Toast.makeText(getActivity(), "This btn", Toast.LENGTH_SHORT).show();
+                Logger.getLogger("debug000").warning("clicked");
+                //requestNewTransaction();
             }
         });
     }

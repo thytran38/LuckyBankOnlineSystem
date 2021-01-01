@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="65dp"
-                android:background="@drawable/et_bg"
+                android:background="@drawable/btn_bg_lightmode"
                 android:hint="Email address"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/et_bg"
+                android:background="@drawable/btn_bg_lightmode"
                 android:drawableEnd="@drawable/ic_eye"
                 android:hint="Password"
                 android:inputType="textPassword"
@@ -75,12 +75,12 @@
                 android:textColorHint="@color/login_form_details"
                 android:textSize="15sp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSend"
                 android:layout_width="163dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_glossy"
                 android:text="Login"
                 android:textAllCaps="false"
                 android:textColor="@color/black_LightMode"

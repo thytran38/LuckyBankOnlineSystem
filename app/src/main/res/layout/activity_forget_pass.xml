@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="145dp"
-                android:background="@drawable/et_bg"
+                android:background="@drawable/btn_bg_lightmode"
                 android:hint="Email address"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
@@ -64,12 +64,12 @@
                 android:textAlignment="center"
                 android:textSize="14sp"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_glossy"
                 android:text="Reset Password"
                 android:textAllCaps="false"
                 android:textColor="@color/black_LightMode"
