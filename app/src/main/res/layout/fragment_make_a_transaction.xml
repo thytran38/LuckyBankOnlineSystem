@@ -84,7 +84,7 @@
                     android:layout_marginTop="10dp"
                     android:padding="16dp"
                     android:src="@drawable/ic_user"
-                    android:text="Beneficiary's name"
+                    android:text="Beneficiary's Email"
                     android:textColor="@color/login_form_details"
                     android:textColorHint="@color/login_form_details"
                     android:textSize="18sp" />
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:src="@drawable/ic_user"
-                    android:text="Beneficiary's account"
+                    android:text="Beneficiary's Account Number"
                     android:textColor="@color/login_form_details"
                     android:textColorHint="@color/login_form_details"
                     android:textSize="18sp" />

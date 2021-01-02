@@ -169,10 +169,7 @@ public class NewTransactionDialog extends DialogFragment {
         transferBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (reciId.getText().toString().isEmpty() || fullName.getText().toString().isEmpty() || amount.getText().toString().isEmpty() || message.getText().toString().isEmpty()) {
-                    Toast.makeText(getActivity(), "No empty field.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+
                 Logger.getLogger("debug000").warning("clicked");
                 Toast.makeText(getActivity(), "Request created.", Toast.LENGTH_SHORT).show();
 //                requestNewTransaction();
@@ -223,7 +220,10 @@ public class NewTransactionDialog extends DialogFragment {
         reciId = (EditText) v.findViewById(R.id.etBeneAccount);
         amount = (EditText) v.findViewById(R.id.etTransAmount);
         message = (EditText) v.findViewById(R.id.etTransMes);
-
+        if (reciId.getText().toString().isEmpty() || fullName.getText().toString().isEmpty() || amount.getText().toString().isEmpty() || message.getText().toString().isEmpty()) {
+            Toast.makeText(getActivity(), "No empty field.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String fname = fullName.getText().toString();
         partnerAccountNum = reciId.getText().toString();
         String famount = amount.getText().toString();

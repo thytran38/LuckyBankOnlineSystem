@@ -12,10 +12,6 @@ import com.example.myfirstapp.luckybankonlinesystem.Fragment.MainFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.TransactionFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.UserInfoFragment;
 import com.example.myfirstapp.luckybankonlinesystem.Fragment.WalletFragment;
-import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
-import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 

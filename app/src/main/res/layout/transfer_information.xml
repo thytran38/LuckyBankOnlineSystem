@@ -4,15 +4,15 @@
     android:id="@+id/userInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_dark_DarkMode"
+    android:background="@drawable/golddddd"
     android:gravity="center"
     android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="wrap_content"
+                android:layout_width="292dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="55dp"
                 app:srcCompat="@mipmap/logo" />
@@ -32,8 +32,9 @@
                 android:id="@+id/iconCheck"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/ic_baseline_account_circle_24"
                 android:src="@drawable/ic_round_info_24" />
 
             <TextView
@@ -41,8 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="logo"
-                android:text="Transaction has not been executed"
-                android:textColor="@color/login_form_details"
+                android:text="Success!"
+                android:textColor="@color/colorPrimary2"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -51,8 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="500,000,000 VND"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -74,165 +75,156 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/city"
                 android:orientation="vertical">
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/login_form_details"/>
+                    android:background="@color/login_form_details" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvBeneficiaryName"
-                        android:layout_width="190dp"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:src="@drawable/ic_user"
-                        android:text="Beneficiary's name"
-                        android:textColor="@color/login_form_details"
-                        android:textColorHint="@color/login_form_details"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/txtBeneficiaryName"
-                        android:layout_width="230dp"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="-15dp"
-                        android:src="@drawable/ic_user"
-                        android:text="Text View 1"
-                        android:textColor="@color/login_form_details"
-                        android:textColorHint="@color/login_form_details"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/login_form_details"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <TextView
-                        android:id="@+id/tvBeneficiaryAccount"
-                        android:layout_width="209dp"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:src="@drawable/ic_user"
-                        android:text="Beneficiary's account"
-                        android:textColor="@color/login_form_details"
-                        android:textColorHint="@color/login_form_details"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/txtBeneficiaryAccount"
-                        android:layout_width="230dp"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:gravity="center"
-                        android:layout_marginLeft="-34dp"
-                        android:src="@drawable/ic_user"
-                        android:text="Text View 2"
-                        android:textColor="@color/login_form_details"
-                        android:textColorHint="@color/login_form_details"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/login_form_details"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvTradingCode"
-                        android:layout_width="190dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
                         android:src="@drawable/ic_user"
-                        android:text="Trading code"
+                        android:text="Transaction Number"
                         android:textColor="@color/login_form_details"
                         android:textColorHint="@color/login_form_details"
-                        android:textSize="18sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/txtTradingCode"
-                        android:layout_width="230dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
                         android:gravity="center"
-                        android:layout_marginLeft="-15dp"
+                        android:padding="16dp"
                         android:src="@drawable/ic_user"
-                        android:text="Text View 3"
+                        android:text="5525252626262"
+                        android:textAlignment="textStart"
                         android:textColor="@color/login_form_details"
                         android:textColorHint="@color/login_form_details"
-                        android:textSize="18sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvBeneficiaryName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_user"
+                        android:text="Beneficiary's Email"
+                        android:textColor="@color/login_form_details"
+                        android:textColorHint="@color/login_form_details"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtBeneficiaryName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_user"
+                        android:text="anonymous@gmail.com"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/login_form_details"
+                        android:textColorHint="@color/login_form_details"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/login_form_details"/>
+                    android:background="@color/login_form_details" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvBeneficiaryAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_user"
+                        android:text="Beneficiary's Account Number"
+                        android:textColor="@color/login_form_details"
+                        android:textColorHint="@color/login_form_details"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtBeneficiaryAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:src="@drawable/ic_user"
+                        android:text="1609503860"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/login_form_details"
+                        android:textColorHint="@color/login_form_details"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/login_form_details" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/login_form_details" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvMessage"
-                        android:layout_width="190dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
                         android:src="@drawable/ic_user"
                         android:text="Message"
                         android:textColor="@color/login_form_details"
                         android:textColorHint="@color/login_form_details"
-                        android:textSize="18sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/txtMessage"
-                        android:layout_width="230dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
                         android:gravity="center"
-                        android:layout_marginLeft="-15dp"
+                        android:padding="16dp"
                         android:src="@drawable/ic_user"
-                        android:text="Text View 4"
+                        android:text="Thanks"
+                        android:textAlignment="textStart"
                         android:textColor="@color/login_form_details"
                         android:textColorHint="@color/login_form_details"
-                        android:textSize="18sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/login_form_details"/>
-
-                <Button
-                    android:id="@+id/btnTransactionNow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="55dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/btn_bg"
-                    android:text="Make a new transaction"
-                    android:textAllCaps="false"
-                    android:textStyle="bold" />
+                    android:layout_height="60dp"
+                    android:background="@color/login_form_details" />
 
             </LinearLayout>
         </LinearLayout>

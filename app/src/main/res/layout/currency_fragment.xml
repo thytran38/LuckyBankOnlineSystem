@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="120dp"
-                android:layout_height="80dp"
+                android:layout_width="131dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="55dp"
                 android:layout_marginBottom="20dp"
@@ -30,14 +30,15 @@
 
             <TextView
                 android:id="@+id/tv01"
-                android:layout_width="160dp"
-                android:layout_height="45dp"
+                android:layout_width="212dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
                 android:text="Currency Converter"
                 android:textAlignment="center"
                 android:textColor="#7E7E7E"
-                android:textSize="16dp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/txtFirstCurrency"
@@ -45,11 +46,14 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_cancel_bg"
+                android:background="@drawable/btn_bg_lightmode"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="number"
                 android:hint=" Please add a number "
+                android:inputType="number"
+                android:textColor="#CDCDCD"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#EDEDED"
                 android:textColorLink="#FFFFFF" />
 
             <Button
@@ -70,14 +74,17 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="40dp"
-                android:background="@drawable/btn_cancel_bg"
+                android:background="@drawable/btn_bg_lightmode"
                 android:ems="10"
-                android:gravity="center"
-                android:inputType="number"
-                android:hint="_____________"
                 android:enabled="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="_____________"
+                android:inputType="number"
+                android:textColor="#CDCDCD"
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textColorLink="#FFFFFF" />
 
             <TextView
