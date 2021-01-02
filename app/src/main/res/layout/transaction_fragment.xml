@@ -52,21 +52,12 @@
                 android:layout_width="322dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="40dp"
 
                 android:text="20"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="50sp" />
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="60dp"
-                android:background="@color/yellow_DarkMode"
-                android:text="Switch" />
 
             <androidx.recyclerview.widget.RecyclerView
 
@@ -75,7 +66,7 @@
                 android:layout_height="257dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="68dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_bg_non_glossy"
                 android:padding="40dp"
                 android:textAlignment="center">
 
@@ -92,7 +83,7 @@
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_height="140dp" />
 
         </LinearLayout>
     </ScrollView>

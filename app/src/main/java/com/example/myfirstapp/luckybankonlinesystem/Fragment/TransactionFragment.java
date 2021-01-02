@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -74,8 +73,8 @@ public class TransactionFragment extends Fragment {
         transBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewTransactionDialog mkaFragment = new NewTransactionDialog();
-                mkaFragment.show(getFragmentManager(), "This new Fragment");
+                //NewTransactionDialog mkaFragment = new NewTransactionDialog();
+                //mkaFragment.show(getFragmentManager(), "This new Fragment");
                 //FragmentManager fm = getSupportManager();
                 FragmentManager fragmentManager = getFragmentManager();
                 //mkaFragment.show(getSupportFragmentManager(),"this");
@@ -94,9 +93,9 @@ public class TransactionFragment extends Fragment {
         transBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment thisFragment = new NewTransactionDialog();
+                //DialogFragment thisFragment = new NewTransactionDialog();
                 try{
-                    thisFragment.show(getChildFragmentManager(),"New Transaction");
+                    //thisFragment.show(getChildFragmentManager(),"New Transaction");
                 }
                 catch(Exception e){
                     Log.d("Exception", e.getCause().toString());

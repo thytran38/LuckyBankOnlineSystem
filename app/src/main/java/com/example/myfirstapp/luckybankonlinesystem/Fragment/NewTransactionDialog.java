@@ -1,3 +1,4 @@
+/*
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
 import android.app.Activity;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,24 +28,28 @@ import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+*/
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NewTransactionDialog#newInstance} factory method to
  * create an instance of this fragment.
- */
+ *//*
+
 public class NewTransactionDialog extends DialogFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private EditText fullName, reciId, amount, message;
+    private EditText eMail, reciId, amount, message;
     private String senderID, partnerID;
     private Button transferBtn;
     private String partnerAccountNum;
@@ -61,9 +67,12 @@ public class NewTransactionDialog extends DialogFragment {
     CustomerModel customerModel;
     ArrayList<AccountModel> accountModelArrayList;
     AccountModel primAcc;
+    String senderUID, receiver_uid;
     private double inputAmount;
     private double currBalance;
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     private final CollectionReference transactionRecord = db.collection("transactions");
     private CollectionReference userTransaction;
@@ -81,14 +90,16 @@ public class NewTransactionDialog extends DialogFragment {
         // Required empty public constructor
     }
 
-    /**
+    */
+/**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
      * @return A new instance of fragment MakeATransactionFragment.
-     */
+     *//*
+
     // TODO: Rename and change types and number of parameters
     public static NewTransactionDialog newInstance(String param1, String param2) {
         NewTransactionDialog fragment = new NewTransactionDialog();
@@ -134,9 +145,9 @@ public class NewTransactionDialog extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            //mOnInputSelected = (OnInputSelected) getTargetFragment();
-        } catch (ClassCastException e) {
-            //Log.e(TAG, "onAttach: ClassCastException : " + e.getMessage() );
+                Logger.getLogger("debug000").warning("onAttach here");
+         } catch (ClassCastException e) {
+            Log.e("debug000", "onAttach: ClassCastException : " + e.getMessage());
         }
     }
 
@@ -160,7 +171,10 @@ public class NewTransactionDialog extends DialogFragment {
         this.v = view;
 //
         customerModel = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
+        //get some data
+        senderUID = firebaseUser.getUid();
 
+        //open dialog
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 //        LocalBroadcastManager.getInstance(context).registerReceiver(receiver, IntentFilter);
@@ -169,22 +183,38 @@ public class NewTransactionDialog extends DialogFragment {
         transferBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                transactionFormValidate();
+                if (reciId.getText().toString().isEmpty() || eMail.getText().toString().isEmpty() || amount.getText().toString().isEmpty() || message.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "No empty field.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Logger.getLogger("debug000").warning("clicked");
                 Toast.makeText(getActivity(), "Request created.", Toast.LENGTH_SHORT).show();
 //                requestNewTransaction();
-                transactionForm();
+                if (!transactionFormValidate()) {
+                    Toast.makeText(getActivity(), "Check input.", Toast.LENGTH_SHORT).show();
+                    try {
+                        //doTransact();
+                    } catch (NullPointerException npe) {
+                        Logger.getLogger("debug000").warning(npe.getMessage().toString());
+                    }
+//                } else if (doTransact()) {
+//
+//                    doTransact();
+//                }
+                }
             }
+
         });
     }
 
     public void requestNewTransaction() {
         if (accountExist() && sufficientBalance()) {
-            transactionForm();
+            //doTransact();
         }
     }
 
-    public boolean accountExist(){
+    public boolean accountExist() {
         boolean f = false;
         db.collection("users").document(partnerAccountNum).collection("accounts").get();
 
@@ -192,49 +222,104 @@ public class NewTransactionDialog extends DialogFragment {
 
     }
 
-    public boolean sufficientBalance(){
+    public boolean sufficientBalance() {
         boolean f = false;
         accountModelArrayList = customerModel.getAccounts();
         primAcc = accountModelArrayList.get(0);
-        currBalance  = primAcc.getCurrentBalance();
-        if(currBalance > inputAmount){
+        currBalance = primAcc.getCurrentBalance();
+        Logger.getLogger("debug000").warning(String.valueOf(currBalance));
+        if (currBalance > inputAmount) {
             f = true;
         }
         return f;
     }
 
-    public boolean correctAmount(){
+    public boolean correctAmount(Double anyAmount) {
         boolean f = false;
         double mod = inputAmount % 500;
-        if((int)mod == 0){
+        if ((int) mod == 0) {
             f = true;
         }
         return f;
     }
 
-    public void transactionForm() {
+    public boolean transactionFormValidate() {
 //        this.customerModel = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+        boolean res = false;
         TransactionModel newTransaction = new TransactionModel();
 
-        fullName = (EditText) v.findViewById(R.id.etBeneficiary);
+        eMail = (EditText) v.findViewById(R.id.etBeneficiary);
         reciId = (EditText) v.findViewById(R.id.etBeneAccount);
         amount = (EditText) v.findViewById(R.id.etTransAmount);
         message = (EditText) v.findViewById(R.id.etTransMes);
-        if (reciId.getText().toString().isEmpty() || fullName.getText().toString().isEmpty() || amount.getText().toString().isEmpty() || message.getText().toString().isEmpty()) {
-            Toast.makeText(getActivity(), "No empty field.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String fname = fullName.getText().toString();
+
+        String reciEmail = eMail.getText().toString();
         partnerAccountNum = reciId.getText().toString();
         String famount = amount.getText().toString();
         String fmessage = message.getText().toString();
 
         inputAmount = Double.parseDouble(famount);
+        if (correctAmount(inputAmount)) {
+            Toast.makeText(getActivity(), "Correct amount format", Toast.LENGTH_SHORT).show();
+            Logger.getLogger("debug000").warning("valid");
+            while (!correctAmount(inputAmount)) {
+                Toast.makeText(getActivity(), "input again", Toast.LENGTH_SHORT).show();
+                Logger.getLogger("debug000").warning("invalid amount input");
+            }
+        }
 
-        Toast.makeText(getActivity(), fname + partnerAccountNum + famount + fmessage, Toast.LENGTH_SHORT).show();
-        Logger.getLogger("debug000").warning(fname + "  " + partnerAccountNum + "  " + famount + "  " + fmessage);
+        if (sufficientBalance()) {
+            Logger.getLogger("debug000").warning("enough");
+            while (!sufficientBalance()) {
+                Toast.makeText(getActivity(), "input again", Toast.LENGTH_SHORT).show();
+                Logger.getLogger("debug000").warning("insufficient");
+            }
+        }
 
+        if (accountExist()) {
+            Logger.getLogger("debug000").warning("existed");
+
+            while (!accountExist()) {
+                Toast.makeText(getActivity(), "input again", Toast.LENGTH_SHORT).show();
+                Logger.getLogger("debug000").warning("not existed acc");
+            }
+        }
+        Toast.makeText(getActivity(), reciEmail + partnerAccountNum + famount + fmessage, Toast.LENGTH_SHORT).show();
+        Logger.getLogger("debug000").warning(reciEmail + "  " + partnerAccountNum + "  " + famount + "  " + fmessage);
+        return res;
     }
+
+//    public boolean doTransact() {
+//        boolean result = false;
+//        TransactionModel newTrans = new TransactionModel();
+//        long epochSec = newTrans.getTimestamp();
+//        //getDate
+//        Logger.getLogger("debug000").warning(String.valueOf(epochSec));
+//        //get Timestamp-------------Use epochSec
+//        //get senderUID
+//        String transSenderUID = senderUID;
+//
+//        //get receiver UID
+//        //put fields to Model
+//        newTrans.setTransactionID(String.valueOf(epochSec));
+//        newTrans.setTimestamp(epochSec);
+//        newTrans.setSenderUID(transSenderUID);
+//        newTrans.setReceiverUID(partnerAccountNum);
+//        newTrans.setAmount(inputAmount);
+//        newTrans.setSenderName(firebaseUser.getEmail());
+//        newTrans.setReceiverName(eMail.getText().toString());
+//        newTrans.setMessage(message.getText().toString());
+//        Logger.getLogger("debug000").warning(String.valueOf(transSenderUID +" " +transSenderUID+"  "+partnerAccountNum+"  "+inputAmount+"  "+message.getText().toString()));
+//
+//        //
+//
+//        db.collection("transactions").add(newTrans);
+//
+//
+//
+//        return result;
+//    }
 
 
 }
+*/
