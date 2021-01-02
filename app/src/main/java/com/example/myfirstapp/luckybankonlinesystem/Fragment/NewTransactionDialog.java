@@ -1,4 +1,4 @@
-/*
+
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
 import android.app.Activity;
@@ -20,7 +20,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
@@ -32,16 +31,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-*/
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewTransactionDialog#newInstance} factory method to
- * create an instance of this fragment.
- *//*
+
 
 public class NewTransactionDialog extends DialogFragment {
 
@@ -50,7 +45,7 @@ public class NewTransactionDialog extends DialogFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private EditText eMail, reciId, amount, message;
-    private String senderID, partnerID;
+    private String senderID, partnerID, inputEmail;
     private Button transferBtn;
     private String partnerAccountNum;
     private CollectionReference collectionReference;
@@ -90,15 +85,7 @@ public class NewTransactionDialog extends DialogFragment {
         // Required empty public constructor
     }
 
-    */
-/**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MakeATransactionFragment.
-     *//*
+
 
     // TODO: Rename and change types and number of parameters
     public static NewTransactionDialog newInstance(String param1, String param2) {
@@ -289,6 +276,17 @@ public class NewTransactionDialog extends DialogFragment {
         return res;
     }
 
+    public void updateBalance(){
+        if(sufficientBalance()){
+            db.collection("users").document(firebaseUser.getUid()).collection("accounts").document("0")
+                    .update("currentBalance",currBalance-inputAmount);
+        }
+
+        Query getuserByEmail = db.collection("users").whereEqualTo("email",inputEmail);
+
+
+    }
+
 //    public boolean doTransact() {
 //        boolean result = false;
 //        TransactionModel newTrans = new TransactionModel();
@@ -322,4 +320,4 @@ public class NewTransactionDialog extends DialogFragment {
 
 
 }
-*/
+
