@@ -30,6 +30,12 @@ public class WaitingDialog extends DialogFragment {
     private LottieAnimationView animationView;
     private final Context context;
 
+    public interface OnWaitingDialogCompletedListener {
+        void onWaitingDialogCompleted();
+    }
+
+    private OnWaitingDialogCompletedListener listener;
+
     public WaitingDialog(Context context, int waitingAnimationId) {
         this.context = context;
         this.setCancelable(false);
@@ -45,6 +51,10 @@ public class WaitingDialog extends DialogFragment {
     public WaitingDialog(Context context, int waitingAnimationId, Task waitingTask) {
         this(context, waitingAnimationId);
         this.waitingTask = waitingTask;
+    }
+
+    public void setOnWaitingDialogCompletedListener(OnWaitingDialogCompletedListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -80,5 +90,7 @@ public class WaitingDialog extends DialogFragment {
     private void cancel() {
         animationView.cancelAnimation();
         this.dismiss();
+        if (listener != null)
+            listener.onWaitingDialogCompleted();
     }
 }

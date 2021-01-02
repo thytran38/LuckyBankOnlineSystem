@@ -1,7 +1,5 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,128 +9,46 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
+import java.util.Locale;
+import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NewTransactionDialog#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class NewTransactionDialog extends DialogFragment {
+    private EditText etRecipientName, etRecipientID, etAmount, etMessage;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private EditText fullName, reciId, amount, message;
-    private String senderID,partnerID;
-    private Button transferBtn;
-    private String partnerAccountNum;
-    private CollectionReference collectionReference;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    private static final String KEY_PARTNER_ID = "receiverid";
-    private static final String KEY_PARTNER_NAME = "receivername";
-    private static final String KEY_SENDER_ID = "senderid";
-    private static final String KEY_SENDER_NAME = "sendername";
-    private static final String KEY_AMOUNT = "amount";
-    private static final String KEY_MESSAGE = "message";
-    private static final String KEY_DATE_CREATED = "datecreated";
-
-    private final CollectionReference transactionRecord = db.collection("transactions");
-    private CollectionReference userTransaction;
-
-
-
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private View v;
-    private Context context;
-//    public OnInputSelected mOnInputSelected;
 
+    private double realtimeBalance;
 
-    public NewTransactionDialog() {
-        // Required empty public constructor
-    }
+    private TextView tvCurrentBalance;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MakeATransactionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static NewTransactionDialog newInstance(String param1, String param2) {
-        NewTransactionDialog fragment = new NewTransactionDialog();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @NonNull
-    @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return super.onCreateDialog(savedInstanceState);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-//        IntentFilter filter = new IntentFilter(FetchingDataService.INTENT_KEY + "." + FetchingDataService.USER_INFO_KEY);
-//        filter.addAction(FetchingDataService.INTENT_KEY + "." + FetchingDataService.TRANSACTION_HISTORY_KEY);
-//        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter);
-
-        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(context);
-        lbm.registerReceiver(receiver, new IntentFilter("filter_string"));
-    }
-
-    public BroadcastReceiver receiver = new BroadcastReceiver() {
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent != null) {
-                String str = intent.getStringExtra("key");
-                // get all your data from intent and do what you want
-            }
+            CustomerModel userInfo = intent.getParcelableExtra(FetchingDataService.USER_INFO_KEY);
+            realtimeBalance = userInfo.getAccounts().get(0).getCurrentBalance();
+            updateCurrentBalance(realtimeBalance);
         }
     };
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        try{
-            //mOnInputSelected = (OnInputSelected) getTargetFragment();
-        }catch (ClassCastException e){
-            //Log.e(TAG, "onAttach: ClassCastException : " + e.getMessage() );
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -143,106 +59,123 @@ public class NewTransactionDialog extends DialogFragment {
     }
 
     @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-        context = activity;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.v = view;
-//        CustomerModel customerModel = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
-//
-//        String senderIDTest = "5252582852852";
-//        fullName = (EditText) v.findViewById(R.id.etFullname);
-//        reciId = (EditText)v.findViewById(R.id.etAccnum);
-//        amount = (EditText)v.findViewById(R.id.etAmount);
-//        message = (EditText)v.findViewById(R.id.etMessage);
+
+        etRecipientName = v.findViewById(R.id.etBeneficiary);
+        etRecipientID = v.findViewById(R.id.etBeneAccount);
+        etAmount = v.findViewById(R.id.etTransAmount);
+        etMessage = v.findViewById(R.id.etTransMes);
+        tvCurrentBalance = v.findViewById(R.id.tvCurrentBalance);
 //
 //        putObjectToHashMap();
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        LocalBroadcastManager.getInstance(context).registerReceiver(receiver, IntentFilter);
 
-        transferBtn = (Button)v.findViewById(R.id.btnTransfer);
-        transferBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "This btn", Toast.LENGTH_SHORT).show();
-                Logger.getLogger("debug000").warning("clicked");
-                //requestNewTransaction();
-            }
-        });
+        CustomerModel userInfo = getActivity().getIntent().getParcelableExtra(FetchingDataService.USER_INFO_KEY);
+        realtimeBalance = userInfo.getAccounts().get(0).getCurrentBalance();
+        updateCurrentBalance(realtimeBalance);
+
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
+        v.findViewById(R.id.btnTransaction_Transfer)
+                .setOnClickListener(i -> {
+                    if (validateFields()) {
+                        long targetAccount = Long.parseLong(etRecipientID.getText().toString());
+                        String targetName = etRecipientName.getText().toString();
+                        double amount = Double.parseDouble(etAmount.getText().toString());
+                        String message = etMessage.getText().toString();
+                        long dateCreated = Date.getInstance().getEpochSecond();
+                        if (realtimeBalance - amount <= 50000) {
+                            Toast.makeText(getContext(), "Your current balance is not enough", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        Task<QuerySnapshot> transferTask = db.collection("users")
+                                .get()
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        QuerySnapshot snapshot = task.getResult();
+                                        assert snapshot != null;
+                                        for (DocumentSnapshot data : snapshot.getDocuments()) {
+                                            CustomerModel targetUser = data.toObject(CustomerModel.class);
+                                            assert targetUser != null;
+                                            targetUser.setCustomerId(data.getId());
+                                            if (targetUser.getAccounts().get(0).getDateCreated() == targetAccount) {
+                                                fAuth.fetchSignInMethodsForEmail(targetName)
+                                                        .addOnCompleteListener(task1 -> {
+                                                            SignInMethodQueryResult result = task1.getResult();
+                                                            if (result.getSignInMethods().isEmpty()) {
+                                                                Toast.makeText(getContext(), "Recipient's email is not existed", Toast.LENGTH_LONG).show();
+                                                            } else {
+                                                                TransactionModel model = new TransactionModel();
+                                                                model.setTimestamp(dateCreated);
+                                                                model.setAmount(amount);
+                                                                model.setReceiverUID(data.getId());
+                                                                model.setReceiverName(targetName);
+                                                                assert firebaseUser != null;
+                                                                model.setSenderUID(firebaseUser.getUid());
+                                                                model.setSenderName(firebaseUser.getEmail());
+                                                                model.setMessage(message);
+                                                                db.collection("transactions")
+                                                                        .document(String.valueOf(model.getTimestamp()))
+                                                                        .set(model);
+                                                                targetUser.getAccounts().get(0).setCurrentBalance(targetUser.getAccounts().get(0).getCurrentBalance() + amount);
+                                                                data.getReference().set(targetUser);
+                                                                db.collection("users")
+                                                                        .document(firebaseUser.getUid())
+                                                                        .get()
+                                                                        .addOnSuccessListener(resultOfSubTask -> {
+                                                                            CustomerModel sourceUser = resultOfSubTask.toObject(CustomerModel.class);
+                                                                            sourceUser.setCustomerId(resultOfSubTask.getId());
+                                                                            sourceUser.getAccounts().get(0)
+                                                                                    .setCurrentBalance(sourceUser.getAccounts().get(0).getCurrentBalance() - amount);
+                                                                            resultOfSubTask.getReference()
+                                                                                    .set(sourceUser);
+                                                                        });
+                                                            }
+                                                        });
+                                                return;
+                                            }
+                                        }
+                                        Toast.makeText(getContext(), "Recipient's account number is not existed", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                        WaitingDialog dialog = new WaitingDialog(getContext(), R.raw.loading_animation, transferTask);
+                        dialog.show(getActivity().getSupportFragmentManager(), null);
+                        dialog.setOnWaitingDialogCompletedListener(() -> {
+                            TransferInformationFragment fragment = new TransferInformationFragment(amount,
+                                    dateCreated, String.valueOf(dateCreated), targetName, targetAccount, message);
+                            fragment.show(getActivity().getSupportFragmentManager(), null);
+                        });
+                    }
+                });
     }
 
-    public void requestNewTransaction(){
-//        checkAccountValidation();
-//        validateFields();
-//        if(checkAccountValidation()  && validateFields())
-//            {
-//            }
-        transactionForm();
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter filter = new IntentFilter(FetchingDataService.INTENT_KEY + "." + FetchingDataService.USER_INFO_KEY);
+        LocalBroadcastManager.getInstance(Objects.requireNonNull(getContext())).registerReceiver(receiver, filter);
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(Objects.requireNonNull(getContext())).unregisterReceiver(receiver);
+    }
 
-    public boolean validateFields(){
-        if(reciId.getText().toString().isEmpty() || fullName.getText().toString().isEmpty() || amount.getText().toString().isEmpty() || message.getText().toString().isEmpty()){
+    public boolean validateFields() {
+        if (etRecipientID.getText().toString().isEmpty() || etRecipientName.getText().toString().isEmpty() || etAmount.getText().toString().isEmpty() || etMessage.getText().toString().isEmpty()) {
             Toast.makeText(getActivity(), "No empty field.", Toast.LENGTH_SHORT).show();
-            return false;}
-        else return true;
+            return false;
+        } else return true;
+        // 1609159285
     }
 
-    public boolean checkAccountValidation() {
-        boolean valid = false;
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        partnerAccountNum = reciId.getText().toString();
-        collectionReference = db.collection("user").document("pIKOVzXcWQhu0cNZvlyjxm7x0K12").collection("accounts").document("0").getParent();
-        Logger.getLogger("debug000").warning(String.valueOf(collectionReference.getParent().toString()));
-
-
-
-
-
-
-        return true;
+    private void updateCurrentBalance(double currentBalance) {
+        tvCurrentBalance.setText(String.format(Locale.US, "%,3d", (int) currentBalance));
     }
-
-    public void transactionForm(){
-//        this.customerModel = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
-        TransactionModel newTransaction = new TransactionModel();
-        newTransaction.setReceiverUID(reciId.getText().toString());
-        newTransaction.setSenderUID("1414144114");
-        double newAmount = Double.parseDouble(amount.getText().toString());
-        newTransaction.setAmount(newAmount);
-        String newMes = message.getText().toString();
-        newTransaction.setMessage(newMes);
-        Logger.getLogger("debug000").warning("reci" +reciId.getText().toString());
-        //Logger.getLogger("debug000").warning("senderId"+customerModel.getCustomerId().toString());
-        Logger.getLogger("debug000").warning( "amount"+String.valueOf(newAmount) );
-
-        putObjectToHashMap();
-
-    }
-
-    public void putObjectToHashMap(){
-        //Query to Receiver's accounts
-        //this.userTransaction = db.collection("users").document(customerModel.getCustomerId()).collection("accounts").document("0").getParent();
-
-        String getUserFromFullnameQuery = db.collection("users").whereEqualTo("fullName","Thy Tran Yen").get().toString();
-        Logger.getLogger("debug000").warning(getUserFromFullnameQuery);
-        Logger.getLogger("debug000").warning(userTransaction.whereEqualTo("email","ax4409h@gmail.com").toString());
-        //DocumentReference = db.collection("users").document("IKOVzXcWQhu0cNZvlyjxm7x0K12").collection("transactions").document("0");
-        Map<String, Object> note = new HashMap<>();
-
-
-
-
-
-
-    }
-
-
 }
