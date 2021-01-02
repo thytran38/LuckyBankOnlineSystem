@@ -10,30 +10,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.TransactionOverviewAdapter;
+import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
+import com.example.myfirstapp.luckybankonlinesystem.R;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
-import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
-import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
-import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
-import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
-import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
-import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.myfirstapp.luckybankonlinesystem.Adapter.TransactionOverviewAdapter;
-import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 
 
 /**
@@ -54,9 +51,6 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-
-    private TextView hiTv;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -103,6 +97,24 @@ public class MainFragment extends Fragment {
 
     }
 
+    private void setHelloString(String name) {
+        String yourTotal = getString(R.string.total_balance);
+        String hello = "Hi " + name + "\n" + yourTotal;
+        hiTv.setText(hello);
+    }
+
+    private void setCurrentBalance(double currentBalance) {
+        totalTransactionTv.setText(String.format(Locale.US, "%,d", (int) currentBalance));
+    }
+
+
+    private void updateTransactionHistoryList(TransactionModel lastTransaction) {
+        TransactionOverviewAdapter adapter = (TransactionOverviewAdapter) rvTransactionOverview.getAdapter();
+        assert adapter != null;
+        adapter.getDataSource().add(lastTransaction);
+        adapter.notifyItemInserted(adapter.getItemCount() - 1);
+    }
+
     @Override
     public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         CustomerModel userInfo = Objects.requireNonNull(getActivity()).getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
@@ -110,7 +122,7 @@ public class MainFragment extends Fragment {
 
         hiTv = Objects.requireNonNull(getView()).findViewById(R.id.tvHi);
         rvTransactionOverview = getView().findViewById(R.id.rvTransactionOverview);
-        totalTransactionTv = getView().findViewById(R.id.tvTotalTransaction);
+        totalTransactionTv = getView().findViewById(R.id.tvTotalAcc);
 
         setCurrentBalance(userInfo.getAccounts().get(0).getCurrentBalance());
 
@@ -132,6 +144,11 @@ public class MainFragment extends Fragment {
                 }
             }
         };
+
+        viewPager2 = v.findViewById(R.id.viewPager);
+        viewPager2.setCurrentItem(R.layout.primary_card_view);
+        viewPager2.setAdapter(new CardAdapter(getActivity()));
+        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
     }
 
     @Override
@@ -142,46 +159,10 @@ public class MainFragment extends Fragment {
         LocalBroadcastManager.getInstance(Objects.requireNonNull(getActivity())).registerReceiver(receiver, filter);
     }
 
-
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        CustomerModel cusm = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
-        ArrayList<AccountModel> userAccounts = cusm.getAccounts();
-        AccountModel primeAcc = userAccounts.get(0);
-//        AccountModel savAcc = userAccounts.get(1);
-        String primeAccNumber = primeAcc.getAccountNumber();
-//        String savingAccNumber = savAcc.getAccountNumber();
-        viewPager2 = v.findViewById(R.id.viewPager);
-        viewPager2.setCurrentItem(R.layout.primary_card_view);
-        viewPager2.setAdapter(new CardAdapter(getActivity()));
-        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
-
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        String cusmName1 = firebaseAuth.getCurrentUser().getUid();
-        String cusmName = cusm.getCustomerId();
-        hiTv = (TextView) getView().findViewById(R.id.tvHi);
-        String yourTotal = getString(R.string.total_balance);
-        String hello = "Hi " + cusmName1 + yourTotal;
     public void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(Objects.requireNonNull(getActivity())).unregisterReceiver(receiver);
-    }
-
-    private void setHelloString(String name) {
-        String yourTotal = getString(R.string.total_balance);
-        String hello = "Hi " + name + "\n" + yourTotal;
-        hiTv.setText(hello);
-    }
-
-    private void setCurrentBalance(double currentBalance) {
-        totalTransactionTv.setText(String.format(Locale.US, "%,d", (int) currentBalance));
-    }
 
 
-    private void updateTransactionHistoryList(TransactionModel lastTransaction) {
-        TransactionOverviewAdapter adapter = (TransactionOverviewAdapter) rvTransactionOverview.getAdapter();
-        assert adapter != null;
-        adapter.getDataSource().add(lastTransaction);
-        adapter.notifyItemInserted(adapter.getItemCount() - 1);
     }
 }

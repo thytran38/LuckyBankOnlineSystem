@@ -163,7 +163,7 @@ public class NewTransactionDialog extends DialogFragment {
 //        putObjectToHashMap();
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        LocalBroadcastManager.getInstance(context).registerReceiver(receiver, IntentFilter);
+//        LocalBroadcastManager.getInstance(context).registerReceiver(receiver, IntentFilter);
 
         transferBtn = (Button)v.findViewById(R.id.btnTransfer);
         transferBtn.setOnClickListener(new View.OnClickListener() {

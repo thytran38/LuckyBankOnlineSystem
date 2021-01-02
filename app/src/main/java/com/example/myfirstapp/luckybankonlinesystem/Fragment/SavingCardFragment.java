@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 
 import java.util.ArrayList;
 
@@ -46,7 +46,7 @@ public class SavingCardFragment extends Fragment {
     }
 
     public void init(){
-        CustomerModel cm = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
+        CustomerModel cm = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
 //        AccountModel[] am = getActivity().getIntent().getExtras().getParcelableArray(SplashScreenActivity.);
         USER_NAME = cm.getFullName().toUpperCase().toString();
         ArrayList<AccountModel> userAccounts = cm.getAccounts();

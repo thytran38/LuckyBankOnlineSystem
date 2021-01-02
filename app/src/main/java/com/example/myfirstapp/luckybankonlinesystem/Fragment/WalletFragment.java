@@ -12,14 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
-import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
 import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
-import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
-import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
-import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link WalletFragment} subclass.
@@ -40,7 +34,7 @@ public class WalletFragment extends Fragment {
     private View v;
     private TextView nameTv, accnumTv;
     private String USER_NAME, ACCOUNT_NUMBER;
-    private TextView detailTv,numAcc;
+    private TextView detailTv, numAcc;
     private EditText numAcc2;
     private ViewPager2 viewPager2;
 
@@ -82,14 +76,17 @@ public class WalletFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v =  inflater.inflate(R.layout.wallet_fragment, container, false);
+        v = inflater.inflate(R.layout.wallet_fragment, container, false);
         return v;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-       this.v = view;
-       init();
+        this.v = view;
+        init();
+        Fragment fm = new PrimaryCardFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_wallet, fm).commit();
+
         viewPager2 = v.findViewById(R.id.viewPager_2);
         viewPager2.setCurrentItem(R.layout.primary_card_view);
         viewPager2.setAdapter(new CardAdapter(getActivity()));
@@ -97,36 +94,7 @@ public class WalletFragment extends Fragment {
     }
 
 
-    public void init(){
+    public void init() {
 
-        CustomerModel cm = getActivity().getIntent().getExtras().getParcelable(SplashScreenActivity.USER_INFO_KEY);
-//        AccountModel[] am = getActivity().getIntent().getExtras().getParcelableArray(SplashScreenActivity.);
-        USER_NAME = cm.getFullName().toUpperCase().toString();
-        ArrayList<AccountModel> userAccounts = cm.getAccounts();
-        AccountModel primeAcc = userAccounts.get(0);
-        String primeAccNumber = primeAcc.getAccountNumber();
-        long dateCreatedInLong = primeAcc.getDateCreated();
-        Date dateCreatedInDate = Date.getInstance(dateCreatedInLong);
-        String date = dateCreatedInDate.toString();
-        double cBalance = primeAcc.getCurrentBalance();
-        String cBalanceStr = String.valueOf(cBalance);
-        String total = date + cBalanceStr;
-
-        ACCOUNT_NUMBER = primeAccNumber;
-        nameTv = (TextView) v.findViewById(R.id.tvUserName);
-        nameTv.setText(USER_NAME);
-
-        accnumTv = (TextView) v.findViewById(R.id.tvAccnumber);
-        accnumTv.setText(ACCOUNT_NUMBER);
-
-//        detailTv = (TextView)v.findViewById(R.id.tvDetails);
-//        detailTv.setText(total);
-
-        numAcc = (TextView)v.findViewById(R.id.tvTotalAcc);
-        int numOfAcc = userAccounts.size();
-        System.out.println(numOfAcc);
-        //Log.d("debug",String.valueOf(numOfAcc));
- //       Logger.getLogger("debug",String.valueOf(numOfAcc));
-//        numAcc.setText(String.valueOf(numOfAcc));
     }
 }

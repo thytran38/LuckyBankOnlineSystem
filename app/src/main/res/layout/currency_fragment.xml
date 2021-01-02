@@ -45,11 +45,13 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_cancel_bg"
+                android:background="@drawable/btn_bg_lightmode"
                 android:ems="10"
                 android:gravity="center"
-                android:inputType="number"
                 android:hint=" Please add a number "
+                android:inputType="number"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#EAEAEA"
                 android:textColorLink="#FFFFFF" />
 
             <Button
@@ -70,14 +72,16 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="40dp"
-                android:background="@drawable/btn_cancel_bg"
+                android:background="@drawable/btn_bg_lightmode"
                 android:ems="10"
-                android:gravity="center"
-                android:inputType="number"
-                android:hint="_____________"
                 android:enabled="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="_____________"
+                android:inputType="number"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#EAEAEA"
                 android:textColorLink="#FFFFFF" />
 
             <TextView

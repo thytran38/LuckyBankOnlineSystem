@@ -75,7 +75,7 @@
                 android:layout_height="257dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="68dp"
-                android:background="@drawable/btn_bg"
+                android:background="@drawable/btn_bg_1"
                 android:padding="40dp"
                 android:textAlignment="center">
 
