@@ -24,9 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.Supplier;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
-
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -107,12 +105,18 @@ public class RegisterActivity extends AppCompatActivity {
                         model.setPhoneNumber(phoneNum);
                         model.setAddress(address);
                         ArrayList<AccountModel> accounts = new ArrayList<>();
-                        AccountModel account = new AccountModel();
-                        account.setAccountNumber(uid + "_" + "prm");
-                        account.setAccountOwner(uid);
-                        account.setAccountType(AccountModel.AccountType.Primary);
-                        account.setCurrentBalance(50000);
-                        accounts.add(account);
+                        AccountModel prmAccount = new AccountModel();
+                        prmAccount.setAccountNumber(uid + "_" + "prm");
+                        prmAccount.setAccountOwner(uid);
+                        prmAccount.setAccountType(AccountModel.AccountType.Primary);
+                        prmAccount.setCurrentBalance(250000);
+                        accounts.add(prmAccount);
+                        AccountModel savAccount = new AccountModel();
+                        savAccount.setAccountNumber(uid + "_" + "sav01");
+                        savAccount.setAccountOwner(uid);
+                        savAccount.setAccountType(AccountModel.AccountType.Saving);
+                        savAccount.setCurrentBalance(250000);
+                        accounts.add(savAccount);
                         model.setAccounts(accounts);
                         db.collection("users").document(uid).set(model);
                         user.sendEmailVerification().addOnCompleteListener(ignore -> {
