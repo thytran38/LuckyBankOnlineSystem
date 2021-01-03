@@ -3,14 +3,8 @@ package com.example.myfirstapp.luckybankonlinesystem.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import java.util.ArrayList;
-import java.util.Objects;
-
 public class TransactionModel implements Parcelable {
+
     private String transactionID;
     private long timestamp;
     private String senderUID;

@@ -14,6 +14,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
 import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
 import com.example.myfirstapp.luckybankonlinesystem.R;
+import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
+import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+import java.util.ArrayList;
 
 /**
  * A simple {@link WalletFragment} subclass.
@@ -84,6 +87,7 @@ public class WalletFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         this.v = view;
         init();
+
         Fragment fm = new PrimaryCardFragment();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_wallet, fm).commit();
 
@@ -95,6 +99,36 @@ public class WalletFragment extends Fragment {
 
 
     public void init() {
+
+        CustomerModel cm = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
+//        AccountModel[] am = getActivity().getIntent().getExtras().getParcelableArray(SplashScreenActivity.);
+        USER_NAME = cm.getFullName().toUpperCase().toString();
+        ArrayList<AccountModel> userAccounts = cm.getAccounts();
+        AccountModel primeAcc = userAccounts.get(0);
+        String primeAccNumber = primeAcc.getAccountNumber();
+        long dateCreatedInLong = primeAcc.getDateCreated();
+        Date dateCreatedInDate = Date.getInstance(dateCreatedInLong);
+        String date = dateCreatedInDate.toString();
+        double cBalance = primeAcc.getCurrentBalance();
+        String cBalanceStr = String.valueOf(cBalance);
+        String total = date + cBalanceStr;
+
+        ACCOUNT_NUMBER = primeAccNumber;
+        nameTv = (TextView) v.findViewById(R.id.tvUserName);
+        nameTv.setText(USER_NAME);
+
+        accnumTv = (TextView) v.findViewById(R.id.tvAccnumber);
+        accnumTv.setText(ACCOUNT_NUMBER);
+
+//        detailTv = (TextView)v.findViewById(R.id.tvDetails);
+//        detailTv.setText(total);
+
+        numAcc = (TextView) v.findViewById(R.id.tvTotalAcc);
+        int numOfAcc = userAccounts.size();
+        System.out.println(numOfAcc);
+        //Log.d("debug",String.valueOf(numOfAcc));
+        //       Logger.getLogger("debug",String.valueOf(numOfAcc));
+//        numAcc.setText(String.valueOf(numOfAcc));
 
     }
 }

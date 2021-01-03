@@ -122,7 +122,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         addressEt = (EditText) rootView.findViewById(R.id.txtProfile_Address);
         rdMale = (RadioButton) rootView.findViewById(R.id.rdProfile_Male);
         rdFemale = (RadioButton) rootView.findViewById(R.id.rdProfile_Female);
-        save = (Button) rootView.findViewById(R.id.BtnProfile_SaveButton);
+        save = (Button) rootView.findViewById(R.id.btnTransaction_Transfer);
 
         fullnameEt.setText(fullName);
         dateofbirthEt.setText(dateOfBirth);

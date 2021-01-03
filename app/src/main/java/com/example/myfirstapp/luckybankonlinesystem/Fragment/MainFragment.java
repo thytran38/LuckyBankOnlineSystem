@@ -77,7 +77,7 @@ public class MainFragment extends Fragment {
     }
 
 
-    private TextView hiTv, totalTransactionTv;
+    private TextView hiTv, tvTotalAcc;
     private RecyclerView rvTransactionOverview;
 
     private BroadcastReceiver receiver;
@@ -122,9 +122,13 @@ public class MainFragment extends Fragment {
 
         hiTv = Objects.requireNonNull(getView()).findViewById(R.id.tvHi);
         rvTransactionOverview = getView().findViewById(R.id.rvTransactionOverview);
-        totalTransactionTv = getView().findViewById(R.id.tvTotalAcc);
-
+        tvTotalAcc = getView().findViewById(R.id.tvTotalAcc);
         setCurrentBalance(userInfo.getAccounts().get(0).getCurrentBalance());
+
+        viewPager2 = v.findViewById(R.id.viewPager);
+        viewPager2.setCurrentItem(R.layout.primary_card_view);
+        viewPager2.setAdapter(new CardAdapter(getActivity()));
+        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
 
         rvTransactionOverview.setLayoutManager(new LinearLayoutManager(getContext()));
         TransactionOverviewAdapter adapter = new TransactionOverviewAdapter(transactions);
@@ -164,5 +168,15 @@ public class MainFragment extends Fragment {
         super.onPause();
 
 
+    private void setCurrentBalance(double currentBalance) {
+        tvTotalAcc.setText(String.format(Locale.US, "%,d", (int) currentBalance));
+    }
+
+
+    private void updateTransactionHistoryList(TransactionModel lastTransaction) {
+        TransactionOverviewAdapter adapter = (TransactionOverviewAdapter) rvTransactionOverview.getAdapter();
+        assert adapter != null;
+        adapter.getDataSource().add(lastTransaction);
+        adapter.notifyItemInserted(adapter.getItemCount() - 1);
     }
 }
