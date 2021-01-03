@@ -12,14 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
-import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
 import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
-import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
-import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
-
 import java.util.ArrayList;
 
 /**
@@ -91,6 +87,10 @@ public class WalletFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         this.v = view;
         init();
+
+        Fragment fm = new PrimaryCardFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_wallet, fm).commit();
+
         viewPager2 = v.findViewById(R.id.viewPager_2);
         viewPager2.setCurrentItem(R.layout.primary_card_view);
         viewPager2.setAdapter(new CardAdapter(getActivity()));
@@ -129,5 +129,6 @@ public class WalletFragment extends Fragment {
         //Log.d("debug",String.valueOf(numOfAcc));
         //       Logger.getLogger("debug",String.valueOf(numOfAcc));
 //        numAcc.setText(String.valueOf(numOfAcc));
+
     }
 }

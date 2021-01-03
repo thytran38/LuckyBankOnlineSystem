@@ -13,7 +13,6 @@ import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
-import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
 
 import java.util.ArrayList;
 

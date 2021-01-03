@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/yellow_dark_DarkMode" />
+<!--    <gradient android:startColor="@color/yellow_dark_DarkMode" android:centerColor="@color/yellow_middle" android:endColor="@color/yellow_dark_DarkMode" />-->
+    <stroke android:width="0.3dp"
+        android:color="@color/black_LightMode" />
+    <corners android:radius="38dp" />
+</shape>
