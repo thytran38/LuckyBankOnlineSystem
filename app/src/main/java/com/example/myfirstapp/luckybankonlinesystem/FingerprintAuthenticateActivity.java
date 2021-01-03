@@ -3,7 +3,6 @@ package com.example.myfirstapp.luckybankonlinesystem;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.KeyguardManager;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
@@ -11,13 +10,9 @@ import android.os.Bundle;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.FingerprintHandler;
@@ -39,31 +34,26 @@ import javax.crypto.SecretKey;
 
 public class FingerprintAuthenticateActivity extends AppCompatActivity {
 
-    private ImageView fingerPrint;
-    private TextView message;
-
-    private FingerprintManager fingerprintManager;
-    private KeyguardManager keyguardManager;
-
     private KeyStore keyStore;
     private Cipher cipher;
-    private String KEY_NAME = "AndroidKey";
+    private static final String KEY_NAME = "AndroidKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_user);
 
-        fingerPrint = (ImageView) findViewById(R.id.FingerPrintIcon);
-        message = (TextView) findViewById(R.id.Meesage);
+        TextView message = (TextView) findViewById(R.id.Meesage);
+        FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
-            keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
+            FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
 
-            if(!fingerprintManager.isHardwareDetected()){
+            if(fingerprintManager == null || !fingerprintManager.isHardwareDetected()){
 
                 message.setText("Fingerprint scanner undetected in this device");
+                fingerprintHandler.nextActivity();
 
             } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
 
@@ -85,7 +75,6 @@ public class FingerprintAuthenticateActivity extends AppCompatActivity {
                 if (cipherInit()){
 
                     FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
-                    FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
                     fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
 
                 }
