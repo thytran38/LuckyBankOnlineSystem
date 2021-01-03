@@ -54,7 +54,6 @@ public class FetchingDataService extends Service {
                         }
                     });
             db.collection("transactions")
-                    .whereEqualTo("senderUID", uid)
                     .addSnapshotListener(MetadataChanges.INCLUDE, (data, error) -> {
                         if (error == null) {
                             if (data != null) {
@@ -64,7 +63,8 @@ public class FetchingDataService extends Service {
                                     TransactionModel model = snapshot.toObject(TransactionModel.class);
                                     assert model != null;
                                     model.setTransactionID(snapshot.getId());
-                                    transactions.add(model);
+                                    if (model.getReceiverUID().equals(uid) || model.getSenderUID().equals(uid))
+                                        transactions.add(model);
                                 }
                                 dataIntent.setAction(INTENT_KEY + "." + TRANSACTION_HISTORY_KEY);
                                 dataIntent.putExtra(TRANSACTION_HISTORY_KEY, transactions);
