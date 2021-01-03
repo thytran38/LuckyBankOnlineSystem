@@ -104,7 +104,7 @@ public class MainFragment extends Fragment {
     }
 
     private void setCurrentBalance(double currentBalance) {
-        totalTransactionTv.setText(String.format(Locale.US, "%,d", (int) currentBalance));
+        tvTotalAcc.setText(String.format(Locale.US, "%,d", (int) currentBalance));
     }
 
 
@@ -166,17 +166,5 @@ public class MainFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
-
-    private void setCurrentBalance(double currentBalance) {
-        tvTotalAcc.setText(String.format(Locale.US, "%,d", (int) currentBalance));
-    }
-
-
-    private void updateTransactionHistoryList(TransactionModel lastTransaction) {
-        TransactionOverviewAdapter adapter = (TransactionOverviewAdapter) rvTransactionOverview.getAdapter();
-        assert adapter != null;
-        adapter.getDataSource().add(lastTransaction);
-        adapter.notifyItemInserted(adapter.getItemCount() - 1);
     }
 }
