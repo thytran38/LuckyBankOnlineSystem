@@ -93,7 +93,7 @@
             </FrameLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnOpenSaving2"
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="123dp"
                 android:layout_height="match_parent"

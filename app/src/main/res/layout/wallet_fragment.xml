@@ -54,36 +54,13 @@
                 android:textColor="#FFFFFF"
                 android:textSize="50sp" />
 
-            <FrameLayout
-                android:id="@+id/fragment_container_wallet"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager_2"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAccountListings"
+                android:layout_width="287dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="50dp"
-                android:padding="20dp"
-
-                >
-
-            </androidx.viewpager2.widget.ViewPager2>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button"
-                android:layout_width="123dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="60dp"
-                android:background="@drawable/btn_glossy"
-                android:text="Suspend"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                tools:cornerRadius="60dp" />
+                />
 
             <View
                 android:id="@+id/view3"
