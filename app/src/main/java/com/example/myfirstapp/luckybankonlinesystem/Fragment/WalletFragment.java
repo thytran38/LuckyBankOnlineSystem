@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
+import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
 import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
+import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
+import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
-import com.example.myfirstapp.luckybankonlinesystem.SplashScreenActivity;
+
 import java.util.ArrayList;
 
 /**
@@ -125,7 +128,6 @@ public class WalletFragment extends Fragment {
 
         numAcc = (TextView) v.findViewById(R.id.tvTotalAcc);
         int numOfAcc = userAccounts.size();
-        System.out.println(numOfAcc);
         //Log.d("debug",String.valueOf(numOfAcc));
         //       Logger.getLogger("debug",String.valueOf(numOfAcc));
 //        numAcc.setText(String.valueOf(numOfAcc));
