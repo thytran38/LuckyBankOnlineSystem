@@ -88,20 +88,20 @@ public class CurrencyFragment extends Fragment {
             Toast.makeText(this.getContext(), "Error.Please try it later", Toast.LENGTH_LONG).show();
         });
         final String goldRateUrl = GOLD_RATE_BASE_URL + "?access_key=" + API_KEY + "&base=USD&symbols=xau,xag,btc,eth,xpt";
-//        StringRequest goldRateRequest = new StringRequest(Request.Method.GET, goldRateUrl, result -> {
-//            try {
-//                JSONObject obj = new JSONObject(result).getJSONObject("rates");
-//                StringBuilder stringBuilder = new StringBuilder();
-//                String[] gold = getContext().getResources().getStringArray(R.array.gold);
-//                for (String item : gold) {
-//                    stringBuilder.append(String.format(Locale.US, "%s: %s\n", item, obj.getString(item)));
-//                }
-//                tvGoldRate.setText(stringBuilder.toString());
-//            } catch (JSONException e) {
-//                Logger.getLogger("DEBUG").warning("ERROR: " + e.getMessage());
-//            }
-//        }, error -> Logger.getLogger("DEBUG").warning("FATAL: " + error.getMessage()));
+        StringRequest goldRateRequest = new StringRequest(Request.Method.GET, goldRateUrl, result -> {
+            try {
+                JSONObject obj = new JSONObject(result).getJSONObject("rates");
+                StringBuilder stringBuilder = new StringBuilder();
+                String[] gold = getContext().getResources().getStringArray(R.array.gold);
+                for (String item : gold) {
+                    stringBuilder.append(String.format(Locale.US, "%s: %s\n", item, obj.getString(item)));
+                }
+                tvGoldRate.setText(stringBuilder.toString());
+            } catch (JSONException e) {
+                Logger.getLogger("DEBUG").warning("ERROR: " + e.getMessage());
+            }
+        }, error -> Logger.getLogger("DEBUG").warning("FATAL: " + error.getMessage()));
         requestQueue.add(currencyRequest);
-//        requestQueue.add(goldRateRequest);
+        requestQueue.add(goldRateRequest);
     }
 }
