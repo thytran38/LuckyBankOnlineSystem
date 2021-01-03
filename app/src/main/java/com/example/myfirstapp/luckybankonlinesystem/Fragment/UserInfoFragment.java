@@ -9,18 +9,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -103,8 +107,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
-
     public void init() {
         CustomerModel csm = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
         fullName = csm.getFullName().toUpperCase().toString();
@@ -122,105 +124,93 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         addressEt = (EditText) rootView.findViewById(R.id.txtProfile_Address);
         rdMale = (RadioButton) rootView.findViewById(R.id.rdProfile_Male);
         rdFemale = (RadioButton) rootView.findViewById(R.id.rdProfile_Female);
-        save = (Button) rootView.findViewById(R.id.btnTransaction_Transfer);
+        save = (Button) rootView.findViewById(R.id.BtnProfile_SaveButton);
+        emailEt.setEnabled(false);
+        dateofbirthEt.setOnClickListener(rootView -> {
+            DatePickerDialog dialog = new DatePickerDialog(new DatePickerDialog.OnDatePickedListener() {
+                @Override
+                public void onDateOk(int date, int month, int year) {
+                    ((EditText) v).setError(null);
+                    ((EditText) v).setText(Date.getInstance(date, month - 1, year).toString());
+                }
+
+                @Override
+                public void onDateError(int date, int month, int year) {
+                    v.requestFocus();
+                    ((EditText) v).setError("Age must be equal or greater than 18");
+                }
+            }, (date, month, year) -> {
+                Date dateObj = Date.getInstance();
+                Date minValidDate = Date.getInstance(date, month, year + 18);
+                return minValidDate.getEpochSecond() <= dateObj.getEpochSecond();
+            });
+            dialog.show(getChildFragmentManager(), null);
+        });
+
 
         fullnameEt.setText(fullName);
         dateofbirthEt.setText(dateOfBirth);
         phonenumberEt.setText(phoneNumber);
         emailEt.setText(eMail);
         addressEt.setText(addRess);
-        if(genDer.contains("Male"))
-        {
+        if (genDer.contains("Male")) {
             rdMale.setChecked(true);
             Log.d("this gender stuff", "couldnt work");
-        }else if(genDer.contains("Female")){
+        } else if (genDer.contains("Female")) {
             Log.d("this gender stuff", "couldnt work");
 
             rdFemale.setChecked(true);
         }
         save.setOnClickListener(this);
         dateofbirthEt.setOnClickListener(this);
-
-
-
-
-        // Edit account's information
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final String Email = email.getText().toString();
-//                firebaseUser.updateEmail(Email).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        DocumentReference docRef = firestore.collection("users").document(firebaseUser.getUid());
-//                        Map<String,Object> edited = new HashMap<>();
-//
-//                        edited.put("fullName", fullname.getText().toString());
-//                        edited.put("birthDate", dateofbirth.getText().toString());
-//                        edited.put("phoneNumber", phonenumber.getText().toString());
-//                        edited.put("address", address.getText().toString());
-//
-//                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-////                                Toast.makeText(UserInfoFragment.class, "Your profile account has been updated", Toast.LENGTH_SHORT).show();
-//                                //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-//                            }
-//                        });
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-////                        Toast.makeText(ProfileActivity.this, "Update profile failed", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
     }
 
 
     @Override
     public void onClick(View v) {
-        CustomerModel newCustomerModel = new CustomerModel();
-        //Get new updates
-        String newFullName = fullnameEt.getText().toString();
-        String newDOB = dateofbirthEt.getText().toString();
-        String newGender;
-        if(rdMale.isChecked()){
-            newGender = "Male";
-        }else{
-            newGender = "Female";
-        }
-        String newPhoneNo = phonenumberEt.getText().toString();
-        String newEmail = emailEt.getText().toString();
-        String newAddress = addressEt.getText().toString();
-
-        //Parse new updates to instance
-        newCustomerModel.setFullName(newFullName);
+        FirebaseUser fbUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        final String Email = fbUser.getEmail();
+        assert Email != null;
         try {
-            newCustomerModel.setBirthDate(newDOB);
-        }catch(ParseException e)
-        {
-            Log.d("Error parsing dob",e.getMessage().toString());
+            fbUser.updateEmail(Email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    String genderToStr = "";
+                    if (rdMale.isChecked()) {
+                        genderToStr = "Male";
+                    } else {
+                        genderToStr = "Female";
+                    }
+                    DocumentReference docRef = firebaseFirestore.collection("users").document(fbUser.getUid());
+                    Map<String, Object> edited = new HashMap<>();
+
+                    edited.put("fullName", fullnameEt.getText().toString());
+                    edited.put("birthDate", dateofbirthEt.getText().toString());
+                    edited.put("phoneNumber", phonenumberEt.getText().toString());
+                    edited.put("address", addressEt.getText().toString());
+                    edited.put("gender", genderToStr);
+
+                    docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+//                                Toast.makeText(UserInfoFragment.class, "Your profile account has been updated", Toast.LENGTH_SHORT).show();
+                            //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        }
+                    });
+
+                    Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getActivity(), "Failed!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (NullPointerException npe) {
+            Logger.getLogger("debug000").warning(fbUser.getUid());
+            Logger.getLogger("debug000").warning(npe.getMessage());
         }
-        newCustomerModel.setGender(CustomerModel.CustomerGender.valueOf(newGender));
-        newCustomerModel.setPhoneNumber(newPhoneNo);
-        newCustomerModel.setEmail(newEmail);
-        newCustomerModel.setAddress(newAddress);
-
-
-
-        DocumentReference docRef = firestore.collection("users").document(firebaseUser.getUid());
-        Map<String,Object> newUpdates = new HashMap<>();
-        newUpdates.put("fullname",newFullName);
-
-        //                        edited.put("birthdate",dateofbirth.getText().toString());
-//                        edited.put("phone",phonenumber.getText().toString());
-//                        edited.put("email",Email);
-//                        edited.put("address",address.getText().toString());
-//                        edited.put("nationalId", nationalid.getText().toString());
-//                        edited.put("description", description.getText().toString());
-
 
     }
 }

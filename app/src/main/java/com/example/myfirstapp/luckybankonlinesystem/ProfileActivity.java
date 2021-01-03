@@ -43,8 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        fullname = (EditText)findViewById(R.id.txtProfile_FullName);
-        dateofbirth = (EditText)findViewById(R.id.txtProfile_DateOfBirth);
+        fullname = (EditText) findViewById(R.id.txtProfile_FullName);
+        dateofbirth = (EditText) findViewById(R.id.txtProfile_DateOfBirth);
         dateofbirth.setOnClickListener(v -> {
             DatePickerDialog dialog = new DatePickerDialog(new DatePickerDialog.OnDatePickedListener() {
                 @Override
@@ -65,11 +65,11 @@ public class ProfileActivity extends AppCompatActivity {
             });
             dialog.show(getSupportFragmentManager(), null);
         });
-        phonenumber = (EditText)findViewById(R.id.txtProfile_PhoneNumber);
-        email = (EditText)findViewById(R.id.txtProfile_Email);
-        address = (EditText)findViewById(R.id.txtProfile_Address);
-        gender = (RadioGroup)findViewById(R.id.rg_Profile_GenderGroup);
-        save = (Button) findViewById(R.id.btnTransaction_Transfer);
+        phonenumber = (EditText) findViewById(R.id.txtProfile_PhoneNumber);
+        email = (EditText) findViewById(R.id.txtProfile_Email);
+        address = (EditText) findViewById(R.id.txtProfile_Address);
+        gender = (RadioGroup) findViewById(R.id.rg_Profile_GenderGroup);
+        save = (Button) findViewById(R.id.BtnProfile_SaveButton);
 
         // Connect to  Firebase's Authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -85,14 +85,14 @@ public class ProfileActivity extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if(documentSnapshot.exists()) {
+                if (documentSnapshot.exists()) {
                     fullname.setText(documentSnapshot.getString("fullName"));
                     dateofbirth.setText(documentSnapshot.getString("birthDate"));
 //                    gender.getCheckedRadioButtonId(documentSnapshot.getString("gender"));
                     phonenumber.setText(documentSnapshot.getString("phoneNumber"));
                     email.setText(documentSnapshot.getString("email"));
                     address.setText(documentSnapshot.getString("address"));
-                }else {
+                } else {
                     Log.d("tag", "onEvent: Document do not exists");
                 }
             }
@@ -107,7 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         DocumentReference docRef = firestore.collection("users").document(firebaseUser.getUid());
-                        Map<String,Object> edited = new HashMap<>();
+                        Map<String, Object> edited = new HashMap<>();
 
                         edited.put("fullName", fullname.getText().toString());
                         edited.put("birthDate", dateofbirth.getText().toString());

@@ -1,5 +1,6 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,19 +8,22 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.myfirstapp.luckybankonlinesystem.Adapter.CardAdapter;
-import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
-import com.example.myfirstapp.luckybankonlinesystem.Class.DepthZoomOutPageTransformer;
+import com.example.myfirstapp.luckybankonlinesystem.Adapter.AccountsAdapter;
 import com.example.myfirstapp.luckybankonlinesystem.Model.AccountModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 /**
  * A simple {@link WalletFragment} subclass.
@@ -39,11 +43,12 @@ public class WalletFragment extends Fragment {
     private String uID;
     private View v;
     private TextView nameTv, accnumTv;
+
     private String USER_NAME, ACCOUNT_NUMBER;
     private TextView detailTv, numAcc;
     private EditText numAcc2;
     private ViewPager2 viewPager2;
-
+    private RecyclerView accountRecycler;
 
     public WalletFragment() {
         // Required empty public constructor
@@ -86,51 +91,41 @@ public class WalletFragment extends Fragment {
         return v;
     }
 
+    private void updateAccounts(AccountModel lastAccount) {
+        AccountsAdapter adapter = (AccountsAdapter) accountRecycler.getAdapter();
+        assert adapter != null;
+        adapter.getDataSource().add(lastAccount);
+        adapter.notifyItemInserted(adapter.getItemCount() - 1);
+    }
+
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         this.v = view;
-        init();
-
-        Fragment fm = new PrimaryCardFragment();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_wallet, fm).commit();
-
-        viewPager2 = v.findViewById(R.id.viewPager_2);
-        viewPager2.setCurrentItem(R.layout.primary_card_view);
-        viewPager2.setAdapter(new CardAdapter(getActivity()));
-        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
-    }
+        accnumTv = Objects.requireNonNull(getView()).findViewById(R.id.tvTotalAcc);
 
 
-    public void init() {
+        CustomerModel customerModel = Objects.requireNonNull(getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY));
+        ArrayList<AccountModel> accountModels = customerModel.getAccounts();
+        AccountModel accountModel1 = accountModels.get(0);
+        accountRecycler = (RecyclerView) getView().findViewById(R.id.rvAccountListings);
 
-        CustomerModel cm = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
-//        AccountModel[] am = getActivity().getIntent().getExtras().getParcelableArray(SplashScreenActivity.);
-        USER_NAME = cm.getFullName().toUpperCase().toString();
-        ArrayList<AccountModel> userAccounts = cm.getAccounts();
-        AccountModel primeAcc = userAccounts.get(0);
-        String primeAccNumber = primeAcc.getAccountNumber();
-        long dateCreatedInLong = primeAcc.getDateCreated();
-        Date dateCreatedInDate = Date.getInstance(dateCreatedInLong);
-        String date = dateCreatedInDate.toString();
-        double cBalance = primeAcc.getCurrentBalance();
-        String cBalanceStr = String.valueOf(cBalance);
-        String total = date + cBalanceStr;
+        try {
+            accnumTv.setText(String.valueOf(accountModels.size()));
+        } catch (NullPointerException npe) {
+            Logger.getLogger("debug").warning(npe.getMessage());
+        }
+        accountRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        AccountsAdapter adapter = new AccountsAdapter(accountModels, customerModel.getFullName());
+        accountRecycler.setAdapter(adapter);
+        Logger.getLogger("debug000").warning(accountModels.toString());
 
-        ACCOUNT_NUMBER = primeAccNumber;
-        nameTv = (TextView) v.findViewById(R.id.tvUserName);
-        nameTv.setText(USER_NAME);
-
-        accnumTv = (TextView) v.findViewById(R.id.tvAccnumber);
-        accnumTv.setText(ACCOUNT_NUMBER);
-
-//        detailTv = (TextView)v.findViewById(R.id.tvDetails);
-//        detailTv.setText(total);
-
-        numAcc = (TextView) v.findViewById(R.id.tvTotalAcc);
-        int numOfAcc = userAccounts.size();
-        //Log.d("debug",String.valueOf(numOfAcc));
-        //       Logger.getLogger("debug",String.valueOf(numOfAcc));
-//        numAcc.setText(String.valueOf(numOfAcc));
 
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
+
 }

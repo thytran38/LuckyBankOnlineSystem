@@ -153,7 +153,7 @@
                 android:background="@drawable/btn_bg_lightmode"
                 android:enabled="false"
                 android:padding="16dp"
-                android:textColor="@color/gray_LightMode"
+                android:textColor="#ACACAC"
                 android:textColorHint="@color/login_form_details"
                 android:textSize="14sp" />
 

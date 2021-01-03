@@ -74,12 +74,13 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTransactionOverview"
                 android:layout_width="match_parent"
-                android:layout_height="257dp"
+                android:layout_height="300dp"
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/btn_bg_1"
                 android:paddingStart="30dp"
                 android:paddingTop="25dp"
                 android:paddingEnd="30dp"
+                android:paddingBottom="25dp"
                 android:textAlignment="center" />
 
             <View
