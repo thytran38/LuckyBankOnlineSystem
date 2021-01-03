@@ -60,7 +60,5 @@ public class PrimaryCardFragment extends Fragment {
         AccountModel primeAcc = userAccounts.get(0);
         String primeAccNumber = primeAcc.getAccountNumber();
         ACCOUNT_NUMBER = primeAccNumber;
-
-
     }
 }

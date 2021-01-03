@@ -179,7 +179,7 @@
                 android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/BtnProfile_SaveButton"
+                android:id="@+id/btnTransaction_Transfer"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"

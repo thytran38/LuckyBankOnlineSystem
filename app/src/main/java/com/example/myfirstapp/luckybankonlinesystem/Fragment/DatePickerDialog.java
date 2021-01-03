@@ -23,8 +23,8 @@ public class DatePickerDialog extends DialogFragment implements android.app.Date
         boolean isValidDate(int date, int month, int year);
     }
 
-    private OnDatePickedListener listener;
-    private IsValidDateCallback callback;
+    private final OnDatePickedListener listener;
+    private final IsValidDateCallback callback;
 
     public DatePickerDialog(OnDatePickedListener listener, IsValidDateCallback callback) {
         this.listener = listener;
