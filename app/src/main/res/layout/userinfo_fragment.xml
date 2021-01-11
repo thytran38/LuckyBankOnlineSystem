@@ -64,7 +64,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tvDateofBirth"
+                android:id="@+id/tvDateOfBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
@@ -72,7 +72,10 @@
                 android:text="Date Of Birth"
                 android:textColor="@color/login_form_details"
                 android:textColorHint="@color/login_form_details"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:enabled="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
 
             <EditText
                 android:id="@+id/txtProfile_DateOfBirth"

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -24,8 +25,6 @@ import com.example.myfirstapp.luckybankonlinesystem.Model.CustomerModel;
 import com.example.myfirstapp.luckybankonlinesystem.Model.TransactionModel;
 import com.example.myfirstapp.luckybankonlinesystem.R;
 import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -67,9 +66,10 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         CustomerModel userInfo = Objects.requireNonNull(getActivity()).getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
         ArrayList<TransactionModel> transactions = getActivity().getIntent().getParcelableArrayListExtra(FetchingDataService.TRANSACTION_HISTORY_KEY);
+
         currentUserUid = userInfo.getCustomerId();
 
         hiTv = Objects.requireNonNull(getView()).findViewById(R.id.tvHi);
@@ -83,6 +83,7 @@ public class MainFragment extends Fragment {
         viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
 
         rvTransactionOverview.setLayoutManager(new LinearLayoutManager(getContext()));
+
         updateTransactionHistoryList(transactions);
 
         setHelloString(userInfo.getFullName());
@@ -102,7 +103,7 @@ public class MainFragment extends Fragment {
 
         viewPager2 = v.findViewById(R.id.viewPager);
         viewPager2.setCurrentItem(R.layout.primary_card_view);
-        viewPager2.setAdapter(new CardAdapter(getActivity()));
+        viewPager2.setAdapter(new CardAdapter(Objects.requireNonNull(getActivity())));
         viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
     }
 
@@ -111,13 +112,13 @@ public class MainFragment extends Fragment {
         super.onStart();
         IntentFilter filter = new IntentFilter(FetchingDataService.INTENT_KEY + "." + FetchingDataService.USER_INFO_KEY);
         filter.addAction(FetchingDataService.INTENT_KEY + "." + FetchingDataService.TRANSACTION_HISTORY_KEY);
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(receiver, filter);
+        LocalBroadcastManager.getInstance(Objects.requireNonNull(getContext())).registerReceiver(receiver, filter);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(receiver);
+        LocalBroadcastManager.getInstance(Objects.requireNonNull(getContext())).unregisterReceiver(receiver);
     }
 
     private ArrayList<TransactionModel> filterTransaction(ArrayList<TransactionModel> transactions) {

@@ -1,13 +1,16 @@
 package com.example.myfirstapp.luckybankonlinesystem.Fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.myfirstapp.luckybankonlinesystem.Class.Date;
@@ -17,9 +20,8 @@ import com.example.myfirstapp.luckybankonlinesystem.Service.FetchingDataService;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.text.ParseException;
+import java.util.Objects;
 
 public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
@@ -35,9 +37,10 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        userInfo = getActivity().getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
+
+        userInfo = Objects.requireNonNull(getActivity()).getIntent().getExtras().getParcelable(FetchingDataService.USER_INFO_KEY);
         currentUserUID = userInfo.getCustomerId();
         etFullName = view.findViewById(R.id.txtProfile_FullName);
         etBirthDate = view.findViewById(R.id.txtProfile_DateOfBirth);
@@ -65,8 +68,11 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                 Date minValidDate = Date.getInstance(date, month, year + 18);
                 return minValidDate.getEpochSecond() <= dateObj.getEpochSecond();
             });
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             dialog.show(getChildFragmentManager(), null);
         });
+
         etFullName.setText(userInfo.getFullName());
         etBirthDate.setText(userInfo.getBirthDate());
         etPhoneNumber.setText(userInfo.getPhoneNumber());
@@ -98,6 +104,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         WaitingDialog dialog = new WaitingDialog(getContext(), R.raw.loading_animation, updateUserInfoTask);
         dialog.setOnWaitingDialogCompletedListener(
                 () -> Toast.makeText(getContext(), "Update user's info completed", Toast.LENGTH_LONG).show());
+        assert getFragmentManager() != null;
         dialog.show(getFragmentManager(), null);
     }
 }
