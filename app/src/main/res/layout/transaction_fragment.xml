@@ -41,8 +41,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="30dp"
-
-                android:text="Transaction Overview"
+                android:text="Transaction Detail"
                 android:textAlignment="center"
                 android:textColor="#7E7E7E"
                 android:textSize="14sp" />
@@ -53,7 +52,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
-
                 android:text="20"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
@@ -65,17 +63,14 @@
                 android:layout_height="40dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-
+                android:id="@+id/rvTransactionDetail"
                 android:layout_width="match_parent"
-
                 android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="68dp"
                 android:background="@drawable/btn_bg_1"
                 android:padding="40dp"
-                android:textAlignment="center">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                android:textAlignment="center" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnTrans"

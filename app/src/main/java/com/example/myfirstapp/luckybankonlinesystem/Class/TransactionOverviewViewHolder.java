@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfirstapp.luckybankonlinesystem.R;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+import java.util.Locale;
 
 public class TransactionOverviewViewHolder extends RecyclerView.ViewHolder {
 
@@ -23,10 +22,8 @@ public class TransactionOverviewViewHolder extends RecyclerView.ViewHolder {
         tvTransactionValue = itemView.findViewById(R.id.tvTransactionValue);
     }
 
-    public void setShortName(String fullName) {
-        String[] words = fullName.split("\\s+");
-        String shortName = (String.valueOf(words[words.length - 1].charAt(0)) + String.valueOf(words[0].charAt(0))).toUpperCase();
-        tvShortName.setText(shortName);
+    public void setShortName(String email) {
+        tvShortName.setText(email.substring(0, 3));
     }
 
     public void setTransactionId(String transactionId) {
@@ -38,7 +35,6 @@ public class TransactionOverviewViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setTransactionValue(int value) {
-        NumberFormat formatter = new DecimalFormat("#,###");
-        tvTransactionValue.setText(String.format("- %s", formatter.format(value)));
+        tvTransactionValue.setText(String.format(Locale.US, "- %,d", value));
     }
 }

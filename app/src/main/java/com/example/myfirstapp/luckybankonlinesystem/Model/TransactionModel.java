@@ -50,6 +50,7 @@ public class TransactionModel implements Parcelable {
         amount = in.readDouble();
         senderName = in.readString();
         receiverName = in.readString();
+        message = in.readString();
     }
 
     public static final Creator<TransactionModel> CREATOR = new Creator<TransactionModel>() {
@@ -96,11 +97,11 @@ public class TransactionModel implements Parcelable {
         this.amount = amount;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return this.message;
     }
 
-    public void setMessage(String newMess){
+    public void setMessage(String newMess) {
         this.message = newMess;
     }
 
@@ -118,5 +119,6 @@ public class TransactionModel implements Parcelable {
         dest.writeDouble(amount);
         dest.writeString(senderName);
         dest.writeString(receiverName);
+        dest.writeString(message);
     }
 }
