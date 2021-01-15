@@ -68,7 +68,9 @@ public class NewTransactionDialog extends DialogFragment {
         etAmount = v.findViewById(R.id.etTransAmount);
         etMessage = v.findViewById(R.id.etTransMes);
         tvCurrentBalance = v.findViewById(R.id.tvCurrentBalance);
+        TextView tvCurrentDay = v.findViewById(R.id.tvCurrentDate);
 //
+        tvCurrentDay.setText(Date.getInstance().toString(true));
 //        putObjectToHashMap();
         getDialog().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);

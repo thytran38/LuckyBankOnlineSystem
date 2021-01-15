@@ -50,11 +50,11 @@ public class SavingCardFragment extends Fragment {
 //        AccountModel[] am = getActivity().getIntent().getExtras().getParcelableArray(SplashScreenActivity.);
         USER_NAME = cm.getFullName().toUpperCase().toString();
         ArrayList<AccountModel> userAccounts = cm.getAccounts();
-        AccountModel primeAcc = userAccounts.get(0);
-        //AccountModel savAcc = userAccounts.get(1);
-        String primeAccNumber = primeAcc.getAccountNumber();
-       // String savingAccNumber = savAcc.getAccountNumber();
-       // ACCOUNT_NUMBER = savingAccNumber;
+        //AccountModel primeAcc = userAccounts.get(0);
+        AccountModel savAcc = userAccounts.get(1);
+        //String primeAccNumber = primeAcc.getAccountNumber();
+        String savingAccNumber = String.valueOf(savAcc.getDateCreated());
+        ACCOUNT_NUMBER = savingAccNumber;
 
 
     }

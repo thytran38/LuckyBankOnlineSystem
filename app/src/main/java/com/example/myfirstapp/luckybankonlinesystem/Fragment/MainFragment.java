@@ -77,11 +77,6 @@ public class MainFragment extends Fragment {
         tvTotalAcc = getView().findViewById(R.id.tvTotalAcc);
         setCurrentBalance(userInfo.getAccounts().get(0).getCurrentBalance());
 
-        ViewPager2 viewPager2 = v.findViewById(R.id.viewPager);
-        viewPager2.setCurrentItem(R.layout.primary_card_view);
-        viewPager2.setAdapter(new CardAdapter(getActivity()));
-        viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());
-
         rvTransactionOverview.setLayoutManager(new LinearLayoutManager(getContext()));
 
         updateTransactionHistoryList(transactions);
@@ -101,7 +96,7 @@ public class MainFragment extends Fragment {
             }
         };
 
-        viewPager2 = v.findViewById(R.id.viewPager);
+        ViewPager2 viewPager2 = v.findViewById(R.id.viewPager);
         viewPager2.setCurrentItem(R.layout.primary_card_view);
         viewPager2.setAdapter(new CardAdapter(Objects.requireNonNull(getActivity())));
         viewPager2.setPageTransformer(new DepthZoomOutPageTransformer());

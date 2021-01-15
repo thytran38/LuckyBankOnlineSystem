@@ -68,6 +68,13 @@ public class FetchingDataService extends Service {
                     .addSnapshotListener(MetadataChanges.INCLUDE, (data, error) -> {
                         if (error == null) {
                             if (data != null) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                                    NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "NotificationChannel", importance);
+                                    channel.setDescription("Channel to notify new user transaction");
+                                    NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                                    notificationManager.createNotificationChannel(channel);
+                                }
                                 Intent dataIntent = new Intent(INTENT_KEY + "." + TRANSACTION_HISTORY_KEY);
                                 ArrayList<TransactionModel> transactions = new ArrayList<>();
                                 for (DocumentSnapshot snapshot : data.getDocuments()) {
@@ -76,6 +83,17 @@ public class FetchingDataService extends Service {
                                     model.setTransactionID(snapshot.getId());
                                     if (model.getReceiverUID().equals(uid) || model.getSenderUID().equals(uid))
                                         transactions.add(model);
+                                    if (model.getReceiverUID().equals(uid) && model.getTimestamp() >= currentTime) {
+                                        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                                                .setSmallIcon(R.drawable.money_icon)
+                                                .setContentTitle("New transaction detected (number = " + model.getTransactionID() + ")")
+                                                .setContentText(String.format(Locale.US, "You received %,d from %s", (int) model.getAmount(), model.getSenderName()))
+                                                .setWhen(System.currentTimeMillis())
+                                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                                .build();
+                                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+                                        notificationManager.notify((int) Date.getInstance().getEpochSecond(), notification);
+                                    }
                                 }
                                 dataIntent.setAction(INTENT_KEY + "." + TRANSACTION_HISTORY_KEY);
                                 dataIntent.putExtra(TRANSACTION_HISTORY_KEY, transactions);
@@ -86,31 +104,6 @@ public class FetchingDataService extends Service {
                         }
                     });
         }).start();
-        db.collection("transactions")
-                .whereEqualTo("receiverUID", uid)
-                .whereGreaterThan("timestamp", currentTime)
-                .addSnapshotListener(MetadataChanges.INCLUDE, (data, error) -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-                        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "NotificationChannel", importance);
-                        channel.setDescription("Channel to notify new user transaction");
-                        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-                        notificationManager.createNotificationChannel(channel);
-                    }
-                    for (DocumentSnapshot snapshot : data.getDocuments()) {
-                        TransactionModel model = snapshot.toObject(TransactionModel.class);
-                        model.setTransactionID(snapshot.getId());
-                        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                                .setSmallIcon(R.drawable.money_icon)
-                                .setContentTitle("New transaction detected (number = " + model.getTransactionID() + ")")
-                                .setContentText(String.format(Locale.US, "You received %,d from %s", (int) model.getAmount(), model.getSenderName()))
-                                .setWhen(System.currentTimeMillis())
-                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                .build();
-                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-                        notificationManager.notify((int) Date.getInstance().getEpochSecond(), notification);
-                    }
-                });
         return START_NOT_STICKY;
     }
 

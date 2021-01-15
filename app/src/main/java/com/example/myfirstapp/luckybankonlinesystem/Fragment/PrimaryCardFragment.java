@@ -58,7 +58,7 @@ public class PrimaryCardFragment extends Fragment {
         USER_NAME = cm.getFullName().toUpperCase().toString();
         ArrayList<AccountModel> userAccounts = cm.getAccounts();
         AccountModel primeAcc = userAccounts.get(0);
-        String primeAccNumber = primeAcc.getAccountNumber();
+        String primeAccNumber = String.valueOf(primeAcc.getDateCreated());
         ACCOUNT_NUMBER = primeAccNumber;
     }
 }

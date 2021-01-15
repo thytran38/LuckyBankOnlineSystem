@@ -64,6 +64,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="40dp" />
 
+
             <TextView
                 android:id="@+id/tvDateCreatedConfirm"
                 android:layout_width="wrap_content"
@@ -73,7 +74,6 @@
                 android:textColor="@color/login_form_details"
                 android:textSize="16dp"
                 android:textStyle="bold" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                     android:layout_marginTop="10dp"
                     android:padding="16dp"
                     android:src="@drawable/ic_user"
-                    android:text="Beneficiary's name"
+                    android:text="Beneficiary's Email"
                     android:textColor="@color/login_form_details"
                     android:textColorHint="@color/login_form_details"
                     android:textSize="18sp" />
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:src="@drawable/ic_user"
-                    android:text="Beneficiary's account"
+                    android:text="Beneficiary's ccount"
                     android:textColor="@color/login_form_details"
                     android:textColorHint="@color/login_form_details"
                     android:textSize="18sp" />

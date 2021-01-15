@@ -40,6 +40,6 @@ public class TransactionDetailViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setTransactionValue(double value, boolean isSender) {
-        tvTransactionValue.setText(String.format(Locale.US, "%s %,d", isSender ? "+" : "-", (int) value));
+        tvTransactionValue.setText(String.format(Locale.US, "%s %,d", isSender ? "-" : "+", (int) value));
     }
 }

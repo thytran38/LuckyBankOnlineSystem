@@ -38,7 +38,7 @@ public class CurrencyFragment extends Fragment {
     private RecyclerView rvCurrencyRates;
     private RequestQueue requestQueue;
     private static final String CURRENCY_RATES_URL = "https://api.ratesapi.io/api/latest?base=USD";
-    private static final String API_KEY = "52ow3c576nkf8c3owt5h57yl9ajpnz491f16r9vq4gvt67to54fdr7uok1b7";
+    private static final String API_KEY = "va47vtkxjt2n2ws03vr3dwwbd1a4sgza33onu962866fd6g1e3fm4rwct53d";
     private static final String GOLD_RATE_BASE_URL = "https://metals-api.com/api/latest";
 
     @Override

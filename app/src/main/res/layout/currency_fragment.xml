@@ -110,8 +110,9 @@
                 android:textColor="#7E7E7E"
                 android:textAlignment="center" />
 
-            <View android:layout_width="match_parent"
-                android:layout_height="60dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="120dp" />
         </LinearLayout>
     </ScrollView>
 
